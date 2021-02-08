@@ -1,4 +1,6 @@
 on:
+  push
+  
   schedule:
     # Every week
     - cron: "0 0 1 * *" 
