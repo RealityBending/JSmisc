@@ -1,0 +1,23 @@
+on:
+  schedule:
+    # Every week
+    - cron: "0 0 1 * *" 
+
+name: Sync
+
+jobs:
+  render:
+    name: Sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: JsPsych Sync
+        uses: kbrashears5/github-action-file-sync@v2.2.0
+        with:
+          REPOSITORIES: |
+            jspsych/jsPsych
+          FILES: |
+            jspsych.js=jspsych/jspsych.js
+          TOKEN: ${{ secrets.ACTIONS }}
+
