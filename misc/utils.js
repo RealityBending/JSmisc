@@ -7,7 +7,6 @@ function range(n = 10) {
     return Array(n).fill().map((_, i) => i + 1)
 }
 
-
 function randomInteger(min = 1, max = 10) {
     return Math.round(Math.random() * (max - min) + min)
 }
@@ -124,13 +123,3 @@ function systemInfo() {
     }
 }
 
-/* ROUTINES ================== */
-
-
-var fixation_cross = {
-    type: 'html-keyboard-response',
-    stimulus: "<div style='font-size:5em'>+</div>",
-    choices: jsPsych.NO_KEYS,
-    trial_duration: function () { return randomInteger(250, 750) },
-    data: { object: 'fixation_cross' }
-}

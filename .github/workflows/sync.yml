@@ -15,12 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: JsPsych Sync
-        uses: kbrashears5/github-action-file-sync@v2.2.0
-        with:
-          REPOSITORIES: |
-            jspsych/jsPsych
-          FILES: |
-            jspsych.js=jspsych/jspsych.js
-          TOKEN: ${{ secrets.ACTIONS }}
+      # - name: git-sync
+      #  uses: wei/git-sync@v3
+      #  with:
+      #    source_repo: "source_org/repository"
+      #    source_branch: "main"
+      #    destination_repo: "destination_org/repository"
+      #    destination_branch: "main"
 
