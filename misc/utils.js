@@ -1,6 +1,13 @@
 /* UTILS ================== */
 
 
+/* TEXT ================== */
+
+function format_digit(x, digits = 2) {
+    return (x).toLocaleString('en-US', { minimumIntegerDigits: digits, useGrouping: false })
+}
+
+
 /* MATHS ================== */
 
 function range(n = 10) {
@@ -59,14 +66,14 @@ function isString(x) {
 //     return await (await fetch(url)).json()
 // }
 
-function read_json_from_url(url) {
-    fetch(url)
-        .then(res => res.json())
-        .then((out) => {
-            return out
-        })
-        .catch(err => { throw err })
-}
+// function read_json_from_url(url) {
+//     fetch(url)
+//         .then(res => res.json())
+//         .then((out) => {
+//             return out
+//         })
+//         .catch(err => { throw err })
+// }
 
 
 function hasTouchScreen() {
