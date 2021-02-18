@@ -271,7 +271,7 @@ jsPsych.plugins["image-buttonkeyboard-response"] = (function () {
     function after_response(choice) {
 
       // Record data
-      if (isString(choice)) {
+      if (typeof choice === 'string' || choice instanceof String) {
         // Then it's a button click
         response.rt = performance.now() - start_time
         response.button = parseInt(choice)

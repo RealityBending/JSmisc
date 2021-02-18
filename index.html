@@ -4,17 +4,48 @@
 <head>
     <!-- Customize the title! -->
     <title>JSmisc</title>
+    <!-- Scripts -->
+    <script src="jspsych/jspsych.js"></script>
+    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych_extensions/image-buttonkeyboard-response.js"></script>
     <!-- CSS -->
     <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<!-- <body>
 
-<h1>JSmisc</h1>
+    <h1>JSmisc</h1>
 
-<p>This webpage is useless. Instructions on how to use the JSmisc repo can be found at <a href="https://github.com/RealityBending/JSmisc">GitHub/RealityBending/JSmisc</a>.</p>
+    <p>This webpage is useless. Instructions on how to use the JSmisc repo can be found at <a
+            href="https://github.com/RealityBending/JSmisc">GitHub/RealityBending/JSmisc</a>.</p>
 
-</body>
+</body> -->
+
+<script>
+
+    var screen = {
+        type: 'html-keyboard-response',
+        stimulus: '<p>This webpage is useless.</p> \
+        <p>Instructions on how to use the JSmisc repo can be found at \
+        <a href="https://github.com/RealityBending/JSmisc">GitHub/RealityBending/JSmisc</a>.</p>'
+    }
+
+    var stimulus = {
+        type: "image-buttonkeyboard-response",
+        stimulus: "https://frontiersinblog.files.wordpress.com/2018/04/ai-artificial-illusion-tricked-by-optical-illusion2.jpg",
+        choices: ['<-', '->'],
+        keys: ['leftarrow', 'rightarrow', 'esc']
+    }
+
+
+    jsPsych.init({
+        timeline: [screen, stimulus],
+        on_finish: function () {
+            jsPsych.data.displayData()
+        }
+    })
+
+</script>
 
 
 </html>
