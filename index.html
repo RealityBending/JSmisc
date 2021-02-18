@@ -8,6 +8,7 @@
     <script src="jspsych/jspsych.js"></script>
     <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych_extensions/image-buttonkeyboard-response.js"></script>
+    <script src="jspsych_extensions/image-keyboardmouse-response.js"></script>
     <!-- CSS -->
     <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css">
 </head>
@@ -30,16 +31,22 @@
         <a href="https://github.com/RealityBending/JSmisc">GitHub/RealityBending/JSmisc</a>.</p>'
     }
 
-    var stimulus = {
+    var buttonkeyboard = {
         type: "image-buttonkeyboard-response",
         stimulus: "https://frontiersinblog.files.wordpress.com/2018/04/ai-artificial-illusion-tricked-by-optical-illusion2.jpg",
         choices: ['<-', '->'],
         keys: ['leftarrow', 'rightarrow', 'esc']
     }
 
+    var keyboardmouse = {
+        type: "image-keyboardmouse-response",
+        stimulus: "https://useruploads.socratic.org/xwQUTMyYSea2cQxsbmUh_quadrants.gif",
+        keys: ['leftarrow', 'rightarrow', 'esc']
+    }
+
 
     jsPsych.init({
-        timeline: [screen, stimulus],
+        timeline: [screen, buttonkeyboard, keyboardmouse],
         on_finish: function () {
             jsPsych.data.displayData()
         }
