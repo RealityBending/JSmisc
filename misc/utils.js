@@ -130,3 +130,24 @@ function systemInfo() {
     }
 }
 
+
+function systemLocalize() {
+    if (!navigator.geolocation) {
+        console.log("Geolocation is not supported by your browser")
+        return { latitude: "FAILED", longitude: "FAILED", localization_accuracy: "FAILED" }
+    }
+
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    }
+
+    function success(position) {
+        return { latitude: position.coords.latitude, longitude: position.coords.longitude, localization_accuracy: position.accuracy }
+    }
+    function error() {
+        return { latitude: "FAILED", longitude: "FAILED", localization_accuracy: "FAILED" }
+    }
+    navigator.geolocation.getCurrentPosition(success, error, options)
+}
