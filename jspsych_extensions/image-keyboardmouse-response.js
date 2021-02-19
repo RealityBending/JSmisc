@@ -167,6 +167,23 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
       img.style.width = width.toString() + "px"
     }
 
+
+    // MOUSE STUFF -------------------------
+    console.log(img)
+    img.addEventListener('mousedown', function (event) {
+      console.log("YES")
+      console.log(event)
+      console.log("X: " + event.clientX + ", Y: " + event.clientY)
+      console.log("X: " + event.pageX + ", Y: " + event.pageY)
+      // var info = {}
+      // info.row = e.currentTarget.getAttribute('data-row')
+      // info.column = e.currentTarget.getAttribute('data-column')
+      // info.rt = performance.now() - startTime
+      // after_response(info)
+    })
+    // ----------------------------------------
+
+
     // store response
     var response = {
       rt: null,

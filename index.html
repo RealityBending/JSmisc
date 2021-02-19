@@ -31,12 +31,12 @@
         <a href="https://github.com/RealityBending/JSmisc">GitHub/RealityBending/JSmisc</a>.</p>'
     }
 
-    var buttonkeyboard = {
-        type: "image-buttonkeyboard-response",
-        stimulus: "https://frontiersinblog.files.wordpress.com/2018/04/ai-artificial-illusion-tricked-by-optical-illusion2.jpg",
-        choices: ['<-', '->'],
-        keys: ['leftarrow', 'rightarrow', 'esc']
-    }
+    // var buttonkeyboard = {
+    //     type: "image-buttonkeyboard-response",
+    //     stimulus: "https://frontiersinblog.files.wordpress.com/2018/04/ai-artificial-illusion-tricked-by-optical-illusion2.jpg",
+    //     choices: ['<-', '->'],
+    //     keys: ['leftarrow', 'rightarrow', 'esc']
+    // }
 
     var keyboardmouse = {
         type: "image-keyboardmouse-response",
@@ -46,7 +46,9 @@
 
 
     jsPsych.init({
-        timeline: [screen, buttonkeyboard, keyboardmouse],
+        timeline: [screen,
+            // buttonkeyboard,
+            keyboardmouse],
         on_finish: function () {
             jsPsych.data.displayData()
         }
