@@ -169,10 +169,7 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
 
 
     // MOUSE STUFF -------------------------
-    console.log(img)
     img.addEventListener('mousedown', function (event) {
-      console.log("YES")
-      console.log(event)
       console.log("X: " + event.clientX + ", Y: " + event.clientY)
       console.log("X: " + event.pageX + ", Y: " + event.pageY)
       // var info = {}
