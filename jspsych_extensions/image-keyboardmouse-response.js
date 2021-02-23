@@ -1,5 +1,5 @@
 /**
- * jspsych-image-keyboard-response
+ * jspsych-image-keyboardmouse-response
  * Josh de Leeuw
  *
  * plugin for displaying a stimulus and getting a keyboard response
@@ -44,7 +44,7 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
         description: 'Maintain the aspect ratio after setting width or height'
       },
       choices: {
-        type: jsPsych.plugins.parameterType.KEYCODE,
+        type: jsPsych.plugins.parameterType.KEY,
         array: true,
         pretty_name: 'Choices',
         default: jsPsych.ALL_KEYS,
@@ -86,19 +86,19 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
         type: jsPsych.plugins.parameterType.FUNCTION,
         pretty_name: 'Mouse down function',
         default: null,
-        description: 'This function is set to the event listener of the mousedown.'        
+        description: 'This function is set to the event listener of the mousedown.'
       },
       mouse_move_func: {
         type: jsPsych.plugins.parameterType.FUNCTION,
         pretty_name: 'Mouse move function',
         default: null,
-        description: 'This function is set to the event listener of the mousemove.'        
+        description: 'This function is set to the event listener of the mousemove.'
       },
       mouse_up_func: {
         type: jsPsych.plugins.parameterType.FUNCTION,
         pretty_name: 'Mouse up function',
         default: null,
-        description: 'This function is set to the event listener of the mouseup.'        
+        description: 'This function is set to the event listener of the mouseup.'
       }
     }
   }
@@ -107,6 +107,7 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
 
     var height, width
     if (trial.render_on_canvas) {
+      var image_drawn = false
       // first clear the display element (because the render_on_canvas method appends to display_element instead of overwriting it with .innerHTML)
       if (display_element.hasChildNodes()) {
         // can't loop through child list because the list will be modified by .removeChild()
@@ -119,33 +120,48 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
       canvas.id = "jspsych-image-keyboard-response-stimulus"
       canvas.style.margin = 0
       canvas.style.padding = 0
+      var ctx = canvas.getContext("2d")
       var img = new Image()
+      img.onload = function () {
+        // if image wasn't preloaded, then it will need to be drawn whenever it finishes loading
+        if (!image_drawn) {
+          getHeightWidth() // only possible to get width/height after image loads
+          ctx.drawImage(img, 0, 0, width, height)
+        }
+      }
       img.src = trial.stimulus
-      // determine image height and width
-      if (trial.stimulus_height !== null) {
-        height = trial.stimulus_height
-        if (trial.stimulus_width == null && trial.maintain_aspect_ratio) {
-          width = img.naturalWidth * (trial.stimulus_height / img.naturalHeight)
+      // get/set image height and width - this can only be done after image loads because uses image's naturalWidth/naturalHeight properties
+      function getHeightWidth() {
+        if (trial.stimulus_height !== null) {
+          height = trial.stimulus_height
+          if (trial.stimulus_width == null && trial.maintain_aspect_ratio) {
+            width = img.naturalWidth * (trial.stimulus_height / img.naturalHeight)
+          }
+        } else {
+          height = img.naturalHeight
         }
-      } else {
-        height = img.naturalHeight
-      }
-      if (trial.stimulus_width !== null) {
-        width = trial.stimulus_width
-        if (trial.stimulus_height == null && trial.maintain_aspect_ratio) {
-          height = img.naturalHeight * (trial.stimulus_width / img.naturalWidth)
+        if (trial.stimulus_width !== null) {
+          width = trial.stimulus_width
+          if (trial.stimulus_height == null && trial.maintain_aspect_ratio) {
+            height = img.naturalHeight * (trial.stimulus_width / img.naturalWidth)
+          }
+        } else if (!(trial.stimulus_height !== null & trial.maintain_aspect_ratio)) {
+          // if stimulus width is null, only use the image's natural width if the width value wasn't set 
+          // in the if statement above, based on a specified height and maintain_aspect_ratio = true
+          width = img.naturalWidth
         }
-      } else if (!(trial.stimulus_height !== null & trial.maintain_aspect_ratio)) {
-        // if stimulus width is null, only use the image's natural width if the width value wasn't set
-        // in the if statement above, based on a specified height and maintain_aspect_ratio = true
-        width = img.naturalWidth
+        canvas.height = height
+        canvas.width = width
       }
-      canvas.height = height
-      canvas.width = width
+      getHeightWidth() // call now, in case image loads immediately (is cached)
       // add canvas and draw image
       display_element.insertBefore(canvas, null)
-      var ctx = canvas.getContext("2d")
-      ctx.drawImage(img, 0, 0, width, height)
+      if (img.complete && Number.isFinite(width) && Number.isFinite(height)) {
+        // if image has loaded and width/height have been set, then draw it now
+        // (don't rely on img onload function to draw image when image is in the cache, because that causes a delay in the image presentation)
+        ctx.drawImage(img, 0, 0, width, height)
+        image_drawn = true
+      }
       // add prompt if there is one
       if (trial.prompt !== null) {
         display_element.insertAdjacentHTML('beforeend', trial.prompt)
@@ -178,7 +194,7 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
           height = img.naturalHeight * (trial.stimulus_width / img.naturalWidth)
         }
       } else if (!(trial.stimulus_height !== null & trial.maintain_aspect_ratio)) {
-        // if stimulus width is null, only use the image's natural width if the width value wasn't set
+        // if stimulus width is null, only use the image's natural width if the width value wasn't set 
         // in the if statement above, based on a specified height and maintain_aspect_ratio = true
         width = img.naturalWidth
       }
@@ -186,33 +202,20 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
       img.style.width = width.toString() + "px"
     }
 
-
     // MOUSE STUFF -------------------------
-    /*img.addEventListener('mousedown', function (event) {
-      console.log("X: " + event.clientX + ", Y: " + event.clientY)
-      console.log("X: " + event.pageX + ", Y: " + event.pageY)
-      // var info = {}
-      // info.row = e.currentTarget.getAttribute('data-row')
-      // info.column = e.currentTarget.getAttribute('data-column')
-      // info.rt = performance.now() - startTime
-      // after_response(info)
-    })
-    */
-    
     // add event listeners defined by experimenters.
-    if (trial.mouse_down_func !== null){
-      canvas.addEventListener("mousedown", trial.mouse_down_func);
+    if (trial.mouse_down_func !== null) {
+      canvas.addEventListener("mousedown", trial.mouse_down_func)
     }
 
-    if (trial.mouse_move_func !== null){
-      canvas.addEventListener("mousemove", trial.mouse_move_func);
+    if (trial.mouse_move_func !== null) {
+      canvas.addEventListener("mousemove", trial.mouse_move_func)
     }
 
-    if (trial.mouse_up_func !== null){
-      canvas.addEventListener("mouseup", trial.mouse_up_func);
+    if (trial.mouse_up_func !== null) {
+      canvas.addEventListener("mouseup", trial.mouse_up_func)
     }
     // ----------------------------------------
-
 
     // store response
     var response = {
@@ -233,12 +236,12 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
 
       // gather the data to store for the trial
       var trial_data = {
-        "rt": response.rt,
-        "stimulus": trial.stimulus,
-        "key_press": response.key,
+        rt: response.rt,
+        stimulus: trial.stimulus,
+        response: response.key,
         // MOUSE STUFF
-        'click_x': response.clickX,
-        'click_y': response.clickY
+        click_x: response.clickX,
+        click_y: response.clickY
       }
 
       // clear the display
@@ -280,28 +283,27 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
     start_time = performance.now()
     canvas.addEventListener("mousedown", mouseDownFunc)
     const motion_rt_method = 'performance'
-    function mouseDownFunc(e){
-      
-      let click_time;
-      
-      if (motion_rt_method == 'date') {
-        click_time = (new Date()).getTime();
-      } else {
-        click_time = performance.now();
-      }
-      
-      e.preventDefault();
-      
-      after_response({
-          key: -1,
-          rt: click_time - start_time,
-          // clickX: e.clientX,
-          // clickY: e.clientY,
-          clickX: e.offsetX,
-          clickY: e.offsetY,
-      });
-    }
+    function mouseDownFunc(e) {
 
+      let click_time
+
+      if (motion_rt_method == 'date') {
+        click_time = (new Date()).getTime()
+      } else {
+        click_time = performance.now()
+      }
+
+      e.preventDefault()
+
+      after_response({
+        key: -1,
+        rt: click_time - start_time,
+        // clickX: e.clientX,
+        // clickY: e.clientY,
+        clickX: e.offsetX,
+        clickY: e.offsetY,
+      })
+    }
 
     // hide stimulus if stimulus_duration is set
     if (trial.stimulus_duration !== null) {
