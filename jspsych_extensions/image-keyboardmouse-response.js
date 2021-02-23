@@ -80,6 +80,25 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
         default: true,
         description: 'If true, the image will be drawn onto a canvas element (prevents blank screen between consecutive images in some browsers).' +
           'If false, the image will be shown via an img element.'
+      },
+      // MOUSE STUFF
+      mouse_down_func: {
+        type: jsPsych.plugins.parameterType.FUNCTION,
+        pretty_name: 'Mouse down function',
+        default: null,
+        description: 'This function is set to the event listener of the mousedown.'        
+      },
+      mouse_move_func: {
+        type: jsPsych.plugins.parameterType.FUNCTION,
+        pretty_name: 'Mouse move function',
+        default: null,
+        description: 'This function is set to the event listener of the mousemove.'        
+      },
+      mouse_up_func: {
+        type: jsPsych.plugins.parameterType.FUNCTION,
+        pretty_name: 'Mouse up function',
+        default: null,
+        description: 'This function is set to the event listener of the mouseup.'        
       }
     }
   }
@@ -169,7 +188,7 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
 
 
     // MOUSE STUFF -------------------------
-    img.addEventListener('mousedown', function (event) {
+    /*img.addEventListener('mousedown', function (event) {
       console.log("X: " + event.clientX + ", Y: " + event.clientY)
       console.log("X: " + event.pageX + ", Y: " + event.pageY)
       // var info = {}
@@ -178,6 +197,20 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
       // info.rt = performance.now() - startTime
       // after_response(info)
     })
+    */
+    
+    // add event listeners defined by experimenters.
+    if (trial.mouse_down_func !== null){
+      canvas.addEventListener("mousedown", trial.mouse_down_func);
+    }
+
+    if (trial.mouse_move_func !== null){
+      canvas.addEventListener("mousemove", trial.mouse_move_func);
+    }
+
+    if (trial.mouse_up_func !== null){
+      canvas.addEventListener("mouseup", trial.mouse_up_func);
+    }
     // ----------------------------------------
 
 
@@ -202,7 +235,10 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
       var trial_data = {
         "rt": response.rt,
         "stimulus": trial.stimulus,
-        "key_press": response.key
+        "key_press": response.key,
+        // MOUSE STUFF
+        'click_x': response.clickX,
+        'click_y': response.clickY
       }
 
       // clear the display
@@ -239,6 +275,33 @@ jsPsych.plugins["image-keyboardmouse-response"] = (function () {
         allow_held_key: false
       })
     }
+
+    // MOUSE STUFF
+    start_time = performance.now()
+    canvas.addEventListener("mousedown", mouseDownFunc)
+    const motion_rt_method = 'performance'
+    function mouseDownFunc(e){
+      
+      let click_time;
+      
+      if (motion_rt_method == 'date') {
+        click_time = (new Date()).getTime();
+      } else {
+        click_time = performance.now();
+      }
+      
+      e.preventDefault();
+      
+      after_response({
+          key: -1,
+          rt: click_time - start_time,
+          // clickX: e.clientX,
+          // clickY: e.clientY,
+          clickX: e.offsetX,
+          clickY: e.offsetY,
+      });
+    }
+
 
     // hide stimulus if stimulus_duration is set
     if (trial.stimulus_duration !== null) {
