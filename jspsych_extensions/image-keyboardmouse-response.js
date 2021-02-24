@@ -1,10 +1,8 @@
 /**
- * jspsych-image-keyboardmouse-response
- * Josh de Leeuw
+ * image-keyboardmouse-response
+ * Zen J. Lau & Dominique Makowski
  *
- * plugin for displaying a stimulus and getting a keyboard response
- *
- * documentation: docs.jspsych.org
+ * plugin for displaying a stimulus and getting a keyboard or a mouse click response
  *
  **/
 
