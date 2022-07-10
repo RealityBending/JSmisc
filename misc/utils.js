@@ -1,17 +1,20 @@
 /* UTILS ================== */
 
-
 /* TEXT ================== */
 
 function format_digit(x, digits = 2) {
-    return (x).toLocaleString('en-US', { minimumIntegerDigits: digits, useGrouping: false })
+    return x.toLocaleString("en-US", {
+        minimumIntegerDigits: digits,
+        useGrouping: false,
+    })
 }
-
 
 /* MATHS ================== */
 
 function range(n = 10) {
-    return Array(n).fill().map((_, i) => i + 1)
+    return Array(n)
+        .fill()
+        .map((_, i) => i + 1)
 }
 
 function randomInteger(min = 1, max = 10) {
@@ -23,13 +26,17 @@ function randomNumber(min = 0, max = 1) {
 }
 
 function round_digits(x, digits = 2) {
-    return Number(Math.round(parseFloat(x + 'e' + digits)) + 'e-' + digits).toFixed(digits)
+    return Number(
+        Math.round(parseFloat(x + "e" + digits)) + "e-" + digits
+    ).toFixed(digits)
 }
 
 function isString(x) {
-    return typeof x === 'string' || x instanceof String
+    return typeof x === "string" || x instanceof String
 }
 
+// obtained from https://stackoverflow.com/questions/5259421/cumulative-distribution-function-in-javascript
+// supported by https://stackoverflow.com/questions/457408/is-there-an-easily-available-implementation-of-erf-for-python
 function cumulative_probability(x, mean, sd) {
     var z = (x - mean) / Math.sqrt(2 * sd * sd)
     var t = 1 / (1 + 0.3275911 * Math.abs(z))
@@ -38,16 +45,15 @@ function cumulative_probability(x, mean, sd) {
     var a3 = 1.421413741
     var a4 = -1.453152027
     var a5 = 1.061405429
-    var erf = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-z * z)
+    var erf =
+        1 -
+        ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-z * z)
     var sign = 1
     if (z < 0) {
         sign = -1
     }
     return (1 / 2) * (1 + sign * erf)
 }
-// obtained from https://stackoverflow.com/questions/5259421/cumulative-distribution-function-in-javascript
-// supported by https://stackoverflow.com/questions/457408/is-there-an-easily-available-implementation-of-erf-for-python
-
 
 // function saveData(name, data) {
 //     return JSON.stringify({ filename: name, filedata: data })
@@ -94,7 +100,6 @@ function cumulative_probability(x, mean, sd) {
 //         .catch(err => { throw err })
 // }
 
-
 function hasTouchScreen() {
     var hasTouchScreen = false
     if ("maxTouchPoints" in navigator) {
@@ -105,25 +110,28 @@ function hasTouchScreen() {
         var mQ = window.matchMedia && matchMedia("(pointer:coarse)")
         if (mQ && mQ.media === "(pointer:coarse)") {
             hasTouchScreen = !!mQ.matches
-        } else if ('orientation' in window) {
+        } else if ("orientation" in window) {
             hasTouchScreen = true // deprecated, but good fallback
         } else {
             // Only as a last resort, fall back to user agent sniffing
             var UA = navigator.userAgent
-            hasTouchScreen = (
+            hasTouchScreen =
                 /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
                 /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
-            )
         }
     }
     return hasTouchScreen
 }
 
-
-
 function systemInfo() {
-    var window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-    var window_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+    var window_width =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth
+    var window_height =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight
 
     return {
         window_width: window_width,
@@ -145,28 +153,39 @@ function systemInfo() {
         browser: navigator.userAgent,
         // Sytem
         system_platform: navigator.platform,
-        system_language: navigator.language
+        system_language: navigator.language,
     }
 }
-
 
 function systemLocalize() {
     if (!navigator.geolocation) {
         console.log("Geolocation is not supported by your browser")
-        return { latitude: "FAILED", longitude: "FAILED", localization_accuracy: "FAILED" }
+        return {
+            latitude: "FAILED",
+            longitude: "FAILED",
+            localization_accuracy: "FAILED",
+        }
     }
 
     var options = {
         enableHighAccuracy: true,
         timeout: 5000,
-        maximumAge: 0
+        maximumAge: 0,
     }
 
     function success(position) {
-        return { latitude: position.coords.latitude, longitude: position.coords.longitude, localization_accuracy: position.accuracy }
+        return {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            localization_accuracy: position.accuracy,
+        }
     }
     function error() {
-        return { latitude: "FAILED", longitude: "FAILED", localization_accuracy: "FAILED" }
+        return {
+            latitude: "FAILED",
+            longitude: "FAILED",
+            localization_accuracy: "FAILED",
+        }
     }
     navigator.geolocation.getCurrentPosition(success, error, options)
 }
