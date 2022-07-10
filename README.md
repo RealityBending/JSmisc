@@ -6,7 +6,7 @@ A repo containing useful JavaScript scripts that can be loaded from URL.
 
 ## Aim
 
-Long story short, JavaScript scripts can't be loaded directly from a GitHub URL, unless there are obtained through a "GitHub page". This is what this repo enables: the JS scripts are available through this URL: https://realitybending.github.io/JSmisc/
+Long story short, `JavaScript` scripts can't be loaded directly from a GitHub URL, unless they are obtained through a "GitHub page". This is what this repo enables: the JS scripts are available through this URL: https://realitybending.github.io/JSmisc/
 
 ## Usage
 
