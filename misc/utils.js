@@ -55,51 +55,6 @@ function cumulative_probability(x, mean, sd) {
     return (1 / 2) * (1 + sign * erf)
 }
 
-// function saveData(name, data) {
-//     return JSON.stringify({ filename: name, filedata: data })
-// }
-
-// function saveData(data, name = "data.csv") {
-
-//     const a = document.createElement("a")
-//     var text = JSON.stringify(data, null, 2)
-
-//     const file = new Blob([text], { type: "text/plain" })
-
-//     a.href = URL.createObjectURL(file)
-//     a.download = name
-//     document.body.appendChild(a)
-//     // a.click()
-//     a.remove()
-// }
-// var getJSON = function (url, callback) {
-//     var xhr = new XMLHttpRequest()
-//     xhr.open('GET', url, true)
-//     xhr.responseType = 'json'
-//     xhr.onload = function () {
-//         var status = xhr.status
-//         if (status === 200) {
-//             callback(null, xhr.response)
-//         } else {
-//             callback(status, xhr.response)
-//         }
-//     }
-//     xhr.send()
-// }
-
-// async function read_json_from_url(url) {
-//     return await (await fetch(url)).json()
-// }
-
-// function read_json_from_url(url) {
-//     fetch(url)
-//         .then(res => res.json())
-//         .then((out) => {
-//             return out
-//         })
-//         .catch(err => { throw err })
-// }
-
 function hasTouchScreen() {
     var hasTouchScreen = false
     if ("maxTouchPoints" in navigator) {
