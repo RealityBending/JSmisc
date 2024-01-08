@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Title shown in tab -->
+        <title>IPIP6 Example</title>
+
+        <!-- Load JsPsych -->
+        <script src="https://unpkg.com/jspsych"></script>
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+        <!-- Plots -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://realitybending.github.io/JSmisc/misc/plots.js"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-canvas-button-response"></script>
+
+        <!-- IPIP6 -->
+        <script src="https://realitybending.github.io/JSmisc/jspsych_extensions/plugin-multiple-slider.js"></script>
+        <script src="../questionnaires/ipip6.js"></script>
+
+        <style>
+            .narrow-text {
+                max-width: 50%;
+            }
+        </style>
+    </head>
+
+    <body></body>
+
+    <script>
+        // Initialize experiment =================================================
+        var timeline = []
+
+        var jsPsych = initJsPsych({
+            on_finish: function () {
+                jsPsych.data.displayData("json") // Display data in browser
+            },
+        })
+
+        // IPIP -------------------------------------------------------------------
+        var ipip6_questionnaire = {
+            type: jsPsychMultipleSlider,
+            questions: ipip6((required = false)),
+            randomize_question_order: false,
+            preamble: ipip6_instructions,
+            require_movement: false,
+            slider_width: 600,
+            data: {
+                screen: "questionnaire_ipip6",
+            },
+        }
+
+        timeline.push(ipip6_questionnaire)
+
+        var ipip6_plot = {
+            type: jsPsychCanvasButtonResponse,
+            stimulus: function (c) {
+                var data = ipip_plotdata((screen = "questionnaire_ipip6"))
+                var ctx = c.getContext("2d")
+                var plot = new Chart(
+                    ctx,
+                    make_radarplot(
+                        (names = data.names),
+                        (scores = data.scores),
+                        (minmax = [0, 100]),
+                        (label = data.label),
+                        (color = [255, 99, 132])
+                    )
+                )
+            },
+            canvas_size: plot_getsize(),
+            choices: ["Continue"],
+            prompt: "<p>This chart represents how much you score on various personality traits. Remember that there are no good or bad trait, and that there is no 'normal'. Everybody is different!</p>",
+        }
+
+        timeline.push(ipip6_plot)
+
+        //  Run the timeline =====================================================
+        jsPsych.run(timeline)
+    </script>
+</html>

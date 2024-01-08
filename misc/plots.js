@@ -21,7 +21,8 @@ function make_radarplot(
     color = [255, 99, 132]
 ) {
     // Aesthetics
-    var string_color = color.join(",")
+    console.log(color)
+    var string_color = color.join(", ")
     var alpha = 0.5
 
     // Make plot
