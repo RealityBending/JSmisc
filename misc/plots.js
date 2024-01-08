@@ -1,4 +1,7 @@
 // Plots ======================================================================
+// Should be loaded with:
+//    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+//    <script src="https://realitybending.github.io/JSmisc/misc/plots.js"></script>
 
 function plot_getsize() {
     if (typeof window.screen.height == "number") {
