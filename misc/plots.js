@@ -5,23 +5,24 @@
 
 function plot_getsize() {
     if (typeof window.screen.height == "number") {
-        var size = Math.min(...[window.screen.height, window.screen.width]);
-        size = Math.floor(size / 2);
+        var size = Math.min(...[window.screen.height, window.screen.width])
+        size = Math.floor(size / 2)
     } else {
-        var size = [300, 300];
+        var size = [300, 300]
     }
-    return [size, size];
+    return [size, size]
 }
 
 function make_radarplot(
     names = ["A", "B", "C", "D"],
     scores = [1, 2, 3, 4],
     label = "Your score",
-    color = [255, 99, 132]
+    color = [255, 99, 132],
+    minmax = [0, 5]
 ) {
     // Aesthetics
-    var string_color = color.join(",");
-    var alpha = 0.5;
+    var string_color = color.join(",")
+    var alpha = 0.5
 
     // Make plot
     var plot = {
@@ -50,11 +51,11 @@ function make_radarplot(
             },
             scales: {
                 r: {
-                    suggestedMin: 0,
-                    suggestedMax: 5,
+                    suggestedMin: minmax[0],
+                    suggestedMax: minmax[1],
                 },
             },
         },
-    };
-    return plot;
+    }
+    return plot
 }
