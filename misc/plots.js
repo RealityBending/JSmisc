@@ -16,9 +16,9 @@ function plot_getsize() {
 function make_radarplot(
     names = ["A", "B", "C", "D"],
     scores = [1, 2, 3, 4],
+    minmax = [0, 5],
     label = "Your score",
-    color = [255, 99, 132],
-    minmax = [0, 5]
+    color = [255, 99, 132]
 ) {
     // Aesthetics
     var string_color = color.join(",")
