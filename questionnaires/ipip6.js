@@ -57,7 +57,7 @@ var ipip6_dimensions = [
 ]
 
 var ipip6_instructions =
-    "<p><b>About your personality...</b></p>" +
+    "<h2>About your personality...</h2>" +
     "<p> Please answer the following questions based on how accurately each statement describes you in general.</p>"
 
 // Make questions

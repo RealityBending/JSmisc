@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Title shown in tab -->
+        <title>Score chart example</title>
+
+        <!-- Load all necessary plugins -->
+        <script src="https://unpkg.com/jspsych"></script>
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/@jspsych/plugin-canvas-button-response"></script>
+
+        <!-- Load Chart.js from CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../misc/plots.js"></script>
+    </head>
+
+    <body></body>
+
+    <script>
+        // Initialize experiment =================================================
+        var timeline = []
+
+        var jsPsych = initJsPsych({
+            on_finish: function () {
+                jsPsych.data.displayData("json") // Display data in browser
+            },
+        })
+
+        var plot_radar = {
+            type: jsPsychCanvasButtonResponse,
+            stimulus: function (c) {
+                var ctx = c.getContext("2d")
+                var plot = new Chart(ctx, make_barplot())
+            },
+            canvas_size: plot_getsize(),
+            choices: ["Next"],
+            prompt: "<p>This chart represents something.</p>",
+        }
+
+        timeline.push(plot_radar)
+
+        //  Run the timeline =====================================================
+        jsPsych.run(timeline)
+    </script>
+</html>
