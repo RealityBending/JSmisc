@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Title shown in tab -->
+        <title>IPIP6 Example</title>
+
+        <!-- Load JsPsych -->
+        <script src="https://unpkg.com/jspsych"></script>
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+        <!-- IPIP6 -->
+        <script src="https://realitybending.github.io/JSmisc/jspsych_extensions/plugin-survey-slider.js"></script>
+
+        <style>
+            .narrow-text {
+                max-width: 50%;
+            }
+        </style>
+    </head>
+
+    <body></body>
+
+    <script>
+        // Initialize experiment =================================================
+        var timeline = []
+
+        var jsPsych = initJsPsych({
+            on_finish: function () {
+                jsPsych.data.displayData("json") // Display data in browser
+            },
+        })
+
+        // IPIP -------------------------------------------------------------------
+        var questionnaire = {
+            type: jsPsychSurveySlider,
+            questions: [
+                {
+                    prompt: "<b>Question 1</b>",
+                    name: "question1",
+                    ticks: ["Strongly disagree", "Strongly agree"],
+                    required: true,
+                    min: 0,
+                    max: 1,
+                    step: 0.01,
+                    slider_start: 0.5,
+                },
+                {
+                    prompt: "<b>Question 2</b>",
+                    name: "question2",
+                    ticks: ["No", "Yes"],
+                    required: true,
+                    min: 0,
+                    max: 1,
+                    step: 0.01,
+                    slider_start: 0.5,
+                },
+            ],
+            randomize_question_order: false,
+            preamble: "Some instructions.",
+            require_movement: false,
+            slider_width: 600,
+            data: {
+                screen: "questionnaire",
+            },
+        }
+
+        timeline.push(questionnaire)
+
+        //  Run the timeline =====================================================
+        jsPsych.run(timeline)
+    </script>
+</html>
