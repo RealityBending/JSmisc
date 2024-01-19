@@ -78,7 +78,7 @@ function pid5(
             prompt: "<b>" + element + "</b>",
             name: dimensions[index],
             labels: ticks,
-            required: required,
+            required: true,
         })
     }
     return questions
