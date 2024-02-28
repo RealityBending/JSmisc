@@ -12,8 +12,7 @@ A repo containing useful JavaScript scripts that can be loaded from URL.
 For instance, to load the script [`jspsych_extensions/image-buttonkeyboard-response.js`](https://github.com/RealityBending/JSmisc/blob/main/jspsych_extensions/image-buttonkeyboard-response.js), one can add `<script src="https://realitybending.github.io/JSmisc/jspsych_extensions/image-buttonkeyboard-response.js"></script>` in their HTML's head.
 
 
-## Features
+## Examples
 
-- [x] Useful basic functions
-- [x] A JsPsych plugin for displaying images with both keyboad and button responses
-- [x] A JsPsych plugin for displaying images with both keyboad and mouse responses
+- IPIP-6 Personality questionnaire
+  - Try: https://realitybending.github.io/JSmisc/examples/ipip6.html
