@@ -7,6 +7,11 @@
         <!-- Load JsPsych -->
         <script src="https://unpkg.com/jspsych"></script>
         <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload"></script>
+        <!-- Add full URL https://realitybending.github.io/JSmisc/... -->
+        <script src="pcs.js"></script>
     </head>
 
     <body></body>
@@ -19,9 +24,15 @@
             on_finish: function () {
                 jsPsych.data.displayData("json") // Display data in browser
             },
+            use_webaudio: true,
         })
 
         // Timeline -------------------------------------------------------------------
+        timeline.push(pcs_preload)
+        timeline.push(pcs_instructions)
+        timeline.push(pcs_part1)
+        timeline.push(pcs_part2)
+        timeline.push(pcs_finish)
 
         //  Run the timeline =====================================================
         jsPsych.run(timeline)
