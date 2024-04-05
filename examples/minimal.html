@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Title shown in tab -->
+        <title>Minimal Example</title>
+
+        <!-- Load JsPsych -->
+        <script src="https://unpkg.com/jspsych"></script>
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body></body>
+
+    <script>
+        // Initialize experiment =================================================
+        var timeline = []
+
+        var jsPsych = initJsPsych({
+            on_finish: function () {
+                jsPsych.data.displayData("json") // Display data in browser
+            },
+        })
+
+        // Timeline -------------------------------------------------------------------
+
+        //  Run the timeline =====================================================
+        jsPsych.run(timeline)
+    </script>
+</html>
