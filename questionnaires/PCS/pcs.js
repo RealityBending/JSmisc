@@ -12,7 +12,7 @@ var pcs_instructions = {
     },
     stimulus:
         '<h1 style="color:white;">Instructions</h1>' +
-        '<p style="color:white;">Blablabla Add instructions</p>',
+        '<p style="color:white;">Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.<br>Please concentrate on the voice and follow the instructions given.</p>',
     choices: ["Start"],
 }
 
