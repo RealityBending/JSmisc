@@ -10,6 +10,8 @@
         <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-button-response"></script>
         <script src="https://unpkg.com/@jspsych/plugin-preload"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-survey-text"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-survey-likert"></script>
         <!-- Add full URL https://realitybending.github.io/JSmisc/... -->
         <script src="pcs.js"></script>
     </head>
@@ -30,8 +32,11 @@
         // Timeline -------------------------------------------------------------------
         timeline.push(pcs_preload)
         timeline.push(pcs_instructions)
-        timeline.push(pcs_part1)
-        timeline.push(pcs_part2)
+        timeline.push(pcs_part1a)
+        timeline.push(pcs_part1b)
+        timeline.push(pcs_part1c)
+        timeline.push(pcs_part1_q1)
+        timeline.push(pcs_assessment)
         timeline.push(pcs_finish)
 
         //  Run the timeline =====================================================
