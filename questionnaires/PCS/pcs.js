@@ -56,8 +56,16 @@ var pcs_part1c = {
 }
 
 var pcs_part1_q1 = {
-    type: jsPsychSurveyText,
-    questions: [{ prompt: '<p style="color:white;">Color: </p>', name: "PCS_Q1", required: true }],
+    type: jsPsychSurveyMultiChoice,
+    css_classes: ["whitetext"],
+    questions: [
+        {
+            prompt: "<b>Color:</b>",
+            name: "PCS_Q1",
+            options: ["Yellow", "Red", "Green", "Blue", "Purple", "Orange"],
+            required: false,
+        },
+    ],
 }
 
 // Part 2 ========================================================================
@@ -69,6 +77,21 @@ var pcs_part1a = {
     trial_ends_after_audio: true,
 }
 
+// Part X ========================================================================
+
+var pcs_press = {
+    timeline: [
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            prompt: '<p style="color:white;">PRESS SPACE</p>',
+            choices: [" "],
+            response_ends_trial: true,
+            trial_duration: 4000,
+        },
+    ],
+    repetitions: 6,
+}
+
 // Evaluatiopn ========================================================================
 var pcs_assessment0 = {
     type: jsPsychSurveyLikert,
@@ -76,7 +99,7 @@ var pcs_assessment0 = {
         document.body.style.backgroundColor = "white"
         document.body.style.cursor = "auto"
     },
-    preamble: 
+    preamble:
         "<h2>Depth of Experience</h2>" +
         '<p style="color:black;">We began the session with an exercise where you imagined yourself walking down some stairs.</p>',
     questions: [
@@ -90,11 +113,7 @@ var pcs_assessment0 = {
 
 var pcs_assessment1 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
+    preamble:
         "<h2>Hand Lowering</h2>" +
         '<p style="color:black;">You were told to extend your right arm straight out and feel it becoming heavy as though a weight were pulling the hand and arm down.</p>',
     questions: [
@@ -108,12 +127,8 @@ var pcs_assessment1 = {
 
 var pcs_assessment2 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-            document.body.style.backgroundColor = "white"
-            document.body.style.cursor = "auto"
-        },
-    preamble: 
-        "<h2>Moving Hands Together</h2>"+
+    preamble:
+        "<h2>Moving Hands Together</h2>" +
         '<p style="color:black;">You were next told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.</p>',
     questions: [
         {
@@ -126,11 +141,7 @@ var pcs_assessment2 = {
 
 var pcs_assessment3 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
+    preamble:
         "<h2>Experience of Mosquito</h2>" +
         '<p style="color:black;">You were next told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.</p>',
     questions: [
@@ -140,15 +151,11 @@ var pcs_assessment3 = {
             labels: ["No mosquito", "1", "2", "3", "4", "Like a real mosquito"],
         },
     ],
-} 
+}
 
 var pcs_assessment4a = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
+    preamble:
         "<h2>Taste Experience 1</h2>" +
         '<p style="color:black;">You were next told that you would have a SWEET taste in your mouth.</p>',
     questions: [
@@ -162,11 +169,7 @@ var pcs_assessment4a = {
 
 var pcs_assessment4b = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
+    preamble:
         "<h2>Taste Experience 2</h2>" +
         '<p style="color:black;">You were next told that you would have a SOUR taste in your mouth.</p>',
     questions: [
@@ -180,11 +183,7 @@ var pcs_assessment4b = {
 
 var pcs_assessment5 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
+    preamble:
         "<h2>Arm Rigidity (Right Arm)</h2>" +
         '<p style="color:black;">You were next told to extend your right arm straight out, then to notice it becoming stiff, and then told to try to bend it.</p>',
     questions: [
@@ -198,12 +197,8 @@ var pcs_assessment5 = {
 
 var pcs_assessment6 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
-        "<h2>Arm Immobilization (Left Arm)</h2>" + 
+    preamble:
+        "<h2>Arm Immobilization (Left Arm)</h2>" +
         '<p style="color:black;">You were next told how heavy your left hand and arm felt and then told to try to lift your hand up.</p>',
     questions: [
         {
@@ -216,11 +211,7 @@ var pcs_assessment6 = {
 
 var pcs_assessment7 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
+    preamble:
         "<h2>Music Hallucination</h2>" +
         '<p style="color:black;">Next you were asked to hold your right hand up when you could satisfactorily hear the recording of Happy Birthday to You.</p>',
     questions: [
@@ -234,11 +225,7 @@ var pcs_assessment7 = {
 
 var pcs_assessment8 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
+    preamble:
         "<h2>Negative Hallucination</h2>" +
         '<p style="color:black;">You were next told to open your eyes and look at a picture of two coloured balls. You then typed in the colour of the balls that you saw.</p>',
     questions: [
@@ -252,12 +239,8 @@ var pcs_assessment8 = {
 
 var pcs_assessment9 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
-        "<h2>Amnesia</h2>"+
+    preamble:
+        "<h2>Amnesia</h2>" +
         '<p style="color:black;">You were then told that you would not be able to remember anything you did during the session until you were told “now you can remember anything”.</p>',
     questions: [
         {
@@ -270,12 +253,8 @@ var pcs_assessment9 = {
 
 var pcs_assessment10 = {
     type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
-    preamble: 
-        "<h2>Post-Session Experience </h2>" + 
+    preamble:
+        "<h2>Post-Session Experience </h2>" +
         '<p style="color:black;">You were told that you would press the space bar six times in a row, but that you would forget that you were told to do so.</p>',
     questions: [
         {
@@ -286,16 +265,19 @@ var pcs_assessment10 = {
         {
             prompt: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
             name: "PCS_PostSessionExperience_b",
-            labels: ["Normal memory of instruction", "1", "2", "3", "4", "No memory of instruction"],
+            labels: [
+                "Normal memory of instruction",
+                "1",
+                "2",
+                "3",
+                "4",
+                "No memory of instruction",
+            ],
         },
     ],
 }
 var pcs_finish = {
     type: jsPsychHtmlButtonResponse,
-    on_start: function () {
-        document.body.style.backgroundColor = "white"
-        document.body.style.cursor = "auto"
-    },
     stimulus: "<h1>End</h1>" + "<p>Thank for completing this part of the experiment. BLABLA</p>",
     choices: ["Continue"],
 }
