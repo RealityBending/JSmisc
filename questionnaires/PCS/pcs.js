@@ -79,8 +79,6 @@ var pcs_part2 = {
     trial_ends_after_audio: true,
 }
 
-// Part X ========================================================================
-
 var pcs_press = {
     timeline: [
         {
@@ -285,4 +283,31 @@ var pcs_finish = {
         '<p>You may recall that during the session today, you were asked to hold up your hand when you heard a recording of "HappyBirthday to You". In fact, no recording was played - there was no music in the room. Also, near the end of the session, you were told that you would see two balls on the screen. Actually, there were three balls in the picture. The purpose of these two items was not to deceive you. We know from past research that the perception of persons who are highly skilled in controlling their subjective experience will sometimes be altered to coincide with that which was proposed. Our intention with respect to these items was to assess your ability to create perceptual alterations.' +
         "<p>Thank for completing this part of the experiment. BLABLA</p>",
     choices: ["Continue"],
+}
+
+// Timeline ========================================================================
+var pcs_timeline = {
+    timeline: [
+        pcs_preload,
+        pcs_instructions,
+        pcs_part1a,
+        pcs_part1b,
+        pcs_part1c,
+        pcs_part1_q1,
+        pcs_part2,
+        pcs_press,
+        pcs_assessment0,
+        pcs_assessment1,
+        pcs_assessment2,
+        pcs_assessment3,
+        pcs_assessment4a,
+        pcs_assessment4b,
+        pcs_assessment5,
+        pcs_assessment6,
+        pcs_assessment7,
+        pcs_assessment8,
+        pcs_assessment9,
+        pcs_assessment10,
+        pcs_finish,
+    ],
 }
