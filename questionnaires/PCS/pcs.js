@@ -1,19 +1,18 @@
-// Put code here
+var pcs_path = "https://realitybending.github.io/JSmisc/questionnaires/PCS/"
+
+// Start ========================================================================
 var pcs_preload = {
     type: jsPsychPreload,
     audio: [
-        "audio/PC1a.mp3",
-        "audio/PC1b.mp3",
-        "audio/PC1c.mp3",
-        "audio/PC2a.mp3",
-        "audio/PC2b.mp3",
-        "audio/PC3.mp3",
-        "audio/PC4.mp3",
+        `${pcs_path}/audio/PC1a.mp3`,
+        `${pcs_path}/audio/PC1b.mp3`,
+        `${pcs_path}/audio/PC1c.mp3`,
+        `${pcs_path}/audio/PC2a.mp3`,
+        `${pcs_path}/audio/PC2b.mp3`,
+        `${pcs_path}/audio/PC3.mp3`,
+        `${pcs_path}/audio/PC4.mp3`,
     ],
-    images: [
-        "stimulus.png", 
-        "headphones.png",
-    ],
+    images: [`${pcs_path}/stimulus.png`, `${pcs_path}/headphones.png`],
 }
 
 var pcs_instructions = {
@@ -33,8 +32,8 @@ var pcs_part1a = {
     on_start: function () {
         document.body.style.cursor = "none"
     },
-    stimulus: ["audio/PC1a.mp3"],
-    prompt: "<img src='headphones.png'>",
+    stimulus: [`${pcs_path}/audio/PC1a.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -42,8 +41,8 @@ var pcs_part1a = {
 
 var pcs_part1b = {
     type: jsPsychAudioKeyboardResponse,
-    stimulus: ["audio/PC1b.mp3"],
-    prompt: "<img src='stimulus.png'>",
+    stimulus: [`${pcs_path}/audio/PC1b.mp3`],
+    prompt: `<img src='${pcs_path}/stimulus.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -52,7 +51,7 @@ var pcs_part1b = {
 var pcs_part1c = {
     type: jsPsychAudioKeyboardResponse,
     prompt: '<p style="color:white;">Please wait...</p>',
-    stimulus: ["audio/PC1c.mp3"],
+    stimulus: [`${pcs_path}/audio/PC1c.mp3`],
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -74,7 +73,7 @@ var pcs_part1_q1 = {
 // Part 2 ========================================================================
 var pcs_part2 = {
     type: jsPsychAudioKeyboardResponse,
-    stimulus: ["audio/PC2a.mp3"],
+    stimulus: [`${pcs_path}/audio/PC2a.mp3`],
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -281,9 +280,9 @@ var pcs_assessment10 = {
 }
 var pcs_finish = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 
-    "<h1>End</h1>" + 
-    '<p>You may recall that during the session today, you were asked to hold up your hand when you heard a recording of "HappyBirthday to You". In fact, no recording was played - there was no music in the room. Also, near the end of the session, you were told that you would see two balls on the screen. Actually, there were three balls in the picture. The purpose of these two items was not to deceive you. We know from past research that the perception of persons who are highly skilled in controlling their subjective experience will sometimes be altered to coincide with that which was proposed. Our intention with respect to these items was to assess your ability to create perceptual alterations.' +
-    "<p>Thank for completing this part of the experiment. BLABLA</p>",
+    stimulus:
+        "<h1>End</h1>" +
+        '<p>You may recall that during the session today, you were asked to hold up your hand when you heard a recording of "HappyBirthday to You". In fact, no recording was played - there was no music in the room. Also, near the end of the session, you were told that you would see two balls on the screen. Actually, there were three balls in the picture. The purpose of these two items was not to deceive you. We know from past research that the perception of persons who are highly skilled in controlling their subjective experience will sometimes be altered to coincide with that which was proposed. Our intention with respect to these items was to assess your ability to create perceptual alterations.' +
+        "<p>Thank for completing this part of the experiment. BLABLA</p>",
     choices: ["Continue"],
 }
