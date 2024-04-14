@@ -50,7 +50,6 @@ var pcs_part1b = {
 
 var pcs_part1c = {
     type: jsPsychAudioKeyboardResponse,
-    prompt: '<p style="color:white;">Please wait...</p>',
     stimulus: [`${pcs_path}/audio/PC1c.mp3`],
     choices: ["s"],
     response_ends_trial: true,
@@ -64,14 +63,14 @@ var pcs_part1_q1 = {
         {
             prompt: "<b>Color:</b>",
             name: "PCS_Q1",
-            options: ["Yellow", "Red", "Green", "Blue", "Purple", "Orange"],
+            options: ["Yellow", "Red", "Green", "Blue", "Purple", "Orange", "No Balls Were Presented",],
             required: false,
         },
     ],
 }
 
 // Part 2 ========================================================================
-var pcs_part2 = {
+var pcs_part2a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/PC2a.mp3`],
     choices: ["s"],
@@ -83,7 +82,7 @@ var pcs_press = {
     timeline: [
         {
             type: jsPsychHtmlKeyboardResponse,
-            prompt: '<p style="color:white;">PRESS SPACE</p>',
+            prompt: '<p style="color:white;">PLEASE WAIT</p>',
             choices: [" "],
             response_ends_trial: true,
             trial_duration: 4000,
@@ -92,7 +91,56 @@ var pcs_press = {
     repetitions: 6,
 }
 
+var pcs_part2b = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: [`${pcs_path}/audio/PC2c.mp3`],
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true, 
+}
+
+var pcs_response1 = {
+    type: jsPsychSurveyText,
+    questions: [
+    {
+        prompt:'<p style="color:white;">Type what you remember.</p>',
+        trial_duration: 120000,
+        choices: ["s"],
+    },
+  ]
+}
+
+var pcs_part3= {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: [`${pcs_path}/audio/PC3.mp3`],
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true, 
+}
+
+var pcs_response2 = {
+    type: jsPsychSurveyText,
+    questions: [
+    {
+        prompt:'<p style="color:white;">Type what else you can rember.</p>',
+        trial_duration: 120000,
+        choices: ["s"],
+    },
+  ]
+}
+
 // Evaluatiopn ========================================================================
+var pcs_quest_instructions = {
+    type: jsPsychHtmlButtonResponse,
+    on_start: function () {
+        document.body.style.backgroundColor = "white"
+    },
+    stimulus:
+        '<h1 style="color:black;">Experience Scoring Section</h1>' +
+        '<p style="color:black;">We have now reached the experience scoring section. You will be presented, in chronological order, with each of the experiences which were proposed to you during the procedure. You will be asked to provide a subjective rating for each experience, that is, how strongly you experienced each phenomenon. It is understood that your estimates may in some cases not be as accurate as you might wish them to be and that you might even have to guess. But we want you to make whatever you feel to be your best estimate regardless. Instructions for interpreting the subjective experience scale will be given for each experience.</p>',
+    choices: ["Continue"],
+}
+
 var pcs_assessment0 = {
     type: jsPsychSurveyLikert,
     on_start: function () {
@@ -294,8 +342,13 @@ var pcs_timeline = {
         pcs_part1b,
         pcs_part1c,
         pcs_part1_q1,
-        pcs_part2,
+        pcs_part2a,
         pcs_press,
+        pcs_part2b,
+        pcs_response1,
+        pcs_part3,
+        pcs_response2,
+        pcs_quest_instructions,
         pcs_assessment0,
         pcs_assessment1,
         pcs_assessment2,
