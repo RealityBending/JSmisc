@@ -18,11 +18,11 @@ var pcs_preload = {
 var pcs_instructions = {
     type: jsPsychHtmlButtonResponse,
     on_start: function () {
-        document.body.style.backgroundColor = "black"
+        document.body.style.backgroundColor = "white"
     },
     stimulus:
-        '<h1 style="color:white;">Instructions</h1>' +
-        '<p style="color:white;">Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.<br>Please concentrate on the voice and follow the instructions given.</p>',
+        '<h1 style="color:black;">Instructions</h1>' +
+        '<p style="color:black;">Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.<br>Please concentrate on the voice and follow the instructions given.</p>',
     choices: ["Start"],
 }
 
@@ -58,7 +58,10 @@ var pcs_part1c = {
 
 var pcs_part1_q1 = {
     type: jsPsychSurveyMultiChoice,
-    css_classes: ["whitetext"],
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
+    css_classes: ["blacktext"],
     questions: [
         {
             prompt: "<b>Color:</b>",
@@ -82,7 +85,7 @@ var pcs_press = {
     timeline: [
         {
             type: jsPsychHtmlKeyboardResponse,
-            prompt: '<p style="color:white;">PLEASE WAIT</p>',
+            prompt: '<p style="color:black;">PLEASE WAIT</p>',
             choices: [" "],
             response_ends_trial: true,
             trial_duration: 4000,
@@ -101,9 +104,12 @@ var pcs_part2b = {
 
 var pcs_response1 = {
     type: jsPsychSurveyText,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     questions: [
     {
-        prompt:'<p style="color:white;">Type what you remember.</p>',
+        prompt:'<p style="color:black;">Type what you remember.</p>',
         trial_duration: 120000,
         choices: ["s"],
     },
@@ -120,9 +126,12 @@ var pcs_part3= {
 
 var pcs_response2 = {
     type: jsPsychSurveyText,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     questions: [
     {
-        prompt:'<p style="color:white;">Type what else you can rember.</p>',
+        prompt:'<p style="color:black;">Type what else you can rember.</p>',
         trial_duration: 120000,
         choices: ["s"],
     },
