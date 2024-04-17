@@ -4,6 +4,7 @@ var pcs_path = "https://realitybending.github.io/JSmisc/questionnaires/PCS/"
 var pcs_preload = {
     type: jsPsychPreload,
     audio: [
+        `${pcs_path}/audio/hello_audiotest.mp3`,
         `${pcs_path}/audio/PC1a.mp3`,
         `${pcs_path}/audio/PC1b.mp3`,
         `${pcs_path}/audio/PC1c.mp3`,
@@ -12,7 +13,7 @@ var pcs_preload = {
         `${pcs_path}/audio/PC3.mp3`,
         `${pcs_path}/audio/PC4.mp3`,
     ],
-    images: [`${pcs_path}/stimulus.png`, `${pcs_path}/headphones.png`],
+    images: [`${pcs_path}/stimulus.pngs`, `${pcs_path}/headphones.png`],
 }
 
 var pcs_instructions = {
@@ -24,6 +25,16 @@ var pcs_instructions = {
         '<h1 style="color:black;">Instructions</h1>' +
         '<p style="color:black;">Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.<br>Please concentrate on the voice and follow the instructions given.</p>',
     choices: ["Start"],
+}
+
+var pcs_audiotest = {
+    type: jsPsychAudioButtonResponse,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
+    stimulus: [`${pcs_path}/audio/hello_audiotest.mp3`],
+    choices: ['Hello', 'Goodbye', 'How Are You', 'Thank You'],
+    prompt: '<p style="color:black"> What did you hear?</p>',
 }
 
 // Part 1 ========================================================================
@@ -347,6 +358,7 @@ var pcs_timeline = {
     timeline: [
         pcs_preload,
         pcs_instructions,
+        pcs_audiotest,
         pcs_part1a,
         pcs_part1b,
         pcs_part1c,
