@@ -5,11 +5,11 @@ var pcs_preload = {
     type: jsPsychPreload,
     audio: [
         `${pcs_path}/audio/hello_audiotest.mp3`,
-        `${pcs_path}/audio/intro.mp3`
+        `${pcs_path}/audio/intro.mp3`,
         `${pcs_path}/audio/hand_lowering.mp3`,
         `${pcs_path}/audio/taste.mp3`,
         `${pcs_path}/audio/arm_rigid.mp3`,
-        `${pcs_path}/audio/arm_immobile.mp3`
+        `${pcs_path}/audio/arm_immobile.mp3`,
         `${pcs_path}/audio/Music.mp3`,
         `${pcs_path}/audio/amnesia.mp3`,
         `${pcs_path}/audio/remember_everything.mp3`,
@@ -19,7 +19,7 @@ var pcs_preload = {
         `${pcs_path}/audio/PSS1.mp3`,
         `${pcs_path}/audio/PSS2_remember_everything.mp3`,
     ],
-    images: [`${pcs_path}/stimulus.pngs`, `${pcs_path}/headphones.png`],
+    images: [`${pcs_path}/stimulus.png`, `${pcs_path}/headphones.png`],
 }
 
 var pcs_instructions = {
@@ -60,7 +60,7 @@ var pcs_intro= {
 // Hand Lowering (audio + ratings)
 var pcs_handlowering_a = {
     type: jsPsychAudioKeyboardResponse,
-    stimulus: [`${pcs_path}/audio/hand.lowering.mp3`],
+    stimulus: [`${pcs_path}/audio/hand_lowering.mp3`],
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -132,7 +132,7 @@ var pcs_armrigidity_r = {
 }
 
 // Arm Immobile (audio + rating)
-var pcs_armrimmobiley_a = {
+var pcs_armrimmobile_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/arm_immobile.mp3`],
     choices: ["s"],
@@ -140,7 +140,7 @@ var pcs_armrimmobiley_a = {
     trial_ends_after_audio: true,
 }
 
-var pcs_armrimmobiley_r = {
+var pcs_armrimmobile_r = {
     type: jsPsychSurveyLikert,
     preamble:
         "<h2>Arm Immobilization (Left Arm)</h2>" +
@@ -155,7 +155,7 @@ var pcs_armrimmobiley_r = {
 }
  
 // Music (audio + rating)
-var pcs__music_a= {
+var pcs_music_a= {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/Music.mp3`],
     choices: ["s"],
@@ -178,7 +178,7 @@ var pcs_music_r= {
 }
 
 // Amnesia 1 (audio + written response)
-var pcs__amnesia_a= {
+var pcs_amnesia_a= {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/amnesia.mp3`],
     choices: ["s"],
@@ -201,7 +201,7 @@ var pcs_amnesia_w = {
 }
 
 // Amnesia 2 (audio + written response)
-var pcs__remember_a= {
+var pcs_remember_a= {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/remember_everything.mp3`],
     choices: ["s"],
@@ -209,7 +209,7 @@ var pcs__remember_a= {
     trial_ends_after_audio: true,
 }
 
-var pcs__remember_w = {
+var pcs_remember_w = {
     type: jsPsychSurveyText,
     on_start: function () {
         document.body.style.cursor = "auto"
@@ -238,7 +238,7 @@ var pcs_amnesia_r = {
 }
 
 // Magnetic Hands (audio + rating)
-var pcs__magnetichands_a= {
+var pcs_magnetichands_a= {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/magnetic_hands.mp3`],
     choices: ["s"],
@@ -246,7 +246,7 @@ var pcs__magnetichands_a= {
     trial_ends_after_audio: true,
 }
 
-var pcs__magnetichands_r = {
+var pcs_magnetichands_r = {
     type: jsPsychSurveyLikert,
     preamble:
         "<h2>Magnetic Hands</h2>" +
@@ -261,7 +261,7 @@ var pcs__magnetichands_r = {
 }
 
 // Mosquito (audio + rating)
-var pcs__mosquito_a= {
+var pcs_mosquito_a= {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/mosquito.mp3`],
     choices: ["s"],
@@ -284,7 +284,7 @@ var pcs_mosquito_r = {
 }
 
 // Negative visual illusion (audio(s) + image + multiple choice response)
-var pcs__balls_a= {
+var pcs_balls_a= {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/negative_visual.mp3`],
     choices: ["s"],
@@ -325,7 +325,7 @@ var pcs_press = {
 }
 
 
-var pcs__pse_a2= {
+var pcs_pse_a2= {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/PSS2_remember_everything.mp3`],
     choices: ["s"],
@@ -369,30 +369,30 @@ var pcs_timeline = {
         pcs_instructions,
         pcs_audiotest,
         pcs_intro,
-        pcs__magnetichands_a,
-        pcs__magnetichands_r,
+        pcs_handlowering_a,
+        pcs_handlowering_r,
         pcs_taste_a,
         pcs_taste_r,
         pcs_armrigidity_a,
         pcs_armrigidity_r,
-        pcs_armrimmobiley_a,
-        pcs_armrimmobiley_r,
-        pcs__music_a,
+        pcs_armrimmobile_a,
+        pcs_armrimmobile_r,
+        pcs_music_a,
         pcs_music_r,
-        pcs__amnesia_a,
+        pcs_amnesia_a,
         pcs_amnesia_w,
-        pcs__remember_a,
-        pcs__remember_w,
+        pcs_remember_a,
+        pcs_remember_w,
         pcs_amnesia_r,
-        pcs__magnetichands_a,
-        pcs__magnetichands_r,
-        pcs__mosquito_a,
+        pcs_magnetichands_a,
+        pcs_magnetichands_r,
+        pcs_mosquito_a,
         pcs_mosquito_r,
-        pcs__balls_a,
+        pcs_balls_a,
         pcs_balls_mc,
         pcs_pse_a,
         pcs_press,
-        pcs__pse_a2,
+        pcs_pse_a2,
         pcs_pss_r,
         pcs_finish,
     ],
