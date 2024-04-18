@@ -16,3 +16,5 @@ For instance, to load the script [`jspsych_extensions/image-buttonkeyboard-respo
 
 - IPIP-6 Personality questionnaire
   - Try: https://realitybending.github.io/JSmisc/examples/ipip6.html
+- Phenomenological Control Sclae
+  - Try: https://realitybending.github.io/JSmisc/questionnaires/PCS/index.html
