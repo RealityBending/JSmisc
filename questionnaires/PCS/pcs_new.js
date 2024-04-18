@@ -40,12 +40,12 @@ var pcs_audiotest = {
         document.body.style.cursor = "auto"
     },
     stimulus: [`${pcs_path}/audio/hello_audiotest.mp3`],
-    choices: ['Hello', 'Goodbye', 'How Are You', 'Thank You'],
+    choices: ["Hello", "Goodbye", "How Are You", "Thank You"],
     prompt: '<p style="color:black"> What did you hear?</p>',
 }
 
 // Introduction
-var pcs_intro= {
+var pcs_intro = {
     type: jsPsychAudioKeyboardResponse,
     on_start: function () {
         document.body.style.cursor = "none"
@@ -60,6 +60,10 @@ var pcs_intro= {
 // Hand Lowering (audio + ratings)
 var pcs_handlowering_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     stimulus: [`${pcs_path}/audio/hand_lowering.mp3`],
     choices: ["s"],
     response_ends_trial: true,
@@ -68,6 +72,9 @@ var pcs_handlowering_a = {
 
 var pcs_handlowering_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Hand Lowering</h2>" +
         '<p style="color:black;">You were told to extend your right arm straight out and feel it becoming heavy as though a weight were pulling the hand and arm down.</p>',
@@ -83,7 +90,11 @@ var pcs_handlowering_r = {
 // Taste (audio + rating to sweet and sour)
 var pcs_taste_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/taste.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -91,6 +102,9 @@ var pcs_taste_a = {
 
 var pcs_taste_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Taste Experience 1</h2>" +
         '<p style="color:black;">You were told that you would have a SWEET taste in your mouth, and then you were told that you have a SOUR taste in your mouth.</p>',
@@ -111,7 +125,11 @@ var pcs_taste_r = {
 // Arm Rigidity (audio + rating)
 var pcs_armrigidity_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/arm_rigid.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -119,6 +137,9 @@ var pcs_armrigidity_a = {
 
 var pcs_armrigidity_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Arm Rigidity (Right Arm)</h2>" +
         '<p style="color:black;">You were told to extend your right arm straight out, then to notice it becoming stiff, and then told to try to bend it.</p>',
@@ -134,7 +155,11 @@ var pcs_armrigidity_r = {
 // Arm Immobile (audio + rating)
 var pcs_armrimmobile_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/arm_immobile.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -142,6 +167,9 @@ var pcs_armrimmobile_a = {
 
 var pcs_armrimmobile_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Arm Immobilization (Left Arm)</h2>" +
         '<p style="color:black;">You were told how heavy your left hand and arm felt and then told to try to lift your hand up.</p>',
@@ -153,18 +181,25 @@ var pcs_armrimmobile_r = {
         },
     ],
 }
- 
+
 // Music (audio + rating)
-var pcs_music_a= {
+var pcs_music_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/Music.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
 }
 
-var pcs_music_r= {
+var pcs_music_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Music Hallucination</h2>" +
         '<p style="color:black;">You were asked to hold your right hand up when you could satisfactorily hear the recording of Happy Birthday to You.</p>',
@@ -178,9 +213,13 @@ var pcs_music_r= {
 }
 
 // Amnesia 1 (audio + written response)
-var pcs_amnesia_a= {
+var pcs_amnesia_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/amnesia.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -192,18 +231,23 @@ var pcs_amnesia_w = {
         document.body.style.cursor = "auto"
     },
     questions: [
-    {
-        prompt:'<p style="color:black;">Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises. Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.</p>',
-        trial_duration: 60000,
-        choices: ["s"],
-    },
-  ]
+        {
+            prompt: '<p style="color:black;">Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises. Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.</p>',
+            trial_duration: 60000,
+            choices: ["s"],
+        },
+    ],
 }
 
 // Amnesia 2 (audio + written response)
-var pcs_remember_a= {
+var pcs_remember_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/remember_everything.mp3`],
+
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -215,22 +259,25 @@ var pcs_remember_w = {
         document.body.style.cursor = "auto"
     },
     questions: [
-    {
-        prompt:'<p style="color:black;">Briefly type anything else that you now remember that you did not remember previously. Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.</p>',
-        trial_duration: 60000,
-        choices: ["s"],
-    },
-  ]
+        {
+            prompt: '<p style="color:black;">Briefly type anything else that you now remember that you did not remember previously. Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.</p>',
+            trial_duration: 60000,
+            choices: ["s"],
+        },
+    ],
 }
 
 var pcs_amnesia_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Amnesia</h2>" +
-        '<p style="color:black;">You were then told that you would not be able to remember anything you did during the session until you were told “now you can remember anything”.</p>',
+        "<p>You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
     questions: [
         {
-            prompt: '<p style="color:black;">How hard was it to remember events before you were told “now you can remember everything”, where 0 means you could remember events as easily as normal and 5 means you found it so difficult to remember it was as if there was an actual blank in your memory?',
+            prompt: 'How hard was it to remember events before you were told "now you can remember everything", where 0 means you could remember events as easily as normal and 5 means you found it so difficult to remember it was as if there was an actual blank in your memory?',
             name: "PCS_Amnesia",
             labels: ["Normal memory", "1", "2", "3", "4", "No memory"],
         },
@@ -238,9 +285,13 @@ var pcs_amnesia_r = {
 }
 
 // Magnetic Hands (audio + rating)
-var pcs_magnetichands_a= {
+var pcs_magnetichands_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/magnetic_hands.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -248,6 +299,9 @@ var pcs_magnetichands_a= {
 
 var pcs_magnetichands_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Magnetic Hands</h2>" +
         '<p style="color:black;">You were told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.</p>',
@@ -261,9 +315,13 @@ var pcs_magnetichands_r = {
 }
 
 // Mosquito (audio + rating)
-var pcs_mosquito_a= {
+var pcs_mosquito_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/mosquito.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -271,6 +329,9 @@ var pcs_mosquito_a= {
 
 var pcs_mosquito_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Experience of Mosquito</h2>" +
         '<p style="color:black;">You were told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.</p>',
@@ -284,9 +345,13 @@ var pcs_mosquito_r = {
 }
 
 // Negative visual illusion (audio(s) + image + multiple choice response)
-var pcs_balls_a= {
+var pcs_balls_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/negative_visual.mp3`],
+    prompt: `<img src='${pcs_path}/stimulus.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -298,14 +363,26 @@ var pcs_balls_mc = {
         document.body.style.cursor = "auto"
     },
     stimulus: [`${pcs_path}/audio/negative_visualb.mp3`],
-    choices: ["Yellow", "Red", "Green", "Blue", "Purple", "Orange", "No Balls Were Presented",],
+    choices: [
+        "Yellow",
+        "Red",
+        "Green",
+        "Blue",
+        "Purple",
+        "Orange",
+        "No Balls Were Presented",
+    ],
     prompt: '<p style="color:black"> What color balls did you see in the screen? </p>',
 }
 
 // Post-session experience (audio + keyboard presses + ratings)
-var pcs_pse_a= {
+var pcs_pse_a = {
     type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
     stimulus: [`${pcs_path}/audio/PSS1.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
@@ -315,26 +392,29 @@ var pcs_press = {
     timeline: [
         {
             type: jsPsychHtmlKeyboardResponse,
-            prompt: '<p style="color:black;">PLEASE WAIT</p>',
-            choices: [" "],
+            prompt: "PLEASE WAIT",
+            choices: ["s"],
             response_ends_trial: true,
-            trial_duration: 4000,
+            trial_duration: 10000,
         },
     ],
     repetitions: 6,
 }
 
-
-var pcs_pse_a2= {
+var pcs_pse_a2 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: [`${pcs_path}/audio/PSS2_remember_everything.mp3`],
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
 }
 
-var pcs_pss_r= {
+var pcs_pss_r = {
     type: jsPsychSurveyLikert,
+    on_start: function () {
+        document.body.style.cursor = "auto"
+    },
     preamble:
         "<h2>Post-Session Experience </h2>" +
         '<p style="color:black;">You were told that you would press the space bar six times in a row, but that you would forget that you were told to do so.</p>',
@@ -348,7 +428,13 @@ var pcs_pss_r= {
             prompt: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
             name: "PCS_PostSessionExperience_b",
             labels: [
-                "Normal memory of instruction", "1", "2", "3", "4", "No memory of instruction",],
+                "Normal memory of instruction",
+                "1",
+                "2",
+                "3",
+                "4",
+                "No memory of instruction",
+            ],
         },
     ],
 }
