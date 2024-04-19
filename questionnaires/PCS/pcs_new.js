@@ -351,30 +351,47 @@ var pcs_balls_a = {
         document.body.style.cursor = "none"
     },
     stimulus: [`${pcs_path}/audio/negative_visual.mp3`],
-    prompt: `<img src='${pcs_path}/stimulus.png'>`,
+    prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
     trial_ends_after_audio: true,
 }
-//// maybe this works? (see https://www.jspsych.org/7.2/plugins/audio-button-response/)
+/// Balls (audio + multiple choice ) maybe this works? (see https://www.jspsych.org/7.2/plugins/audio-button-response/)
+var pcs_balls_a2 = {
+    type: jsPsychAudioKeyboardResponse,
+    on_start: function () {
+        document.body.style.cursor = "none"
+    },
+    stimulus: [`${pcs_path}/audio/negative_visualb.mp3`],
+    prompt: `<img src='${pcs_path}/stimulus.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_duration: 120000,
+}
+
 var pcs_balls_mc = {
-    type: jsPsychAudioButtonResponse,
+    type: jsPsychSurveyMultiChoice,
     on_start: function () {
         document.body.style.cursor = "auto"
     },
-    stimulus: [`${pcs_path}/audio/negative_visualb.mp3`],
-    choices: [
-        "Yellow",
-        "Red",
-        "Green",
-        "Blue",
-        "Purple",
-        "Orange",
-        "No Balls Were Presented",
+    css_classes: ["blacktext"],
+    questions: [
+        {
+            prompt: '<p style="color:black">What color balls did you see in the screen?</p>',
+            name: "PCS_Q1",
+            options: [
+                "Yellow",
+                "Red",
+                "Green",
+                "Blue",
+                "Purple",
+                "Orange",
+                "No Balls Were Presented",
+            ],
+            required: true,
+        },
     ],
-    prompt: '<p style="color:black"> What color balls did you see in the screen? </p>',
 }
-
 // Post-session experience (audio + keyboard presses + ratings)
 var pcs_pse_a = {
     type: jsPsychAudioKeyboardResponse,
@@ -444,7 +461,7 @@ var pcs_finish = {
     stimulus:
         "<h1>End</h1>" +
         '<p>You may recall that during the session today, you were asked to hold up your hand when you heard a recording of "HappyBirthday to You". In fact, no recording was played - there was no music in the room. Also, near the end of the session, you were told that you would see two balls on the screen. Actually, there were three balls in the picture. The purpose of these two items was not to deceive you. We know from past research that the perception of persons who are highly skilled in controlling their subjective experience will sometimes be altered to coincide with that which was proposed. Our intention with respect to these items was to assess your ability to create perceptual alterations.' +
-        "<p>Thank for completing this part of the experiment. BLABLA</p>",
+        "<p>Thank for completing this part of the experiment.</p>",
     choices: ["Continue"],
 }
 
@@ -475,6 +492,7 @@ var pcs_timeline = {
         pcs_mosquito_a,
         pcs_mosquito_r,
         pcs_balls_a,
+        pcs_balls_a2,
         pcs_balls_mc,
         pcs_pse_a,
         pcs_press,
