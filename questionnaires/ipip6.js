@@ -58,10 +58,55 @@ var ipip6_dimensions = [
 
 var ipip6_instructions =
     "<h2>About your personality...</h2>" +
-    "<p> Please answer the following questions based on how accurately each statement describes you in general.</p>"
+    "<p>Please answer the following questions based on how accurately each statement describes you in general.</p>"
 
-// Make questions
+// Make questions ========================================================================================================
 function ipip6(
+    required = true,
+    ticks = ["Inaccurate", "Accurate"],
+    items = ipip6_items,
+    dimensions = ipip6_dimensions,
+    analog = true
+) {
+    var questions = []
+    for (const [index, element] of items.entries()) {
+        if (analog == true) {
+            // this requires the MultiSlider custom plugin
+            questions.push({
+                prompt: "<b>" + element + "</b>",
+                name: dimensions[index],
+                ticks: ticks,
+                required: required,
+                min: 0,
+                max: 1,
+                step: 0.01,
+                slider_start: 0.5,
+            })
+        } else {
+            // this requires the Survey plugin
+            questions.push({
+                type: "likert",
+                prompt: "<b>" + element + "</b>",
+                required: required,
+                likert_scale_min_label: ticks[0],
+                likert_scale_max_label: ticks[1],
+                likert_scale_values: [
+                    { value: 0 },
+                    { value: 1 },
+                    { value: 2 },
+                    { value: 3 },
+                    { value: 4 },
+                    { value: 5 },
+                    { value: 6 },
+                    { value: 7 },
+                ],
+            })
+        }
+    }
+    return questions
+}
+
+function make_ipip6_likert(
     required = true,
     ticks = ["Inaccurate", "Accurate"],
     items = ipip6_items,
@@ -70,19 +115,20 @@ function ipip6(
     var questions = []
     for (const [index, element] of items.entries()) {
         questions.push({
-            prompt: "<b>" + element + "</b>",
-            name: dimensions[index],
-            ticks: ticks,
+            type: "rating",
+            title: "<b>" + element + "</b>",
             required: required,
-            min: 0,
-            max: 1,
-            step: 0.01,
-            slider_start: 0.5,
+            name: dimensions[index],
+            description: "Description",
+            minRateDescription: ticks[0],
+            maxRateDescription: ticks[1],
+            rateValues: [1, 2, 3, 4, 5],
         })
     }
-    return questions
+    return [{ elements: questions }]
 }
 
+// Make plot ========================================================================================================
 function ipip_plotdata(screen = "questionnaire_ipip6") {
     var data = jsPsych.data.get().filter({ screen: screen })
     data = JSON.parse(data["trials"][0]["response"])
