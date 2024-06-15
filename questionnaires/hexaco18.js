@@ -98,42 +98,43 @@ function hexaco18_plot(screen = "questionnaire_hexaco18") {
 
     // Make scores
     extraversion =
-        1 -
+        6 -
         data["HEXACO18_Extraversion_SocialSelfEsteem_7_R"] +
-        (1 - data["HEXACO18_Extraversion_SocialBoldness_8_R"]) +
-        (1 - data["HEXACO18_Extraversion_Liveliness_9_R"])
-    extraversion = (extraversion / 3) * 100
+        (6 - data["HEXACO18_Extraversion_SocialBoldness_8_R"]) +
+        (6 - data["HEXACO18_Extraversion_Liveliness_9_R"])
+    extraversion = (extraversion / 3 / 6) * 100
 
     agreeableness =
         data["HEXACO18_Agreeableness_Forgiveness_10_NR"] +
         data["HEXACO18_Agreeableness_Gentleness_11_NR"] +
-        (1 - data["HEXACO18_Agreeableness_Patience_12_R"])
-    agreeableness = (agreeableness / 3) * 100
+        (6 - data["HEXACO18_Agreeableness_Patience_12_R"])
+    agreeableness = (agreeableness / 3 / 6) * 100
 
     conscientiousness =
         data["HEXACO18_Conscientiousnes_Diligence_13_R"] +
         data["HEXACO18_Conscientiousnes_Prudence_14_R"] +
-        (1 - data["HEXACO18_Conscientiousnes_Organization_15_R"])
-    conscientiousness = (conscientiousness / 3) * 100
+        (6 - data["HEXACO18_Conscientiousnes_Organization_15_R"])
+    conscientiousness = (conscientiousness / 3 / 6) * 100
 
     neuroticism =
-        1 -
+        6 -
         data["HEXACO18_Emotionality_Fearfulness_4_R"] +
         data["HEXACO18_Emotionality_Dependence_5_NR"] +
         data["HEXACO18_Emotionality_Anxiety_6_NR"]
-    neuroticism = (neuroticism / 3) * 100
+    neuroticism = (neuroticism / 3 / 6) * 100
 
     openness =
-        1 -
+        6 -
         data["HEXACO18_Openness_Unconventionality_16_R"] +
         data["HEXACO18_Openness_AestheticAppreciation_17_NR"] +
         data["HEXACO18_Openness_Creativity_18_NR"]
-    openness = (openness / 3) * 100
+    openness = (openness / 3 / 6) * 100
 
     honestyhumility =
         data["HEXACO18_HonestyHumility_Sincerity_1_NR"] +
-        (1 - data["HEXACO18_HonestyHumility_GreedAvoidance_2_R"]) +
-        (1 - data["HEXACO18_HonestyHumility_Modesty_3_R"])
+        (6 - data["HEXACO18_HonestyHumility_GreedAvoidance_2_R"]) +
+        (6 - data["HEXACO18_HonestyHumility_Modesty_3_R"])
+    honestyhumility = (honestyhumility / 3 / 6) * 100
 
     // Prepare output
     var output = {

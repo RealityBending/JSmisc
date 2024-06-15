@@ -4,11 +4,11 @@
 //    <script src="https://realitybending.github.io/JSmisc/misc/plots.js"></script>
 
 function plot_getsize() {
-    if (typeof window.screen.height == "number") {
-        var size = Math.min(...[window.screen.height, window.screen.width])
+    if (typeof window.innerWidth == "number") {
+        var size = Math.min(...[window.innerHeight, window.innerWidth])
         size = Math.floor(size / 2)
     } else {
-        var size = [300, 300]
+        var size = 300
     }
     return [size, size]
 }
@@ -57,6 +57,7 @@ function make_radarplot(
                     suggestedMax: minmax[1],
                 },
             },
+            responsive: false,
         },
     }
     return plot
@@ -102,6 +103,7 @@ function make_barplot(
                     suggestedMax: minmax[1],
                 },
             },
+            responsive: false,
         },
     }
     return plot
