@@ -43,7 +43,7 @@ const hexaco18_dimensions = [
     "HEXACO18_Openness_Creativity_18_NR",
 ]
 
-function make_hexaco18(
+function hexaco18(
     required = true,
     ticks = ["Inaccurate", "Accurate"],
     items = hexaco18_items,
@@ -89,4 +89,71 @@ function make_hexaco18(
         { elements: questions13_15 },
         { elements: questions16_18 },
     ]
+}
+
+// Make plot ========================================================================================================
+function hexaco18_plot(screen = "questionnaire_hexaco18") {
+    var data = jsPsych.data.get().filter({ screen: screen })
+    data = data["trials"][0]["response"]
+
+    // Make scores
+    extraversion =
+        1 -
+        data["HEXACO18_Extraversion_SocialSelfEsteem_7_R"] +
+        (1 - data["HEXACO18_Extraversion_SocialBoldness_8_R"]) +
+        (1 - data["HEXACO18_Extraversion_Liveliness_9_R"])
+    extraversion = (extraversion / 3) * 100
+
+    agreeableness =
+        data["HEXACO18_Agreeableness_Forgiveness_10_NR"] +
+        data["HEXACO18_Agreeableness_Gentleness_11_NR"] +
+        (1 - data["HEXACO18_Agreeableness_Patience_12_R"])
+    agreeableness = (agreeableness / 3) * 100
+
+    conscientiousness =
+        data["HEXACO18_Conscientiousnes_Diligence_13_R"] +
+        data["HEXACO18_Conscientiousnes_Prudence_14_R"] +
+        (1 - data["HEXACO18_Conscientiousnes_Organization_15_R"])
+    conscientiousness = (conscientiousness / 3) * 100
+
+    neuroticism =
+        1 -
+        data["HEXACO18_Emotionality_Fearfulness_4_R"] +
+        data["HEXACO18_Emotionality_Dependence_5_NR"] +
+        data["HEXACO18_Emotionality_Anxiety_6_NR"]
+    neuroticism = (neuroticism / 3) * 100
+
+    openness =
+        1 -
+        data["HEXACO18_Openness_Unconventionality_16_R"] +
+        data["HEXACO18_Openness_AestheticAppreciation_17_NR"] +
+        data["HEXACO18_Openness_Creativity_18_NR"]
+    openness = (openness / 3) * 100
+
+    honestyhumility =
+        data["HEXACO18_HonestyHumility_Sincerity_1_NR"] +
+        (1 - data["HEXACO18_HonestyHumility_GreedAvoidance_2_R"]) +
+        (1 - data["HEXACO18_HonestyHumility_Modesty_3_R"])
+
+    // Prepare output
+    var output = {
+        names: [
+            "Extraversion",
+            "Agreeableness",
+            "Conscientiousness",
+            "Neuroticism",
+            "Openness",
+            "Honesty/Humility",
+        ],
+        scores: [
+            extraversion,
+            agreeableness,
+            conscientiousness,
+            neuroticism,
+            openness,
+            honestyhumility,
+        ],
+        label: "Your personality traits (%)",
+    }
+    return output
 }

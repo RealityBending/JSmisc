@@ -46,7 +46,7 @@
                 showQuestionNumbers: false,
                 goNextPageAutomatic: true,
                 showProgressBar: "aboveHeader",
-                pages: make_hexaco18(),
+                pages: hexaco18(),
             },
             data: {
                 screen: "questionnaire_hexaco18",
@@ -54,6 +54,30 @@
         }
 
         timeline.push(questionnaire_hexaco18)
+
+        // Results
+        var results_hexaco18 = {
+            type: jsPsychCanvasButtonResponse,
+            stimulus: function (c) {
+                var data = hexaco18_plot((screen = "questionnaire_hexaco18"))
+                var ctx = c.getContext("2d")
+                var plot = new Chart(
+                    ctx,
+                    make_radarplot(
+                        (names = data.names),
+                        (scores = data.scores),
+                        (minmax = [0, 100]),
+                        (label = data.label),
+                        (color = [255, 99, 132])
+                    )
+                )
+            },
+            canvas_size: plot_getsize(),
+            choices: ["Continue"],
+            prompt: "<p>This chart represents how much you score on various personality traits. Remember that there are no good or bad trait, and that there is no 'normal'. Everybody is different!</p>",
+        }
+
+        timeline.push(results_hexaco18)
 
         //  Run the timeline =====================================================
         jsPsych.run(timeline)
