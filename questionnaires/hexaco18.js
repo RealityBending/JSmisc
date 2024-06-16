@@ -45,7 +45,7 @@ const hexaco18_dimensions = [
 
 function hexaco18(
     required = true,
-    ticks = ["Inaccurate", "Accurate"],
+    ticks = ["Disagree", "Agree"],
     items = hexaco18_items,
     dimensions = hexaco18_dimensions
 ) {
@@ -61,7 +61,7 @@ function hexaco18(
             name: dimensions[index],
             type: "rating",
             displayMode: "buttons",
-            scaleColorMode: "colored",
+            // scaleColorMode: "colored",
             isRequired: required,
             minRateDescription: ticks[0],
             maxRateDescription: ticks[1],
@@ -116,12 +116,12 @@ function hexaco18_plot(screen = "questionnaire_hexaco18") {
         (6 - data["HEXACO18_Conscientiousnes_Organization_15_R"])
     conscientiousness = (conscientiousness / 3 / 6) * 100
 
-    neuroticism =
+    emotionality =
         6 -
         data["HEXACO18_Emotionality_Fearfulness_4_R"] +
         data["HEXACO18_Emotionality_Dependence_5_NR"] +
         data["HEXACO18_Emotionality_Anxiety_6_NR"]
-    neuroticism = (neuroticism / 3 / 6) * 100
+    emotionality = (emotionality / 3 / 6) * 100
 
     openness =
         6 -
@@ -142,7 +142,7 @@ function hexaco18_plot(screen = "questionnaire_hexaco18") {
             "Extraversion",
             "Agreeableness",
             "Conscientiousness",
-            "Neuroticism",
+            "Emotionality",
             "Openness",
             "Honesty/Humility",
         ],
@@ -150,7 +150,7 @@ function hexaco18_plot(screen = "questionnaire_hexaco18") {
             extraversion,
             agreeableness,
             conscientiousness,
-            neuroticism,
+            emotionality,
             openness,
             honestyhumility,
         ],
