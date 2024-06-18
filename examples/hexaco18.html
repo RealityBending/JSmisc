@@ -57,6 +57,9 @@
         // Results
         var results_hexaco18 = {
             type: jsPsychCanvasButtonResponse,
+            on_load: function () {
+                document.querySelector("canvas").style.removeProperty("display") // Force it to center
+            },
             stimulus: function (c) {
                 var data = hexaco18_plot((screen = "questionnaire_hexaco18"))
                 var ctx = c.getContext("2d")
