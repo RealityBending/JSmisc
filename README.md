@@ -14,6 +14,8 @@ For instance, to load the script [`jspsych_extensions/image-buttonkeyboard-respo
 
 ## Examples
 
+- Demographic questions
+  - Try: https://realitybending.github.io/JSmisc/examples/demographic.html
 - IPIP-6 Personality questionnaire
   - Try: https://realitybending.github.io/JSmisc/examples/ipip6.html
 - HEXAXO-18 Personality questionnaire
