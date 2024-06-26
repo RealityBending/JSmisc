@@ -125,6 +125,6 @@ function bait_feedback(screen = "questionnaire_bait") {
         Math.round((score / 6) * 100, 2) +
         "%) compared to the average population (average score = " +
         Math.round((score_pop / 6) * 100, 2) +
-        "%)."
+        "%).<br>"
     return feedback
 }
