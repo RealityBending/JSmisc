@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Title shown in tab -->
+        <title>BAIT Example</title>
+
+        <!-- Load JsPsych -->
+        <script src="https://unpkg.com/jspsych"></script>
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response"></script>
+
+        <!-- Plots -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://realitybending.github.io/JSmisc/misc/plots.js"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-canvas-button-response"></script>
+
+        <script src="https://realitybending.github.io/JSmisc/jspsych_extensions/plugin-multiple-slider.js"></script>
+        <!-- <script src="https://realitybending.github.io/JSmisc/questionnaires/ipip6.js"></script> -->
+        <script src="../questionnaires/bait.js"></script>
+
+        <!-- Survey  -->
+        <script src="https://unpkg.com/@jspsych/plugin-survey@1.0.1"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@jspsych/plugin-survey@1.0.1/css/survey.css"
+        />
+    </head>
+
+    <body></body>
+
+    <script>
+        // Initialize experiment =================================================
+        var timeline = []
+
+        var jsPsych = initJsPsych({
+            on_finish: function () {
+                jsPsych.data.displayData("json") // Display data in browser
+            },
+        })
+
+        var questionnaire_bait = {
+            type: jsPsychSurvey,
+            survey_json: {
+                title: "Artificial Intelligence",
+                // description: "",
+                showQuestionNumbers: false,
+                goNextPageAutomatic: true,
+                // showProgressBar: "aboveHeader",
+                pages: bait_questions(),
+            },
+            data: {
+                screen: "questionnaire_bait",
+            },
+        }
+        timeline.push(questionnaire_bait)
+
+        var feedback_bait = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: function () {
+                return bait_feedback((screen = "questionnaire_bait"))
+            },
+            choices: ["Continue"],
+            data: { screen: "feedback_bait" },
+        }
+        timeline.push(feedback_bait)
+
+        //  Run the timeline =====================================================
+        jsPsych.run(timeline)
+    </script>
+</html>

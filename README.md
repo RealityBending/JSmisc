@@ -20,5 +20,7 @@ For instance, to load the script [`jspsych_extensions/image-buttonkeyboard-respo
   - Try: https://realitybending.github.io/JSmisc/examples/ipip6.html
 - HEXACO-18 Personality questionnaire
   - Try: https://realitybending.github.io/JSmisc/examples/hexaco18.html
+- Beliefs about Artificial Images Technology (BAIT)
+  - Try: https://realitybending.github.io/JSmisc/examples/bait.html
 - Phenomenological Control Scale
   - Try: https://realitybending.github.io/JSmisc/questionnaires/PCS/index.html
