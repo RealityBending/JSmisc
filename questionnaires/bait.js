@@ -121,9 +121,9 @@ function bait_feedback(screen = "questionnaire_bait") {
         "<h2>Thank you!</h2>" +
         "Based on your answers, it seems like you are <b>" +
         text +
-        "</b> positive and enthusiastic (your score = " +
+        "</b> positive and enthusiastic about AI (your score = " +
         Math.round((score / 6) * 100, 2) +
-        "%) about AI compared to the average population (average score = " +
+        "%) compared to the average population (average score = " +
         Math.round((score_pop / 6) * 100, 2) +
         "%)."
     return feedback
