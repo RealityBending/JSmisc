@@ -33,13 +33,11 @@
             type: jsPsychSurvey,
             survey_json: {
                 title: "About yourself",
-                // description:
-                //     "Please answer the following questions based on how accurately each statement describes you in general.",
                 completeText: "Continue",
-                showQuestionNumbers: false,
-                // goNextPageAutomatic: true,
                 pageNextText: "Next",
                 pagePrevText: "Previous",
+                goNextPageAutomatic: false,
+                showQuestionNumbers: false,
                 showProgressBar: "aboveHeader",
                 pages: [
                     {
@@ -61,7 +59,7 @@
                                 inputType: "number",
                                 min: 0,
                                 max: 100,
-                                // defaultValue: 0,
+                                placeholder: "e.g., 21",
                             },
                         ],
                     },
@@ -159,7 +157,10 @@
                             {
                                 title: "In which country are you currently living?",
                                 name: "Country",
-                                type: "text",
+                                type: "dropdown",
+                                choicesByUrl: {
+                                    url: "https://surveyjs.io/api/CountriesExample",
+                                },
                                 placeholder: "e.g., France",
                                 isRequired: false,
                             },
