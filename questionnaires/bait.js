@@ -117,14 +117,18 @@ function bait_feedback(screen = "questionnaire_bait") {
         text = "more"
     }
 
+    // Round to 1 decimal (* 10 / 10)
+    score = Math.round((score / 6) * 100 * 10) / 10
+    score_pop = Math.round((score_pop / 6) * 100 * 10) / 10
+
     let feedback =
-        "<h2>Thank you!</h2>" +
-        "Based on your answers, it seems like you are <b>" +
+        "<h2>Results</h2>" +
+        "<p>Based on your answers, it seems like you are <b>" +
         text +
-        "</b> positive and enthusiastic about AI (your score = " +
-        Math.round((score / 6) * 100, 2) +
-        "%) compared to the average population (average score = " +
-        Math.round((score_pop / 6) * 100, 2) +
-        "%).<br>"
+        "</b> enthusiastic about AI (your score: " +
+        score +
+        "%) compared to the average population (average score: " +
+        score_pop +
+        "% positivity).<br></p>"
     return feedback
 }
