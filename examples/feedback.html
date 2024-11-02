@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Title shown in tab -->
+        <title>Minimal Example</title>
+
+        <!-- Load JsPsych -->
+        <script src="https://unpkg.com/jspsych"></script>
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+        <!-- Survey  -->
+        <script src="https://unpkg.com/@jspsych/plugin-survey@1.0.1"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@jspsych/plugin-survey@1.0.1/css/survey.css"
+        />
+    </head>
+
+    <body></body>
+
+    <script>
+        // Initialize experiment =================================================
+        var timeline = []
+
+        var jsPsych = initJsPsych({
+            on_finish: function () {
+                jsPsych.data.displayData("json") // Display data in browser
+            },
+        })
+
+        // Timeline -------------------------------------------------------------------
+        var experiment_feedback = {
+            type: jsPsychSurvey,
+            survey_json: {
+                title: "Feedback",
+                description:
+                    "It is the end of the experiment! Don't hesitate to leave us a feedback.",
+                completeText: "Complete the experiment",
+                showQuestionNumbers: false,
+                pages: [
+                    {
+                        elements: [
+                            {
+                                type: "rating",
+                                name: "Feedback_Enjoyment",
+                                title: "Did you enjoy doing this experiment?",
+                                isRequired: false,
+                                rateMin: 0,
+                                rateMax: 4,
+                                rateType: "stars",
+                            },
+                            {
+                                type: "comment",
+                                name: "Feedback_Text",
+                                title: "Anything else you would like to share with us?",
+                                description:
+                                    "Please note that these comments might be shared publicly as part of the results of this study - avoid sharing personal information.",
+                                isRequired: false,
+                            },
+                        ],
+                    },
+                ],
+            },
+            data: {
+                screen: "experiment_feedback",
+            },
+        }
+        timeline.push(experiment_feedback)
+
+        //  Run the timeline =====================================================
+        jsPsych.run(timeline)
+    </script>
+</html>
