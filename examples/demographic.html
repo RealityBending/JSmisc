@@ -6,11 +6,7 @@
 
         <!-- Load JsPsych -->
         <script src="https://unpkg.com/jspsych"></script>
-        <link
-            href="https://unpkg.com/jspsych/css/jspsych.css"
-            rel="stylesheet"
-            type="text/css"
-        />
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
 
         <!-- Survey  -->
         <script src="https://unpkg.com/@jspsych/plugin-survey@1.0.1"></script>
@@ -50,7 +46,8 @@
                                 title: "What is your gender?",
                                 name: "Gender",
                                 type: "radiogroup",
-                                choices: ["Male", "Female", "Other"],
+                                choices: ["Male", "Female"],
+                                showOtherItem: true,
                                 isRequired: true,
                                 colCount: 0,
                             },
@@ -176,42 +173,6 @@
             },
         }
         timeline.push(demographic_questions)
-
-        var experiment_feedback = {
-            type: jsPsychSurvey,
-            survey_json: {
-                title: "Feedback",
-                description:
-                    "It is the end of the experiment! Don't hesitate to leave us a feedback. After clicking 'Complete', your data will be saved on our secure servers, after what we will provide you with more information about the study.",
-                completeText: "Complete the experiment",
-                showQuestionNumbers: false,
-                pages: [
-                    {
-                        elements: [
-                            {
-                                type: "rating",
-                                name: "Feedback_Enjoyment",
-                                title: "Did you enjoy doing this experiment?",
-                                isRequired: false,
-                                rateMin: 0,
-                                rateMax: 4,
-                                rateType: "stars",
-                            },
-                            {
-                                type: "comment",
-                                name: "Feedback_Text",
-                                title: "Anything else you would like to share with us?",
-                                isRequired: false,
-                            },
-                        ],
-                    },
-                ],
-            },
-            data: {
-                screen: "experiment_feedback",
-            },
-        }
-        timeline.push(experiment_feedback)
 
         //  Run the timeline =====================================================
         jsPsych.run(timeline)
