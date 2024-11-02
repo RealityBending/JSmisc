@@ -56,6 +56,7 @@ function hexaco18(
     var questions13_15 = []
     var questions16_18 = []
     for (const [index, element] of items.entries()) {
+        // Make question
         q = {
             title: element,
             name: dimensions[index],
@@ -67,6 +68,8 @@ function hexaco18(
             maxRateDescription: ticks[1],
             rateValues: [0, 1, 2, 3, 4, 5, 6],
         }
+
+        // Add to correct page
         if (index < 3) {
             questions1_3.push(q)
         } else if (index < 6) {
