@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Title shown in tab -->
+        <title>Minimal Example</title>
+
+        <!-- Load JsPsych -->
+        <script src="https://unpkg.com/jspsych"></script>
+        <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+        <!-- Survey  -->
+        <script src="https://unpkg.com/@jspsych/plugin-survey@1.0.1"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@jspsych/plugin-survey@1.0.1/css/survey.css"
+        />
+    </head>
+
+    <style>
+        .sd-rating__item:nth-child(-n + 3) {
+            background-color: red;
+        }
+        .sd-rating__item:nth-last-child(-n + 3) {
+            background-color: greenyellow;
+        }
+    </style>
+
+    <body></body>
+
+    <script>
+        // Initialize experiment =================================================
+        var timeline = []
+
+        var jsPsych = initJsPsych({
+            on_finish: function () {
+                jsPsych.data.displayData("json") // Display data in browser
+            },
+        })
+
+        // Timeline -------------------------------------------------------------------
+        var colored_scale = {
+            type: jsPsychSurvey,
+            survey_json: {
+                showQuestionNumbers: false,
+                pages: [
+                    {
+                        elements: [
+                            {
+                                type: "rating",
+                                title: "Question 1 (colored)",
+                                isRequired: false,
+                                rateMin: 0,
+                                rateMax: 4,
+                            },
+                        ],
+                    },
+                ],
+            },
+        }
+        timeline.push(colored_scale)
+
+        var noncolored_scale = {
+            type: jsPsychSurvey,
+            survey_json: {
+                showQuestionNumbers: false,
+                pages: [
+                    {
+                        elements: [
+                            {
+                                type: "rating",
+                                title: "Question 2 (non colored)",
+                                isRequired: false,
+                                rateMin: 0,
+                                rateMax: 4,
+                            },
+                        ],
+                    },
+                ],
+            },
+        }
+        timeline.push(noncolored_scale)
+
+        //  Run the timeline =====================================================
+        jsPsych.run(timeline)
+    </script>
+</html>
