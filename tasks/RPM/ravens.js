@@ -2,13 +2,13 @@ function ravens_makestimuli(path = "img/") {
     var stims = [
         { item: "a11", n_choices: 6, correct: 4 },
         { item: "a24", n_choices: 6, correct: 4 },
-        // { item: "a28", n_choices: 8, correct: 7 },
-        // { item: "a36", n_choices: 8, correct: 1 },
-        // { item: "a43", n_choices: 8, correct: 4 },
-        // { item: "a48", n_choices: 8, correct: 5 },
-        // { item: "a49", n_choices: 8, correct: 6 },
-        // { item: "a53", n_choices: 8, correct: 0 },
-        // { item: "a55", n_choices: 8, correct: 1 },
+        { item: "a28", n_choices: 8, correct: 7 },
+        { item: "a36", n_choices: 8, correct: 1 },
+        { item: "a43", n_choices: 8, correct: 4 },
+        { item: "a48", n_choices: 8, correct: 5 },
+        { item: "a49", n_choices: 8, correct: 6 },
+        { item: "a53", n_choices: 8, correct: 0 },
+        { item: "a55", n_choices: 8, correct: 1 },
         // { item: "b10", n_choices: 6, correct: 2 },
         // { item: "b16", n_choices: 6, correct: 1 },
         // { item: "b21", n_choices: 6, correct: 3 },
@@ -52,6 +52,7 @@ function ravens_maketrial() {
         choices: jsPsych.timelineVariable("choices"),
         grid_columns: jsPsych.timelineVariable("n_cols"),
         trial_duration: null,
+        button_html: (choice) => `<button class="jspsych-btn" style="border: none">${choice}</button>`,
         data: {
             screen: "ravens_trial",
             correct: jsPsych.timelineVariable("correct"),
@@ -69,24 +70,3 @@ function ravens_procedure() {
         randomize_order: false,
     }
 }
-// const ravens_trial = {
-//     type: jsPsychHtmlButtonResponse,
-//     prompt: "<p>Which option completes the pattern?</p>",
-//     stimulus: jsPsych.timelineVariable("path"),
-//     choices: jsPsych.timelineVariable("choices"),
-//     grid_columns: jsPsych.timelineVariable("n_cols"),
-//     trial_duration: null,
-//     data: {
-//         screen: "ravens_trial",
-//         correct: jsPsych.timelineVariable("correct"),
-//     },
-//     on_finish: function (data) {
-//         data.error = data.response != data.correct
-//     },
-// }
-
-// const ravens_procedure = {
-//     timeline: [ravens_trial],
-//     timeline_variables: ravens_stims,
-//     randomize_order: false,
-// }

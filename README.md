@@ -24,3 +24,5 @@ For instance, to load the script [`jspsych_extensions/image-buttonkeyboard-respo
   - Try: https://realitybending.github.io/JSmisc/examples/bait.html
 - Phenomenological Control Scale
   - Try: https://realitybending.github.io/JSmisc/questionnaires/PCS/index.html
+- Raven's Progressive Matrices
+  - Try: https://realitybending.github.io/JSmisc/tasks/RPM/index.html
