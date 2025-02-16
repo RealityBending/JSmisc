@@ -1,3 +1,51 @@
+// Adapted from: https://github.com/nivlab/jspsych-demos/tree/main/tasks/rpm
+// Raven's progressive matrices (RPM) JsPsych implementation
+
+// The abbreviated 9-item Raven's standard progressive matrices forms A and B.
+// -Bilker, W. B., Hansen, J. A., Brensinger, C. M., Richard, J., Gur, R. E., & Gur, R. C. (2012). Development of abbreviated nine-item forms of the Raven's standard progressive matrices test. Assessment, 19(3), 354-369.
+
+// Instructions =================================================================
+// var ravens_instructions = {
+//     type: jsPsychInstructions,
+//     pages: [
+//         "<p>We are beginning the <b>puzzle task</b>.</p><p>In this task, you will be shown a series of puzzles. For each puzzle, your goal is to<br>identify the missing piece from the options appearing below the puzzle.</p>",
+//         '<p>There are 9 puzzles in total. You will have <b>30 seconds</b> for each puzzle.</p><p>Try to be as accurate as you can be. If you cannot solve the puzzle before time runs out, then you should guess.</p><p>Press the "next" button to get started.</p>',
+//     ],
+//     show_clickable_nav: true,
+//     button_label_previous: "Prev",
+//     button_label_next: "Next",
+// }
+const ravens_instructions = {
+    type: jsPsychSurvey,
+    survey_json: {
+        showQuestionNumbers: false,
+        completeText: "Let's start",
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "html",
+                        name: "ravens_instructions",
+                        html:
+                            "<div style='display: flex;'>" +
+                            "<div style='width: 60%; margin-right: 20px;'>" +
+                            "<h1>Puzzle Task</h1>" +
+                            "<p>In the following puzzle game task, you will be shown a series of puzzles. For each puzzle, your goal is to identify the missing piece from the options appearing below the puzzle.</p>" +
+                            "<p>There are 9 puzzles in total. You will have <b>30 seconds</b> for each puzzle. Try to be as accurate as you can be.</p>" +
+                            "<p>If you cannot solve the puzzle before time runs out, then you should guess.</p>" +
+                            "</div>" +
+                            "<div style='width: 40%;'>" +
+                            "<img src='ravens_example.png' alt='Example' style='width: 70%;'>" +
+                            "</div>" +
+                            "</div>",
+                    },
+                ],
+            },
+        ],
+    },
+}
+
+// Stimuli =====================================================================
 function ravens_makestimuli(path = "img/") {
     var stims = [
         { item: "a11", n_choices: 6, correct: 4 },
@@ -19,7 +67,6 @@ function ravens_makestimuli(path = "img/") {
         // { item: "b52", n_choices: 8, correct: 1 },
         // { item: "b57", n_choices: 8, correct: 0 },
     ]
-    let timelineVars = []
     for (let i = 0; i < stims.length; i++) {
         stims[i].path = `<img src=${path + stims[i].item}.png></img>`
         stims[i].n_cols = stims[i].n_choices / 2
@@ -44,6 +91,7 @@ const ravens_preload = {
     max_load_time: 30000,
 }
 
+// Trials ======================================================================
 function ravens_maketrial() {
     return {
         type: jsPsychHtmlButtonResponse,
@@ -51,11 +99,12 @@ function ravens_maketrial() {
         stimulus: jsPsych.timelineVariable("path"),
         choices: jsPsych.timelineVariable("choices"),
         grid_columns: jsPsych.timelineVariable("n_cols"),
-        trial_duration: null,
+        trial_duration: 30000,
         button_html: (choice) => `<button class="jspsych-btn" style="border: none">${choice}</button>`,
         data: {
             screen: "ravens_trial",
             correct: jsPsych.timelineVariable("correct"),
+            item: jsPsych.timelineVariable("item"),
         },
         on_finish: function (data) {
             data.error = data.response != data.correct
