@@ -35,7 +35,7 @@ const ravens_instructions = {
                             "<p>If you cannot solve the puzzle before time runs out, then you should guess.</p>" +
                             "</div>" +
                             "<div style='width: 40%;'>" +
-                            "<img src='ravens_example.png' alt='Example' style='width: 70%;'>" +
+                            "<img src='https://realitybending.github.io/JSmisc/tasks/RPM/ravens_example.png' alt='Example' style='width: 70%;'>" +
                             "</div>" +
                             "</div>",
                     },
@@ -46,7 +46,7 @@ const ravens_instructions = {
 }
 
 // Stimuli =====================================================================
-function ravens_makestimuli(path = "img/") {
+function ravens_makestimuli(path = "https://realitybending.github.io/JSmisc/tasks/RPM/stimuli/") {
     var stims = [
         { item: "a11", n_choices: 6, correct: 4 },
         { item: "a24", n_choices: 6, correct: 4 },
@@ -78,7 +78,7 @@ function ravens_makestimuli(path = "img/") {
     return stims
 }
 
-const ravens_stims = ravens_makestimuli("stimuli/")
+const ravens_stims = ravens_makestimuli("https://realitybending.github.io/JSmisc/tasks/RPM/stimuli/")
 
 const ravens_preload = {
     type: jsPsychPreload,
