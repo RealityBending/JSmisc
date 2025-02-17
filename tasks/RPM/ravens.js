@@ -5,16 +5,6 @@
 // -Bilker, W. B., Hansen, J. A., Brensinger, C. M., Richard, J., Gur, R. E., & Gur, R. C. (2012). Development of abbreviated nine-item forms of the Raven's standard progressive matrices test. Assessment, 19(3), 354-369.
 
 // Instructions =================================================================
-// var ravens_instructions = {
-//     type: jsPsychInstructions,
-//     pages: [
-//         "<p>We are beginning the <b>puzzle task</b>.</p><p>In this task, you will be shown a series of puzzles. For each puzzle, your goal is to<br>identify the missing piece from the options appearing below the puzzle.</p>",
-//         '<p>There are 9 puzzles in total. You will have <b>30 seconds</b> for each puzzle.</p><p>Try to be as accurate as you can be. If you cannot solve the puzzle before time runs out, then you should guess.</p><p>Press the "next" button to get started.</p>',
-//     ],
-//     show_clickable_nav: true,
-//     button_label_previous: "Prev",
-//     button_label_next: "Next",
-// }
 const ravens_instructions = {
     type: jsPsychSurvey,
     survey_json: {
@@ -46,7 +36,7 @@ const ravens_instructions = {
 }
 
 // Stimuli =====================================================================
-function ravens_makestimuli(path = "https://realitybending.github.io/JSmisc/tasks/RPM/stimuli/") {
+function ravens_makestimuli(path = "https://realitybending.github.io/JSmisc/tasks/RPM/ravens_stimuli/") {
     var stims = [
         { item: "a11", n_choices: 6, correct: 4 },
         { item: "a24", n_choices: 6, correct: 4 },
@@ -78,7 +68,7 @@ function ravens_makestimuli(path = "https://realitybending.github.io/JSmisc/task
     return stims
 }
 
-const ravens_stims = ravens_makestimuli("https://realitybending.github.io/JSmisc/tasks/RPM/stimuli/")
+const ravens_stims = ravens_makestimuli("https://realitybending.github.io/JSmisc/tasks/RPM/ravens_stimuli/")
 
 const ravens_preload = {
     type: jsPsychPreload,
