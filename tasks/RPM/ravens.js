@@ -95,7 +95,7 @@ const ravens_preload = {
 function ravens_maketrial() {
     return {
         type: jsPsychHtmlButtonResponse,
-        prompt: "<p>Which option completes the pattern?</p>",
+        prompt: "<p>Which option completes the pattern?<br><b><span id='clock'> </span></b></p>",
         stimulus: jsPsych.timelineVariable("path"),
         choices: jsPsych.timelineVariable("choices"),
         grid_columns: jsPsych.timelineVariable("n_cols"),
@@ -105,6 +105,22 @@ function ravens_maketrial() {
             screen: "ravens_trial",
             correct: jsPsych.timelineVariable("correct"),
             item: jsPsych.timelineVariable("item"),
+        },
+        // Countdown timer (https://github.com/jspsych/jsPsych/discussions/1690)
+        on_load: function () {
+            var duration = 30000 // in milliseconds
+            var t0 = performance.now()
+            var interval = setInterval(function () {
+                var time_left = (duration - (performance.now() - t0)) / 1000
+                if (time_left <= 6) {
+                    document.querySelector("#clock").innerHTML = Math.floor(time_left).toString()
+                }
+                if (time_left <= 0) {
+                    // reset clock to empty string
+                    document.querySelector("#clock").innerHTML = " "
+                    clearInterval(interval)
+                }
+            }, 250)
         },
         on_finish: function (data) {
             data.error = data.response != data.correct
