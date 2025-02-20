@@ -70,21 +70,52 @@ var pcs_handlowering_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_handlowering_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Hand Lowering</h2>" +
+//         '<p style="color:black;">You were told to extend your right arm straight out and feel it becoming heavy as though a weight were pulling the hand and arm down.</p>',
+//     questions: [
+//         {
+//             prompt: "How strongly did you feel your hand become heavy, where 0 means you felt your arm was no more heavy than normal and 5 means you felt your arm becoming as heavy as if you had a heavy object in your hand, pulling it down?",
+//             name: "PCS_HandLowering",
+//             labels: ["Normal heaviness", "1", "2", "3", "4", "Very heavy"],
+//         },
+//     ],
+// }
+
 var pcs_handlowering_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Hand Lowering",
+        description: "You were told to extend your right arm straight out and feel it becoming heavy as though a weight were pulling the hand and arm down.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How strongly did you feel your hand become heavy, where 0 means you felt your arm was no more heavy than normal and 5 means you felt your arm becoming as heavy as if you had a heavy object in your hand, pulling it down?",
+                        name: "PCS_HandLowering",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "Normal heaviness",
+                        maxRateDescription: "Very heavy",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Hand Lowering</h2>" +
-        '<p style="color:black;">You were told to extend your right arm straight out and feel it becoming heavy as though a weight were pulling the hand and arm down.</p>',
-    questions: [
-        {
-            prompt: "How strongly did you feel your hand become heavy, where 0 means you felt your arm was no more heavy than normal and 5 means you felt your arm becoming as heavy as if you had a heavy object in your hand, pulling it down?",
-            name: "PCS_HandLowering",
-            labels: ["Normal heaviness", "1", "2", "3", "4", "Very heavy"],
-        },
-    ],
+    data: {
+        screen: "PCS_HandLowering",
+    },
 }
 
 // Taste (audio + rating to sweet and sour)
@@ -100,26 +131,68 @@ var pcs_taste_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_taste_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Taste Experience 1</h2>" +
+//         '<p style="color:black;">You were told that you would have a SWEET taste in your mouth, and then you were told that you have a SOUR taste in your mouth.</p>',
+//     questions: [
+//         {
+//             prompt: "How strongly did you taste a SWEET taste in your mouth, where 0 means you felt no taste at all and 5 means you felt a strong taste?",
+//             name: "PCS_TasteExperienceSweet",
+//             labels: ["No taste", "1", "2", "3", "4", "Strong taste"],
+//         },
+//         {
+//             prompt: "How strongly did you taste a SOUR taste in your mouth, where 0 means you felt no taste at all and 5 means you felt a strong taste?",
+//             name: "PCS_TasteExperienceSour",
+//             labels: ["No taste", "1", "2", "3", "4", "Strong taste"],
+//         },
+//     ],
+// }
+
 var pcs_taste_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Taste Experience 1",
+        description: "You were told that you would have a SWEET taste in your mouth, and then you were told that you have a SOUR taste in your mouth.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How strongly did you taste a SWEET taste in your mouth, where 0 means you felt no taste at all and 5 means you felt a strong taste?",
+                        name: "PCS_TasteExperienceSweet",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "No taste",
+                        maxRateDescription: "Strong taste",
+                        isRequired: true,
+                    },
+                    {
+                        title: "How strongly did you taste a SOUR taste in your mouth, where 0 means you felt no taste at all and 5 means you felt a strong taste?",
+                        name: "PCS_TasteExperienceSour",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "No taste",
+                        maxRateDescription: "Strong taste",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Taste Experience 1</h2>" +
-        '<p style="color:black;">You were told that you would have a SWEET taste in your mouth, and then you were told that you have a SOUR taste in your mouth.</p>',
-    questions: [
-        {
-            prompt: "How strongly did you taste a SWEET taste in your mouth, where 0 means you felt no taste at all and 5 means you felt a strong taste?",
-            name: "PCS_TasteExperienceSweet",
-            labels: ["No taste", "1", "2", "3", "4", "Strong taste"],
-        },
-        {
-            prompt: "How strongly did you taste a SOUR taste in your mouth, where 0 means you felt no taste at all and 5 means you felt a strong taste?",
-            name: "PCS_TasteExperienceSour",
-            labels: ["No taste", "1", "2", "3", "4", "Strong taste"],
-        },
-    ],
+    data: {
+        screen: "PCS_TasteExperience",
+    },
 }
 
 // Arm Rigidity (audio + rating)
@@ -135,21 +208,52 @@ var pcs_armrigidity_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_armrigidity_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Arm Rigidity (Right Arm)</h2>" +
+//         '<p style="color:black;">You were told to extend your right arm straight out, then to notice it becoming stiff, and then told to try to bend it.</p>',
+//     questions: [
+//         {
+//             prompt: "How stiff did your arm feel, where 0 means no more stiffness than normal and 5 means you could feel a stiffness so compelling no amount of effort would overcome it?",
+//             name: "PCS_ArmRigidity",
+//             labels: ["Normal/no stiffness", "1", "2", "3", "4", "Very stiff"],
+//         },
+//     ],
+// }
+
 var pcs_armrigidity_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Arm Rigidity (Right Arm)",
+        description: "You were told to extend your right arm straight out, then to notice it becoming stiff, and then told to try to bend it.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How stiff did your arm feel, where 0 means no more stiffness than normal and 5 means you could feel a stiffness so compelling no amount of effort would overcome it?",
+                        name: "PCS_ArmRigidity",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "Normal/no stiffness",
+                        maxRateDescription: "Very stiff",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Arm Rigidity (Right Arm)</h2>" +
-        '<p style="color:black;">You were told to extend your right arm straight out, then to notice it becoming stiff, and then told to try to bend it.</p>',
-    questions: [
-        {
-            prompt: "How stiff did your arm feel, where 0 means no more stiffness than normal and 5 means you could feel a stiffness so compelling no amount of effort would overcome it?",
-            name: "PCS_ArmRigidity",
-            labels: ["Normal/no stiffness", "1", "2", "3", "4", "Very stiff"],
-        },
-    ],
+    data: {
+        screen: "PCS_ArmRigidity",
+    },
 }
 
 // Arm Immobile (audio + rating)
@@ -165,21 +269,52 @@ var pcs_armrimmobile_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_armrimmobile_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Arm Immobilization (Left Arm)</h2>" +
+//         '<p style="color:black;">You were told how heavy your left hand and arm felt and then told to try to lift your hand up.</p>',
+//     questions: [
+//         {
+//             prompt: "How strongly did you feel a heaviness in your hand, where 0 means you felt no heaviness at all and 5 means your hand felt so heavy it was as if a very heavy object was actually pressing it down?",
+//             name: "PCS_ArmImmobilization",
+//             labels: ["Normal/no heaviness", "1", "2", "3", "4", "Very heavy"],
+//         },
+//     ],
+// }
+
 var pcs_armrimmobile_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Arm Immobilization (Left Arm)",
+        description: "You were told how heavy your left hand and arm felt and then told to try to lift your hand up.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How strongly did you feel a heaviness in your hand, where 0 means you felt no heaviness at all and 5 means your hand felt so heavy it was as if a very heavy object was actually pressing it down?",
+                        name: "PCS_ArmImmobilization",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "Normal/no heaviness",
+                        maxRateDescription: "Very heavy",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Arm Immobilization (Left Arm)</h2>" +
-        '<p style="color:black;">You were told how heavy your left hand and arm felt and then told to try to lift your hand up.</p>',
-    questions: [
-        {
-            prompt: "How strongly did you feel a heaviness in your hand, where 0 means you felt no heaviness at all and 5 means your hand felt so heavy it was as if a very heavy object was actually pressing it down?",
-            name: "PCS_ArmImmobilization",
-            labels: ["Normal/no heaviness", "1", "2", "3", "4", "Very heavy"],
-        },
-    ],
+    data: {
+        screen: "PCS_ArmImmobilization",
+    },
 }
 
 // Music (audio + rating)
@@ -195,21 +330,52 @@ var pcs_music_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_music_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Music Hallucination</h2>" +
+//         '<p style="color:black;">You were asked to hold your right hand up when you could satisfactorily hear the recording of Happy Birthday to You.</p>',
+//     questions: [
+//         {
+//             prompt: "Report how clearly you heard the music, where 0 means you did not hear any music at all and 5 means you heard it so clearly it was as though it was coming from the best sound system.",
+//             name: "PCS_MusicHallucination",
+//             labels: ["No music", "1", "2", "3", "4", "Clearly heard music"],
+//         },
+//     ],
+// }
+
 var pcs_music_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Music Hallucination",
+        description: "You were asked to hold your right hand up when you could satisfactorily hear the recording of Happy Birthday to You.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "Report how clearly you heard the music, where 0 means you did not hear any music at all and 5 means you heard it so clearly it was as though it was coming from the best sound system.",
+                        name: "PCS_MusicHallucination",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "No music",
+                        maxRateDescription: "Clearly heard music",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Music Hallucination</h2>" +
-        '<p style="color:black;">You were asked to hold your right hand up when you could satisfactorily hear the recording of Happy Birthday to You.</p>',
-    questions: [
-        {
-            prompt: "Report how clearly you heard the music, where 0 means you did not hear any music at all and 5 means you heard it so clearly it was as though it was coming from the best sound system.",
-            name: "PCS_MusicHallucination",
-            labels: ["No music", "1", "2", "3", "4", "Clearly heard music"],
-        },
-    ],
+    data: {
+        screen: "PCS_MusicHallucination",
+    },
 }
 
 // Amnesia 1 (audio + written response)
@@ -225,18 +391,45 @@ var pcs_amnesia_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_amnesia_w = {
+//     type: jsPsychSurveyText,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     questions: [
+//         {
+//             prompt: '<p style="color:black;">Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises. Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.</p>',
+//             trial_duration: 60000,
+//             choices: ["s"],
+//         },
+//     ],
+// }
+
 var pcs_amnesia_w = {
-    type: jsPsychSurveyText,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        goNextPageAutomatic: true,
+        showTimer: true,
+        timeLimit: 60,
+        completeText: "Continue",
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "comment",
+                        name: "PCS_Amnesia_W",
+                        title: "Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises.",
+                        description: "Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minute.",
+                        maxLength: 600
+                    },
+                ],
+            },
+        ],   
     },
-    questions: [
-        {
-            prompt: '<p style="color:black;">Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises. Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.</p>',
-            trial_duration: 60000,
-            choices: ["s"],
-        },
-    ],
+    data: {
+        screen: "PCS_Amnesia_W",
+    },
 }
 
 // Amnesia 2 (audio + written response)
@@ -253,18 +446,45 @@ var pcs_remember_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_remember_w = {
+//     type: jsPsychSurveyText,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     questions: [
+//         {
+//             prompt: '<p style="color:black;">Briefly type anything else that you now remember that you did not remember previously. Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.</p>',
+//             trial_duration: 60000,
+//             choices: ["s"],
+//         },
+//     ],
+// }
+
 var pcs_remember_w = {
-    type: jsPsychSurveyText,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        goNextPageAutomatic: true,
+        showTimer: true,
+        timeLimit: 60,
+        completeText: "Continue",
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "comment",
+                        name: "PCS_Remember_W",
+                        title: "Briefly type anything else that you now remember that you did not remember previously.",
+                        description: "Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minute.",
+                        maxLength: 600
+                    },
+                ],
+            },
+        ],   
     },
-    questions: [
-        {
-            prompt: '<p style="color:black;">Briefly type anything else that you now remember that you did not remember previously. Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.</p>',
-            trial_duration: 60000,
-            choices: ["s"],
-        },
-    ],
+    data: {
+        screen: "PCS_Remember_W",
+    },
 }
 
 var pcs_amnesia_r = {
@@ -283,6 +503,8 @@ var pcs_amnesia_r = {
         },
     ],
 }
+
+
 
 // Magnetic Hands (audio + rating)
 var pcs_magnetichands_a = {
