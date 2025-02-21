@@ -22,6 +22,7 @@ var pcs_preload = {
     images: [`${pcs_path}/stimulus.png`, `${pcs_path}/headphones.png`],
 }
 
+
 var pcs_instructions = {
     type: jsPsychHtmlButtonResponse,
     on_start: function () {
@@ -32,6 +33,11 @@ var pcs_instructions = {
         '<p style="color:black;">Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>' +
         '<p style="color:black;">Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.<br>Please concentrate on the voice and follow the instructions given.</p>',
     choices: ["Start"],
+    on_finish: function(){
+        if (jsPsych.pluginAPI.audioContext()) {
+            jsPsych.pluginAPI.audioContext().resume();
+        }
+    }
 }
 
 var pcs_audiotest = {
@@ -39,7 +45,7 @@ var pcs_audiotest = {
     on_start: function () {
         document.body.style.cursor = "auto"
     },
-    stimulus: [`${pcs_path}/audio/hello_audiotest.mp3`],
+    stimulus: `${pcs_path}/audio/hello_audiotest.mp3`,
     choices: ["Hello", "Goodbye", "How Are You", "Thank You"],
     prompt: '<p style="color:black"> What did you hear?</p>',
 }
@@ -50,7 +56,7 @@ var pcs_intro = {
     on_start: function () {
         document.body.style.cursor = "none"
     },
-    stimulus: [`${pcs_path}/audio/intro.mp3`],
+    stimulus: `${pcs_path}/audio/intro.mp3`, 
     prompt: `<img src='${pcs_path}/headphones.png'>`,
     choices: ["s"],
     response_ends_trial: true,
