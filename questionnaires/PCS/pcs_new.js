@@ -162,7 +162,7 @@ var pcs_taste_a = {
 var pcs_taste_r = {
     type: jsPsychSurvey,
     survey_json: {
-        title: "Taste Experience 1",
+        title: "Taste Experience",
         description: "You were told that you would have a SWEET taste in your mouth, and then you were told that you have a SOUR taste in your mouth.",
         completeText: "Continue",
         goNextPageAutomatic: false,
@@ -415,8 +415,6 @@ var pcs_amnesia_w = {
     type: jsPsychSurvey,
     survey_json: {
         goNextPageAutomatic: true,
-        showTimer: true,
-        timeLimit: 60,
         completeText: "Continue",
         showQuestionNumbers: false,
         pages: [
@@ -436,6 +434,7 @@ var pcs_amnesia_w = {
     data: {
         screen: "PCS_Amnesia_W",
     },
+    trial_duration: 60000,
 }
 
 // Amnesia 2 (audio + written response)
@@ -470,8 +469,6 @@ var pcs_remember_w = {
     type: jsPsychSurvey,
     survey_json: {
         goNextPageAutomatic: true,
-        showTimer: true,
-        timeLimit: 60,
         completeText: "Continue",
         showQuestionNumbers: false,
         pages: [
@@ -491,26 +488,56 @@ var pcs_remember_w = {
     data: {
         screen: "PCS_Remember_W",
     },
+    trial_duration: 60000,
 }
+
+// var pcs_amnesia_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Amnesia</h2>" +
+//         "<p>You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
+//     questions: [
+//         {
+//             prompt: 'How hard was it to remember events before you were told "now you can remember everything", where 0 means you could remember events as easily as normal and 5 means you found it so difficult to remember it was as if there was an actual blank in your memory?',
+//             name: "PCS_Amnesia",
+//             labels: ["Normal memory", "1", "2", "3", "4", "No memory"],
+//         },
+//     ],
+// }
 
 var pcs_amnesia_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Amnesia",
+        description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember everything'.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How hard was it to remember events before you were told 'now you can remember everything', where 0 means you could remember events as easily as normal and 5 means you found it so difficult to remember it was as if there was an actual blank in your memory?",
+                        name: "PCS_Amnesia_R",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "Normal memory",
+                        maxRateDescription: "No memory",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Amnesia</h2>" +
-        "<p>You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
-    questions: [
-        {
-            prompt: 'How hard was it to remember events before you were told "now you can remember everything", where 0 means you could remember events as easily as normal and 5 means you found it so difficult to remember it was as if there was an actual blank in your memory?',
-            name: "PCS_Amnesia",
-            labels: ["Normal memory", "1", "2", "3", "4", "No memory"],
-        },
-    ],
+    data: {
+        screen: "PCS_Amnesia_R",
+    },
 }
-
-
 
 // Magnetic Hands (audio + rating)
 var pcs_magnetichands_a = {
@@ -525,21 +552,52 @@ var pcs_magnetichands_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_magnetichands_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Magnetic Hands</h2>" +
+//         '<p style="color:black;">You were told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.</p>',
+//     questions: [
+//         {
+//             prompt: "How strongly did you feel a force between your hands,  where 0 means you felt no force at all and 5 means you felt a force so strong it was as if your hands were real magnets?",
+//             name: "PCS_MovingHandsTogether",
+//             labels: ["No force ", "1", "2", "3", "4", "Strong Force"],
+//         },
+//     ],
+// }
+
 var pcs_magnetichands_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Magnetic Hands",
+        description: "You were told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How strongly did you feel a force between your hands,  where 0 means you felt no force at all and 5 means you felt a force so strong it was as if your hands were real magnets?",
+                        name: "PCS_MagneticHands",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "No force",
+                        maxRateDescription: "Strong Force",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Magnetic Hands</h2>" +
-        '<p style="color:black;">You were told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.</p>',
-    questions: [
-        {
-            prompt: "How strongly did you feel a force between your hands,  where 0 means you felt no force at all and 5 means you felt a force so strong it was as if your hands were real magnets?",
-            name: "PCS_MovingHandsTogether",
-            labels: ["No force ", "1", "2", "3", "4", "Strong Force"],
-        },
-    ],
+    data: {
+        screen: "PCS_MagneticHands",
+    },
 }
 
 // Mosquito (audio + rating)
@@ -555,21 +613,52 @@ var pcs_mosquito_a = {
     trial_ends_after_audio: true,
 }
 
+// var pcs_mosquito_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Experience of Mosquito</h2>" +
+//         '<p style="color:black;">You were told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.</p>',
+//     questions: [
+//         {
+//             prompt: "How strongly did you feel the sensation of a mosquito being there, in either sound or touch, where 0 means you felt no sensation and 5 means you felt by any means as if there actually was a mosquito there?",
+//             name: "PCS_ExperienceMosquito",
+//             labels: ["No mosquito", "1", "2", "3", "4", "Like a real mosquito"],
+//         },
+//     ],
+// }
+
 var pcs_mosquito_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Experience of Mosquito",
+        description: "You were told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How strongly did you feel the sensation of a mosquito being there, in either sound or touch, where 0 means you felt no sensation and 5 means you felt by any means as if there actually was a mosquito there?",
+                        name: "PCS_Mosquito",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "No mosquito",
+                        maxRateDescription: "Like a real mosquito",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Experience of Mosquito</h2>" +
-        '<p style="color:black;">You were told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.</p>',
-    questions: [
-        {
-            prompt: "How strongly did you feel the sensation of a mosquito being there, in either sound or touch, where 0 means you felt no sensation and 5 means you felt by any means as if there actually was a mosquito there?",
-            name: "PCS_ExperienceMosquito",
-            labels: ["No mosquito", "1", "2", "3", "4", "Like a real mosquito"],
-        },
-    ],
+    data: {
+        screen: "PCS_Mosquito",
+    },
 }
 
 // Negative visual illusion (audio(s) + image + multiple choice response)
@@ -597,29 +686,55 @@ var pcs_balls_a2 = {
     trial_duration: 120000,
 }
 
+// var pcs_balls_mc = {
+//     type: jsPsychSurveyMultiChoice,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     css_classes: ["blacktext"],
+//     questions: [
+//         {
+//             prompt: '<p style="color:black">What color balls did you see in the screen?</p>',
+//             name: "PCS_Q1",
+//             options: [
+//                 "Yellow",
+//                 "Red",
+//                 "Green",
+//                 "Blue",
+//                 "Purple",
+//                 "Orange",
+//                 "No Balls Were Presented",
+//             ],
+//             required: true,
+//         },
+//     ],
+// }
+
 var pcs_balls_mc = {
-    type: jsPsychSurveyMultiChoice,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+    type: jsPsychSurvey,
+    survey_json: {
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "What color balls did you see in the screen?",
+                        name: "PCS_Balls",
+                        type: "checkbox",
+                        choices: ["Yellow", "Red", "Green", "Blue", "Purple", "Orange", "No Balls Were Presented"],
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    css_classes: ["blacktext"],
-    questions: [
-        {
-            prompt: '<p style="color:black">What color balls did you see in the screen?</p>',
-            name: "PCS_Q1",
-            options: [
-                "Yellow",
-                "Red",
-                "Green",
-                "Blue",
-                "Purple",
-                "Orange",
-                "No Balls Were Presented",
-            ],
-            required: true,
-        },
-    ],
+    data: {
+        screen: "PCS_Balls",
+    },
 }
+
 // Post-session experience (audio + keyboard presses + ratings)
 var pcs_pse_a = {
     type: jsPsychAudioKeyboardResponse,
@@ -637,7 +752,7 @@ var pcs_press = {
     timeline: [
         {
             type: jsPsychHtmlKeyboardResponse,
-            prompt: "PLEASE WAIT",
+            stimulus: "<p>PLEASE WAIT</p>",
             choices: ["s"],
             response_ends_trial: true,
             trial_duration: 10000,
@@ -655,33 +770,75 @@ var pcs_pse_a2 = {
     trial_ends_after_audio: true,
 }
 
-var pcs_pss_r = {
-    type: jsPsychSurveyLikert,
-    on_start: function () {
-        document.body.style.cursor = "auto"
+// var pcs_pss_r = {
+//     type: jsPsychSurveyLikert,
+//     on_start: function () {
+//         document.body.style.cursor = "auto"
+//     },
+//     preamble:
+//         "<h2>Post-Session Experience </h2>" +
+//         '<p style="color:black;">You were told that you would press the space bar six times in a row, but that you would forget that you were told to do so.</p>',
+//     questions: [
+//         {
+//             prompt: "Report how strong an urge you felt to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
+//             name: "PCS_PostSessionExperience_a",
+//             labels: ["No urge", "1", "2", "3", "4", "Clear urge"],
+//         },
+//         {
+//             prompt: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
+//             name: "PCS_PostSessionExperience_b",
+//             labels: [
+//                 "Normal memory of instruction",
+//                 "1",
+//                 "2",
+//                 "3",
+//                 "4",
+//                 "No memory of instruction",
+//             ],
+//         },
+//     ],
+// }
+
+var pcs_pse_r = {
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Post-Session Experience",
+        description: "You were told that you would press the space bar six times in a row, but that you would forget that you were told to do so.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "Report how strong an urge you felt to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
+                        name: "PCS_PostSessionExperience_1",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "No urge",
+                        maxRateDescription: "Clear urge",
+                        isRequired: true,
+                    },
+                    {
+                        title: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar.",
+                        name: "PCS_PostSessionExperience_2",
+                        type: "rating",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        minRateDescription: "Normal memory of instruction",
+                        maxRateDescription: "No memory of instruction",
+                        isRequired: true,
+                    },
+                ],
+            },
+        ],   
     },
-    preamble:
-        "<h2>Post-Session Experience </h2>" +
-        '<p style="color:black;">You were told that you would press the space bar six times in a row, but that you would forget that you were told to do so.</p>',
-    questions: [
-        {
-            prompt: "Report how strong an urge you felt to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
-            name: "PCS_PostSessionExperience_a",
-            labels: ["No urge", "1", "2", "3", "4", "Clear urge"],
-        },
-        {
-            prompt: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
-            name: "PCS_PostSessionExperience_b",
-            labels: [
-                "Normal memory of instruction",
-                "1",
-                "2",
-                "3",
-                "4",
-                "No memory of instruction",
-            ],
-        },
-    ],
+    data: {
+        screen: "PCS_PostSessionExperience",
+    },
 }
 
 var pcs_finish = {
@@ -691,41 +848,4 @@ var pcs_finish = {
         '<p>You may recall that during the session today, you were asked to hold up your hand when you heard a recording of "HappyBirthday to You". In fact, no recording was played - there was no music in the room. Also, near the end of the session, you were told that you would see two balls on the screen. Actually, there were three balls in the picture. The purpose of these two items was not to deceive you. We know from past research that the perception of persons who are highly skilled in controlling their subjective experience will sometimes be altered to coincide with that which was proposed. Our intention with respect to these items was to assess your ability to create perceptual alterations.' +
         "<p>Thank for completing this part of the experiment.</p>",
     choices: ["Continue"],
-}
-
-// Timeline ========================================================================
-var pcs_timeline = {
-    timeline: [
-        pcs_preload,
-        pcs_instructions,
-        pcs_audiotest,
-        pcs_intro,
-        pcs_handlowering_a,
-        pcs_handlowering_r,
-        pcs_taste_a,
-        pcs_taste_r,
-        pcs_armrigidity_a,
-        pcs_armrigidity_r,
-        pcs_armrimmobile_a,
-        pcs_armrimmobile_r,
-        pcs_music_a,
-        pcs_music_r,
-        pcs_amnesia_a,
-        pcs_amnesia_w,
-        pcs_remember_a,
-        pcs_remember_w,
-        pcs_amnesia_r,
-        pcs_magnetichands_a,
-        pcs_magnetichands_r,
-        pcs_mosquito_a,
-        pcs_mosquito_r,
-        pcs_balls_a,
-        pcs_balls_a2,
-        pcs_balls_mc,
-        pcs_pse_a,
-        pcs_press,
-        pcs_pse_a2,
-        pcs_pss_r,
-        pcs_finish,
-    ],
 }
