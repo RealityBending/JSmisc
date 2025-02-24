@@ -110,7 +110,15 @@ function ravens_maketrial() {
                     document.querySelector("#clock").innerHTML = " "
                     clearInterval(interval)
                 }
-            }, 250)
+            }, 250);
+
+            // end trial timer
+            document.querySelectorAll(".jspsych-btn").forEach(button => {
+                button.addEventListener("click", function() {
+                    document.querySelector("#clock").innerHTML = " ";
+                    clearInterval(interval);
+                });
+            });
         },
         on_finish: function (data) {
             data.error = data.response != data.correct
