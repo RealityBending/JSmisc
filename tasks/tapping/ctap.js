@@ -3,15 +3,11 @@
 
 // JS CODE -----------------------------------------
 // Declare Globals Variables
-
-// Canvas
 let clock
 let ctx
-// timers
-let startTime
-let pressTime
-let tapping_animationID
-// constants
+let ctap_startTime
+let ctap_pressTime
+let ctap_animationID
 const TWO_PI = Math.PI * 2
 
 // Drawing ========================================
@@ -23,12 +19,12 @@ function drawClockOutline(clockRadius = 140) {
     ctx.stroke()
 }
 
-function drawArc(angle, lineLength = 120, startAngle = 0) {
+function drawArc(angle, lineLength = 120, start_angle = 0) {
     const center = clock.width / 2
     ctx.beginPath()
     ctx.fillStyle = "green"
     ctx.moveTo(center, center)
-    ctx.arc(center, center, lineLength, startAngle - Math.PI / 2, angle - Math.PI / 2)
+    ctx.arc(center, center, lineLength, start_angle - Math.PI / 2, angle - Math.PI / 2)
     ctx.lineTo(center, center)
     ctx.fill()
 }
@@ -97,69 +93,69 @@ function drawArrow(angle, colour, outwards = true, start = 0, length = 120, head
 
 function time2Rads(time) {
     const propTrialLeft = time / duration
-    return (propTrialLeft * TWO_PI + startAngle) % TWO_PI
+    return (propTrialLeft * TWO_PI + start_angle) % TWO_PI
 }
 
 // Clock Animation =========================================
-function drawClock(condition = "external", startAngle = 0, targetAngle = 0, duration = 3000) {
+function drawClock(condition = "external", start_angle = 0, target_angle = 0, duration = 3000, difficulty = 0.5) {
     let radius = Math.round(window.innerHeight * 0.15)
-    let handlength = Math.round(radius * 0.8)
+    let handlength = Math.round(radius * difficulty)
 
     // DURING
     ctx.clearRect(0, 0, clock.width, clock.height)
     drawClockOutline(radius) // clockRadius is a function of window height
 
     // Hands
-    const currentTime = performance.now() - startTime
+    const currentTime = performance.now() - ctap_startTime
     const angle = time2Rads(currentTime)
     drawHand(angle, "black", 0, handlength) // angle, colour, startOffset, lineLength
-    drawArc(angle, handlength, startAngle)
+    drawArc(angle, handlength, start_angle)
 
     // Arrows
-    if (pressTime) drawArrow(time2Rads(pressTime), "blue", true, 0, handlength, radius * 0.05)
-    if (condition === "external") drawArrow(targetAngle, "red", false, radius, radius * 0.8, radius * 0.05)
+    if (ctap_pressTime) drawArrow(time2Rads(ctap_pressTime), "blue", true, 0, handlength, radius * 0.05)
+    if (condition === "external") drawArrow(target_angle, "red", false, radius, radius * 0.4, radius * 0.05)
 
     drawCenterDot() // Draw the center dot
     if (currentTime >= duration) stopClock()
 }
 
 function stopClock() {
-    if (tapping_animationID) {
-        cancelAnimationFrame(tapping_animationID)
-        tapping_animationID = undefined
+    if (ctap_animationID) {
+        cancelAnimationFrame(ctap_animationID)
+        ctap_animationID = undefined
     }
 }
 
 function animateClock() {
-    drawClock(condition, startAngle, targetAngle)
-    if (performance.now() - startTime < duration) {
-        tapping_animationID = requestAnimationFrame(animateClock)
+    drawClock(condition, start_angle, target_angle, duration, difficulty)
+    if (performance.now() - ctap_startTime < duration) {
+        ctap_animationID = requestAnimationFrame(animateClock)
     } else {
         stopClock()
     }
 }
 
 // Trial Functions ========================================
-function tapping_stimulus(c, condition = "external", startAngle = 0, targetAngle = 0, duration = 3000) {
+function ctap_stimulus(c, condition = "external", start_angle = 0, target_angle = 0, duration = 3000, difficulty = 0.5) {
     // START
     clock = c
     ctx = c.getContext("2d")
     ctx.lineWidth = 5
-    pressTime = undefined
-    startTime = performance.now()
-    drawClock(condition, startAngle, targetAngle, duration)
-    tapping_animationID = requestAnimationFrame(animateClock)
-    document.addEventListener("keydown", tapping_keyListener)
+    ctap_pressTime = undefined
+    ctap_startTime = performance.now()
+    drawClock(condition, start_angle, target_angle, duration, difficulty)
+    ctap_animationID = requestAnimationFrame(animateClock)
+    document.addEventListener("keydown", ctap_keyListener)
 }
 
-function tapping_keyListener(e) {
+function ctap_keyListener(e) {
     if (e.key === " ") {
-        pressTime = performance.now() - startTime
-        document.removeEventListener("keydown", tapping_keyListener)
+        ctap_pressTime = performance.now() - ctap_startTime
+        document.removeEventListener("keydown", ctap_keyListener)
     }
 }
 
-function tapping_maketrials(nTrials = 10, condition = "external") {
+function ctap_maketrials(nTrials = 10, condition = "external") {
     var trials = []
     var min_distance = 0.5 // buffer on end angle in percentage
     for (let i = 0; i < nTrials; i++) {
@@ -171,12 +167,39 @@ function tapping_maketrials(nTrials = 10, condition = "external") {
 
         // Add timeline vars trial info
         let trial_info = {
-            startAngle: start_angle,
-            targetAngle: start_angle + target_angle * TWO_PI,
+            start_angle: start_angle,
+            target_angle: start_angle + target_angle * TWO_PI,
             condition: condition,
+            difficulty: Math.random() * (0.9 - 0.4) + 0.4, // The size of the clock arms relative to the radius
             duration: (Math.random() * 2 + 4) * 1000, // random between 4 and 6 seconds
         }
         trials.push(trial_info)
     }
     return trials
+}
+
+// JsPsych ========================================
+const ctap_trial = {
+    type: jsPsychCanvasKeyboardResponse,
+    canvas_size: function () {
+        return [Math.round(window.innerHeight * 0.8), Math.round(window.innerHeight * 0.8)]
+    },
+    trial_duration: function () {
+        return jsPsych.evaluateTimelineVariable("duration")
+    },
+    response_ends_trial: false,
+    stimulus: function (canvas) {
+        start_angle = jsPsych.evaluateTimelineVariable("start_angle")
+        target_angle = jsPsych.evaluateTimelineVariable("target_angle")
+        condition = jsPsych.evaluateTimelineVariable("condition")
+        difficulty = jsPsych.evaluateTimelineVariable("difficulty")
+        duration = jsPsych.evaluateTimelineVariable("duration")
+        ctap_stimulus(canvas, condition, start_angle, target_angle, duration, difficulty)
+    },
+    choices: [" "],
+    prompt: "",
+    on_finish: function (data) {
+        data.response_time = ctap_pressTime // Time user pressed spacebar - same as RT
+        data.response_angle = time2Rads(ctap_pressTime) // Where user pressed spacebar in radians, relative to 12'clock = 0
+    },
 }
