@@ -19,7 +19,7 @@ const pcs_preload = {
         `${pcs_path}/audio/PSS1.mp3`,
         `${pcs_path}/audio/PSS2_remember_everything.mp3`,
     ],
-    images: [`${pcs_path}/images/stimulus.png`, `${pcs_path}/images/headphones.png`, `${pcs_path}/images/instructions.png`],
+    images: [`${pcs_path}/images/stimulus.png`, `${pcs_path}/images/headphones.png`, `${pcs_path}/images/instructions.jpg`],
 }
 
 
@@ -44,7 +44,7 @@ const pcs_instructions = {
                             "Please concentrate on the voice and follow the instructions given." +
                             "</div>" +
                             "<div style='width: 40%;'>" +
-                            `<img src='${pcs_path}/images/instructions.png' alt='Illustration' style='width: 100%;'>` +
+                            `<img src='${pcs_path}/images/instructions.jpg' alt='Illustration' style='width: 100%;'>` +
                             "</div>" +
                             "</div>",
                     },
