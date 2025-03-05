@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clock Tapping Task</title>
+        <script src="https://unpkg.com/jspsych@8.2.0"></script>
+        <link href="https://unpkg.com/jspsych@8.2.0/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/@jspsych/plugin-canvas-keyboard-response@2.1.0"></script>
+        <script src="tapping.js"></script>
+    </head>
+    <body>
+        <script>
+            //https://github.com/jspsych/jsPsych/discussions/1690
+            const jsPsych = initJsPsych({
+                on_finish: function () {
+                    jsPsych.data.displayData()
+                },
+            })
+
+            const timeline = []
+
+            const tapping_trial = {
+                type: jsPsychCanvasKeyboardResponse,
+                trial_duration: function () {
+                    return jsPsych.evaluateTimelineVariable("duration")
+                },
+                response_ends_trial: false,
+                stimulus: function (canvas) {
+                    startAngle = jsPsych.evaluateTimelineVariable("startAngle")
+                    targetAngle = jsPsych.evaluateTimelineVariable("targetAngle")
+                    condition = jsPsych.evaluateTimelineVariable("condition")
+                    duration = jsPsych.evaluateTimelineVariable("duration")
+                    tapping_stimulus(canvas, condition, startAngle, targetAngle, duration)
+                },
+                choices: [" "],
+                prompt: "<p>Press spacebar</p>",
+                on_finish: function (data) {
+                    data.pressTime = pressTime // Time user pressed spacebar - same as RT
+                    data.pressAngle = time2Rads(pressTime) // Where user pressed spacebar in radians, relative to 12'clock = 0
+                },
+            }
+
+            timeline.push({
+                timeline: [tapping_trial],
+                timeline_variables: tapping_maketrials(1, "external"),
+                save_timeline_variables: true,
+            })
+            timeline.push({
+                timeline: [tapping_trial],
+                timeline_variables: tapping_maketrials(1, "internal"),
+                save_timeline_variables: true,
+            })
+            jsPsych.run(timeline)
+        </script>
+    </body>
+</html>
