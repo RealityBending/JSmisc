@@ -128,10 +128,12 @@ function stopClock() {
     }
 }
 
-function animateClock() {
+function animateClock(condition, start_angle, target_angle, duration, difficulty) {
     drawClock(condition, start_angle, target_angle, duration, difficulty)
     if (performance.now() - ctap_startTime < duration) {
-        ctap_animationID = requestAnimationFrame(animateClock)
+        ctap_animationID = requestAnimationFrame(function () {
+            animateClock(condition, start_angle, target_angle, duration, difficulty)
+        })
     } else {
         stopClock()
     }
@@ -146,7 +148,9 @@ function ctap_stimulus(c, condition = "external", start_angle = 0, target_angle 
     ctap_pressTime = undefined
     ctap_startTime = performance.now()
     drawClock(condition, start_angle, target_angle, duration, difficulty)
-    ctap_animationID = requestAnimationFrame(animateClock)
+    ctap_animationID = requestAnimationFrame(function () {
+        animateClock(condition, start_angle, target_angle, duration, difficulty)
+    })
     document.addEventListener("keydown", ctap_keyListener)
 }
 
@@ -202,6 +206,10 @@ const ctap_trial = {
     prompt: "",
     on_finish: function (data) {
         data.response_time = ctap_pressTime // Time user pressed spacebar - same as RT
-        data.response_angle = time2Rads(ctap_pressTime, duration, start_angle) // Where user pressed spacebar in radians, relative to 12'clock = 0
+        data.response_angle = time2Rads(
+            ctap_pressTime,
+            jsPsych.evaluateTimelineVariable("duration"),
+            jsPsych.evaluateTimelineVariable("start_angle")
+        ) // Where user pressed spacebar in radians, relative to 12'clock = 0
     },
 }
