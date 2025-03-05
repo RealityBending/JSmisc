@@ -1,79 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Title shown in tab -->
-        <title>Phenomenological Control Scale</title>
 
-        <!-- Load JsPsych -->
-        <script src="https://unpkg.com/jspsych@8.2.1" type="text/javascript"></script>
-        
-        <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@2.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@2.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-survey@2.0.0"></script>
+<head>
+    <!-- Title shown in tab -->
+    <title>Phenomenological Control Scale</title>
 
-        <!-- Add full URL https://realitybending.github.io/JSmisc/... -->
-        <script src="pcs_new.js"></script>
+    <!-- Load JsPsych -->
+    <script src="https://unpkg.com/jspsych@8.2.1" type="text/javascript"></script>
 
-        <link href="https://unpkg.com/jspsych@8.0.1/css/jspsych.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@2.0.0/css/survey.css" />
+    <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey@2.0.0"></script>
 
-        <style>
-            .blacktext {
-                color: rgb(0, 0, 0);
-            }
-        </style>
-    </head>
+    <!-- Add full URL https://realitybending.github.io/JSmisc/... -->
+    <script src="pcs_new.js"></script>
 
-    <body></body>
+    <link href="https://unpkg.com/jspsych@8.0.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@2.0.0/css/survey.css" />
 
-    <script>
-        // Initialize experiment =================================================
-        var timeline = []
+    <style>
+        .blacktext {
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
 
-        var jsPsych = initJsPsych({
-            on_finish: function () {
-                jsPsych.data.displayData("json") // Display data in browser
-            },
-            use_webaudio: true,
-        })
+<body></body>
 
-        // Timeline -------------------------------------------------------------------
-        timeline.push(pcs_preload)
-        timeline.push(pcs_instructions)
-        timeline.push(pcs_audiotest)
-        timeline.push(pcs_intro)
-        timeline.push(pcs_handlowering_a)
-        timeline.push(pcs_handlowering_r)
-        timeline.push(pcs_taste_a)
-        timeline.push(pcs_taste_r)
-        timeline.push(pcs_armrigidity_a)
-        timeline.push(pcs_armrigidity_r)
-        timeline.push(pcs_armrimmobile_a)
-        timeline.push(pcs_armrimmobile_r)
-        timeline.push(pcs_music_a)
-        timeline.push(pcs_music_r)
-        timeline.push(pcs_amnesia_a)
-        timeline.push(pcs_amnesia_w)
-        timeline.push(pcs_remember_a)
-        timeline.push(pcs_remember_w)
-        timeline.push(pcs_amnesia_r)
-        timeline.push(pcs_magnetichands_a)
-        timeline.push(pcs_magnetichands_r)
-        timeline.push(pcs_mosquito_a)
-        timeline.push(pcs_mosquito_r)
-        timeline.push(pcs_balls_a)
-        timeline.push(pcs_balls_a2)
-        timeline.push(pcs_balls_mc)
-        timeline.push(pcs_pse_a)
-        timeline.push(pcs_press)
-        timeline.push(pcs_pse_a2)
-        timeline.push(pcs_pse_r)
-        timeline.push(pcs_finish)
+<script>
+    // Initialize experiment =================================================
+    var timeline = []
 
-        //  Run the timeline =====================================================
-        jsPsych.run(timeline)
-    </script>
+    var jsPsych = initJsPsych({
+        on_finish: function () {
+            jsPsych.data.displayData("json") // Display data in browser
+        },
+        use_webaudio: true,
+    })
+
+    // Timeline -------------------------------------------------------------------
+    timeline.push(pcs_timeline)
+
+    //  Run the timeline =====================================================
+    jsPsych.run(timeline)
+</script>
+
 </html>
