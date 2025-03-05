@@ -91,7 +91,7 @@ function drawArrow(angle, colour, outwards = true, start = 0, length = 120, head
     }
 }
 
-function time2Rads(time) {
+function time2Rads(time, duration, start_angle) {
     const propTrialLeft = time / duration
     return (propTrialLeft * TWO_PI + start_angle) % TWO_PI
 }
@@ -109,12 +109,12 @@ function drawClock(condition = "external", start_angle = 0, target_angle = 0, du
 
     // Hands
     const currentTime = performance.now() - ctap_startTime
-    const angle = time2Rads(currentTime)
+    const angle = time2Rads(currentTime, duration, start_angle)
     drawHand(angle, "black", 0, handlength) // angle, colour, startOffset, lineLength
     drawArc(angle, handlength, start_angle, color_fill)
 
     // Arrows
-    if (ctap_pressTime) drawArrow(time2Rads(ctap_pressTime), color_arrow, true, 0, handlength, radius * 0.05)
+    if (ctap_pressTime) drawArrow(time2Rads(ctap_pressTime, duration, start_angle), color_arrow, true, 0, handlength, radius * 0.05)
     if (condition === "external") drawArrow(target_angle, "red", false, radius, radius * 0.4, radius * 0.05)
 
     drawCenterDot() // Draw the center dot
@@ -191,17 +191,17 @@ const ctap_trial = {
     },
     response_ends_trial: false,
     stimulus: function (canvas) {
-        start_angle = jsPsych.evaluateTimelineVariable("start_angle")
-        target_angle = jsPsych.evaluateTimelineVariable("target_angle")
-        condition = jsPsych.evaluateTimelineVariable("condition")
-        difficulty = jsPsych.evaluateTimelineVariable("difficulty")
-        duration = jsPsych.evaluateTimelineVariable("duration")
+        const start_angle = jsPsych.evaluateTimelineVariable("start_angle")
+        const target_angle = jsPsych.evaluateTimelineVariable("target_angle")
+        const condition = jsPsych.evaluateTimelineVariable("condition")
+        const difficulty = jsPsych.evaluateTimelineVariable("difficulty")
+        const duration = jsPsych.evaluateTimelineVariable("duration")
         ctap_stimulus(canvas, condition, start_angle, target_angle, duration, difficulty)
     },
     choices: [" "],
     prompt: "",
     on_finish: function (data) {
         data.response_time = ctap_pressTime // Time user pressed spacebar - same as RT
-        data.response_angle = time2Rads(ctap_pressTime) // Where user pressed spacebar in radians, relative to 12'clock = 0
+        data.response_angle = time2Rads(ctap_pressTime, duration, start_angle) // Where user pressed spacebar in radians, relative to 12'clock = 0
     },
 }
