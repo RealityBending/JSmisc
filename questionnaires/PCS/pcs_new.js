@@ -19,7 +19,7 @@ const pcs_preload = {
         `${pcs_path}/audio/PSS1.mp3`,
         `${pcs_path}/audio/PSS2_remember_everything.mp3`,
     ],
-    images: [`${pcs_path}/stimulus.png`, `${pcs_path}/headphones.png`],
+    images: [`${pcs_path}/images/stimulus.png`, `${pcs_path}/images/headphones.png`, `${pcs_path}/images/instructions.png`],
 }
 
 
@@ -30,7 +30,11 @@ const pcs_instructions = {
             "<h2> Before you start..</h2>" +
             "Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
             "Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.</p>" +
-            "Please concentrate on the voice and follow the instructions given."
+            "Please concentrate on the voice and follow the instructions given." +
+            "<div style='width: 40%;'>" +
+            `<img src='${pcs_path}/images/instructions.png' alt='Illustration' style='width: 100%;'>` +
+            "</div>" +
+            "</div>"
         return {
             completeText: "Start",
             showQuestionNumbers: false,
@@ -98,7 +102,7 @@ const pcs_intro = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             }
@@ -127,7 +131,7 @@ const pcs_handlowering_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -189,7 +193,7 @@ const pcs_taste_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`
+                        html: `<img src='${pcs_path}/images/headphones.png'>`
                     }
                 ]
             },
@@ -262,7 +266,7 @@ const pcs_armrigidity_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -323,7 +327,7 @@ const pcs_armrimmobile_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -384,7 +388,7 @@ const pcs_music_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -445,7 +449,7 @@ const pcs_amnesia_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -500,7 +504,7 @@ const pcs_remember_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -586,7 +590,7 @@ const pcs_magnetichands_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -647,7 +651,7 @@ const pcs_mosquito_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -708,7 +712,7 @@ const pcs_balls_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`,
+                        html: `<img src='${pcs_path}/images/headphones.png'>`,
                     }
                 ]
             },
@@ -742,7 +746,7 @@ const pcs_balls_a2 = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/stimulus.png'>`
+                        html: `<img src='${pcs_path}/images/stimulus.png'>`
                     }
                 ]
             },
@@ -796,7 +800,7 @@ const pcs_pse_a = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`
+                        html: `<img src='${pcs_path}/images/headphones.png'>`
                     }
                 ]
             },
@@ -870,7 +874,7 @@ const pcs_pse_a2 = {
                     {
                         type: "html",
                         name: "image",
-                        html: `<img src='${pcs_path}/headphones.png'>`
+                        html: `<img src='${pcs_path}/images/headphones.png'>`
                     }
                 ]
             },
