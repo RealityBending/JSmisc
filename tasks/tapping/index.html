@@ -20,6 +20,9 @@
 
             const tapping_trial = {
                 type: jsPsychCanvasKeyboardResponse,
+                canvas_size: function () {
+                    return [Math.round(window.innerHeight * 0.8), Math.round(window.innerHeight * 0.8)]
+                },
                 trial_duration: function () {
                     return jsPsych.evaluateTimelineVariable("duration")
                 },

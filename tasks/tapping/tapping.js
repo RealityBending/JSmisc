@@ -2,7 +2,7 @@
 // Originally at https://github.com/SussexPsychologySoftware/tapping
 
 // JS CODE -----------------------------------------
-// Globals for easier access
+// Declare Globals Variables
 
 // Canvas
 let clock
@@ -14,7 +14,7 @@ let tapping_animationID
 // constants
 const TWO_PI = Math.PI * 2
 
-// ARCS ----
+// Drawing ========================================
 function drawClockOutline(clockRadius = 140) {
     const center = clock.width / 2
     ctx.beginPath()
@@ -100,7 +100,7 @@ function time2Rads(time) {
     return (propTrialLeft * TWO_PI + startAngle) % TWO_PI
 }
 
-// TRIAL FUNCTIONS
+// Clock Animation =========================================
 function drawClock(condition = "external", startAngle = 0, targetAngle = 0, duration = 3000) {
     let radius = Math.round(window.innerHeight * 0.15)
     let handlength = Math.round(radius * 0.8)
@@ -117,7 +117,7 @@ function drawClock(condition = "external", startAngle = 0, targetAngle = 0, dura
 
     // Arrows
     if (pressTime) drawArrow(time2Rads(pressTime), "blue", true, 0, handlength, radius * 0.05)
-    if (condition === "external") drawArrow(targetAngle, "red", false, radius * 1, radius * 0.5, radius * 0.05)
+    if (condition === "external") drawArrow(targetAngle, "red", false, radius, radius * 0.8, radius * 0.05)
 
     drawCenterDot() // Draw the center dot
     if (currentTime >= duration) stopClock()
@@ -139,6 +139,7 @@ function animateClock() {
     }
 }
 
+// Trial Functions ========================================
 function tapping_stimulus(c, condition = "external", startAngle = 0, targetAngle = 0, duration = 3000) {
     // START
     clock = c
