@@ -25,34 +25,34 @@ const pcs_preload = {
 
 const pcs_instructions = {
     type: jsPsychSurvey,
-    survey_json: function () {
-        let text =
-            "<h2> Before you start..</h2>" +
-            "Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
-            "Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.</p>" +
-            "Please concentrate on the voice and follow the instructions given." +
-            "<div style='width: 40%;'>" +
-            `<img src='${pcs_path}/images/instructions.png' alt='Illustration' style='width: 100%;'>` +
-            "</div>" +
-            "</div>"
-        return {
-            completeText: "Start",
-            showQuestionNumbers: false,
-            pages: [
-                {
-                    elements: [
-                        {
-                            type: "html",
-                            name: "pcs_instructions",
-                            html: text,
-                        },
-                    ]
-                },
-            ],
-        }
-    }
+    survey_json: {
+        showQuestionNumbers: false,
+        showQuestionNumbers: false,
+        completeText: "Let's start",
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "html",
+                        name: "pcs_instructions",
+                        html:
+                            "<div style='display: flex;'>" +
+                            "<div style='width: 60%; margin-right: 20px;'>" +
+                            "<h2>Before you start..</h2>" +
+                            "Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
+                            "Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.</p>" +
+                            "Please concentrate on the voice and follow the instructions given." +
+                            "</div>" +
+                            "<div style='width: 40%;'>" +
+                            `<img src='${pcs_path}/images/instructions.png' alt='Illustration' style='width: 100%;'>` +
+                            "</div>" +
+                            "</div>",
+                    },
+                ],
+            },
+        ],
+    },
 }
-
 
 const pcs_audiotest = {
     type: jsPsychSurvey,
