@@ -20,12 +20,12 @@
 
             timeline.push({
                 timeline: [ctap_trial],
-                timeline_variables: ctap_maketrials(2, "external"),
+                timeline_variables: ctap_maketrials(1, "external"),
                 save_timeline_variables: true,
             })
             timeline.push({
                 timeline: [ctap_trial],
-                timeline_variables: ctap_maketrials(2, "internal"),
+                timeline_variables: ctap_maketrials(1, "internal"),
                 save_timeline_variables: true,
             })
             jsPsych.run(timeline)

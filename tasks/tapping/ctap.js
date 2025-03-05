@@ -19,10 +19,10 @@ function drawClockOutline(clockRadius = 140) {
     ctx.stroke()
 }
 
-function drawArc(angle, lineLength = 120, start_angle = 0) {
+function drawArc(angle, lineLength = 120, start_angle = 0, fill = "green") {
     const center = clock.width / 2
     ctx.beginPath()
-    ctx.fillStyle = "green"
+    ctx.fillStyle = fill
     ctx.moveTo(center, center)
     ctx.arc(center, center, lineLength, start_angle - Math.PI / 2, angle - Math.PI / 2)
     ctx.lineTo(center, center)
@@ -100,6 +100,8 @@ function time2Rads(time) {
 function drawClock(condition = "external", start_angle = 0, target_angle = 0, duration = 3000, difficulty = 0.5) {
     let radius = Math.round(window.innerHeight * 0.15)
     let handlength = Math.round(radius * difficulty)
+    let color_arrow = condition === "external" ? "#9C27B0" : "#FF9800"
+    let color_fill = condition === "external" ? "#4CAF50" : "#03A9F4"
 
     // DURING
     ctx.clearRect(0, 0, clock.width, clock.height)
@@ -109,10 +111,10 @@ function drawClock(condition = "external", start_angle = 0, target_angle = 0, du
     const currentTime = performance.now() - ctap_startTime
     const angle = time2Rads(currentTime)
     drawHand(angle, "black", 0, handlength) // angle, colour, startOffset, lineLength
-    drawArc(angle, handlength, start_angle)
+    drawArc(angle, handlength, start_angle, color_fill)
 
     // Arrows
-    if (ctap_pressTime) drawArrow(time2Rads(ctap_pressTime), "blue", true, 0, handlength, radius * 0.05)
+    if (ctap_pressTime) drawArrow(time2Rads(ctap_pressTime), color_arrow, true, 0, handlength, radius * 0.05)
     if (condition === "external") drawArrow(target_angle, "red", false, radius, radius * 0.4, radius * 0.05)
 
     drawCenterDot() // Draw the center dot
