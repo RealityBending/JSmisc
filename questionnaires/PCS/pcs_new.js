@@ -358,7 +358,8 @@ const pcs_amnesia_w = {
                 elements: [
                     {
                         type: "text",
-                        title: "Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises. Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.",
+                        title: "Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises." +
+                            " Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
                         isRequired: true,
                         placeholder: "Write here",
                         name: "Amnesia_w",
@@ -370,7 +371,11 @@ const pcs_amnesia_w = {
     data: {
         screen: "pcs_amnesia_w"
     },
-    trial_duration: 60000,
+    on_load: function () {
+        setTimeout(function () {
+            jsPsych.finishTrial()
+        }, 120000) // 1 minute
+    }
 }
 
 // Amnesia 2 (audio + written response)
@@ -397,7 +402,9 @@ const pcs_remember_w = {
                 elements: [
                     {
                         type: "text",
-                        title: "Briefly type anything else that you now remember that you did not remember previously. Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 1 minutes.", isRequired: true,
+                        title: "Briefly type anything else that you now remember that you did not remember previously." +
+                            " Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
+                        isRequired: true,
                         placeholder: "Write here",
                         name: "Remember_w",
                     },
@@ -408,7 +415,11 @@ const pcs_remember_w = {
     data: {
         screen: "pcs_remember_w"
     },
-    trial_duration: 60000,
+    on_load: function () {
+        setTimeout(function () {
+            jsPsych.finishTrial()
+        }, 120000) // 2 minutes
+    }
 }
 
 const pcs_remember_r = {
@@ -597,15 +608,13 @@ const pcs_pse_a = {
     }
 }
 
+var keyPressCount = 0
 // key board pressings       
-var keyPressCount = 0 // Counter for key presses
-
 const pcs_press = {
     type: jsPsychSurvey,
     survey_json: {
         goNextPageAutomatic: true,
         showNavigationButtons: "none",
-        timeLimit: 10000, // Trial duration of 10 seconds
         pages: [
             {
                 elements: [
@@ -619,7 +628,7 @@ const pcs_press = {
         ]
     },
     on_load: function () {
-        keyPressCount = 0 // Reset counter
+        keyPressCount = 0 // Counter for key presses
 
         document.addEventListener("keydown", function (event) {
             if (event.code === "Space") {
@@ -635,24 +644,27 @@ const pcs_press = {
             jsPsych.finishTrial()
         }, 10000)
     },
+    on_finish: function (data) {
+        data.keyPressCount = keyPressCount
+    },
     data: {
         screen: "pcs_press"
     },
-    on_finish: function (data) {
-        data.keyPressCount = keyPressCount
-    }
 }
 
 const pcs_pse_a2 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/PSS2_remember_everything.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
-    choices: ["s"],
-    response_ends_trial: true,
+    response_ends_trial: false,
     trial_ends_after_audio: true,
     data: {
         screen: "pcs_pse_a2",
+    },
+    on_load: function () {
+        keyPressCount = 0
     }
+
 }
 
 const pcs_pss_r = {
@@ -697,15 +709,32 @@ const pcs_pss_r = {
 }
 
 const pcs_finish = {
-    type: jsPsychHtmlButtonResponse,
-    css_classes: ["narrow-text"],
-    stimulus:
-        "<h1>End</h1>" +
-        '<p>You may recall that during the session today, you were asked to hold up your hand when you heard a recording of "HappyBirthday to You". In fact, no recording was played - there was no music in the room. Also, near the end of the session, you were told that you would see two balls on the screen. Actually, there were three balls in the picture. The purpose of these two items was not to deceive you. We know from past research that the perception of persons who are highly skilled in controlling their subjective experience will sometimes be altered to coincide with that which was proposed. Our intention with respect to these items was to assess your ability to create perceptual alterations.' +
-        "<p>Thank for completing this part of the experiment.</p>",
-    choices: ["Continue"],
+    type: jsPsychSurvey,
+    survey_json: {
+        showQuestionNumbers: false,
+        completeText: "Finish",
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "html",
+                        name: "pcs_finish",
+                        html:
+                            "<h2>End</h2>" +
+                            "<p>You may recall that during the session today, you were asked to hold up your hand when you heard a recording of <b style='color:green;'>'Happy Birthday to You'</b>." +
+                            " In fact, no recording was played—there <b>was no music in the room</b>." +
+                            "<p> Also, near the end of the session, you were told that you would see two balls on the screen. Actually, there were three balls in the picture." +
+                            "<p> The purpose of these two items was not to deceive you. We know from past research that the perception of persons who are highly skilled in controlling their subjective experience will sometimes be altered to coincide with that which was proposed." +
+                            " <b>Our intention with respect to these items was to assess your ability to create perceptual alterations</b>.</p>" +
+                            "<p>Thank you for completing this part of the experiment.</p>"
+                    }
+                ],
+            },
+        ],
+    },
     data: { screen: "pcs_final" },
 }
+
 
 // Timeline ========================================================================
 const pcs_timeline = {
@@ -733,13 +762,13 @@ const pcs_timeline = {
         pcs_balls_mc,
         pcs_amnesia_a, // 9
         pcs_amnesia_w,
-        pcs_remember_a,
-        pcs_remember_w,
-        pcs_remember_r,
         pcs_pse_a, // 10
         pcs_press,
         pcs_pse_a2,
         pcs_pss_r,
+        pcs_remember_a,
+        pcs_remember_w,
+        pcs_remember_r,
         pcs_finish,
     ],
 }
