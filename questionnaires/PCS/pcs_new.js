@@ -87,62 +87,29 @@ const pcs_audiotest = {
 
 // Introduction
 const pcs_intro = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/intro.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            }
-        ]
-    },
-    data: {
-        screen: "pcs_intro",
-    },
-    trial_duration: 75000, // audio (1.2 min)
+    type: jsPsychAudioKeyboardResponse,
+    // on_start: function () {
+    //     document.body.style.cursor = "none"
+    // },
+    stimulus: `${pcs_path}/audio/intro.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
 }
 
 // Hand Lowering (audio + ratings)
 const pcs_handlowering_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/hand_lowering.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/hand_lowering.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_handlowering_a",
-    },
-    trial_duration: 140000, // audio audio (2.27m = 136.2 seconds)
+    }
 }
-
 
 const pcs_handlowering_r = {
     type: jsPsychSurvey,
@@ -178,31 +145,15 @@ const pcs_handlowering_r = {
 
 // Taste (audio + rating to sweet and sour)
 const pcs_taste_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/taste.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/taste.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_taste_a",
-    },
-    trial_duration: 125000, // audio audio (2.02 min = 121.2 seconds)
+    }
 }
 
 const pcs_taste_r = {
@@ -251,31 +202,15 @@ const pcs_taste_r = {
 
 // Arm Rigidity (audio + rating)
 const pcs_armrigidity_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/arm_rigid.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/arm_rigid.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_armrigidity_a",
-    },
-    trial_duration: 90000, // audio (1.44 min = 86.4 seconds) 
+    }
 }
 
 const pcs_armrigidity_r = {
@@ -294,7 +229,7 @@ const pcs_armrigidity_r = {
                         title: "How stiff did your arm feel, where 0 means no more stiffness than normal and 5 means you could feel a stiffness so compelling no amount of effort would overcome it?",
                         displayMode: "buttons",
                         isRequired: true,
-                        minRateDescription: "Normal/no stiffness",
+                        minRateDescription: "Normal/ no stiffness",
                         maxRateDescription: "Very stiff",
                         rateCount: 6,
                         rateMin: 0,
@@ -312,31 +247,15 @@ const pcs_armrigidity_r = {
 
 // Arm Immobile (audio + rating)
 const pcs_armrimmobile_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/arm_immobile.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/arm_immobile.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_armimmobile_a",
-    },
-    trial_duration: 90000, // audio (1.48 min = 88.8 seconds)
+    }
 }
 
 const pcs_armrimmobile_r = {
@@ -355,7 +274,7 @@ const pcs_armrimmobile_r = {
                         title: "How stiff did your arm feel, where 0 means no more stiffness than normal and 5 means you could feel a stiffness so compelling no amount of effort would overcome it?",
                         displayMode: "buttons",
                         isRequired: true,
-                        minRateDescription: "Normal/no heaviness",
+                        minRateDescription: "Normal/ no heaviness",
                         maxRateDescription: "Very heavy",
                         rateCount: 6,
                         rateMin: 0,
@@ -371,33 +290,16 @@ const pcs_armrimmobile_r = {
     }
 }
 
-// Music (audio + rating)
 const pcs_music_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/Music.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/Music.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_MusicHallucination_a",
-    },
-    trial_duration: 97000, // audio (1.59 min = 95.4 seconds) 
+    }
 }
 
 const pcs_music_r = {
@@ -434,31 +336,15 @@ const pcs_music_r = {
 
 // Amnesia 1 (audio + written response)
 const pcs_amnesia_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/amnesia.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/amnesia.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_amnesia_a",
-    },
-    trial_duration: 50000, // audio (49 seconds) 
+    }
 }
 
 const pcs_amnesia_w = {
@@ -489,31 +375,15 @@ const pcs_amnesia_w = {
 
 // Amnesia 2 (audio + written response)
 const pcs_remember_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/remember_everything.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/remember_everything.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
-        screen: "pcs_amnesia_a",
-    },
-    trial_duration: 60000, //audio (5 seconds) 
+        screen: "pcs_remember_a",
+    }
 }
 
 const pcs_remember_w = {
@@ -575,31 +445,15 @@ const pcs_remember_r = {
 
 // Magnetic Hands (audio + rating)
 const pcs_magnetichands_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/magnetic_hands.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/magnetic_hands.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_magnetichands_a",
-    },
-    trial_duration: 70000, // audio (1.11 min 66.6 seconds)
+    }
 }
 
 const pcs_magnetichands_r = {
@@ -636,31 +490,15 @@ const pcs_magnetichands_r = {
 
 // Mosquito (audio + rating)
 const pcs_mosquito_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/mosquito.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/mosquito.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_mosquito_a",
-    },
-    trial_duration: 80000, // audio (1.31 min = 78.6 seconds)
+    }
 }
 
 const pcs_mosquito_r = {
@@ -697,65 +535,28 @@ const pcs_mosquito_r = {
 
 // Negative visual illusion (audio(s) + image + multiple choice response)
 const pcs_balls_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/negative_visual.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`,
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/negative_visual.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_balls_a",
-    },
-    on_start: function () {
-        // Ensure the trial ends after 27 seconds - audio (27 seconds)
-        setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 27000)
     }
 }
 
 /// Balls (audio + multiple choice ) maybe this works? (see https://www.jspsych.org/7.2/plugins/audio-button-response/)
 const pcs_balls_a2 = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/negative_visualb.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/stimulus.png'>`
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/negative_visualb.mp3`,
+    prompt: `<img src='${pcs_path}/images/stimulus.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_balls_b",
-    },
-    trial_duration: 20000, // audio (16 seconds)
+    }
 }
 
 const pcs_balls_mc = {
@@ -785,31 +586,15 @@ const pcs_balls_mc = {
 
 // Post-session experience (audio + keyboard presses + ratings)
 const pcs_pse_a = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/PSS1.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/PSS1.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_pse_a",
-    },
-    trial_duration: 30000, // audio (28 seconds)
+    }
 }
 
 // key board pressings       
@@ -859,31 +644,15 @@ const pcs_press = {
 }
 
 const pcs_pse_a2 = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "audio-player",
-                        html: `<audio autoplay><source src='${pcs_path}/audio/PSS2_remember_everything.mp3' type='audio/mp3'></audio>`
-                    },
-                    {
-                        type: "html",
-                        name: "image",
-                        html: `<img src='${pcs_path}/images/headphones.png'>`
-                    }
-                ]
-            },
-        ]
-    },
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/PSS2_remember_everything.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
     data: {
         screen: "pcs_pse_a2",
-    },
-    trial_duration: 6000 // audio (5 seconds)
+    }
 }
 
 const pcs_pss_r = {
@@ -945,29 +714,29 @@ const pcs_timeline = {
         pcs_instructions,
         pcs_audiotest,
         pcs_intro,
-        pcs_handlowering_a,
+        pcs_handlowering_a, // 1
         pcs_handlowering_r,
-        pcs_taste_a,
+        pcs_magnetichands_a, // 2
+        pcs_magnetichands_r,
+        pcs_mosquito_a, // 3
+        pcs_mosquito_r,
+        pcs_taste_a, // 4
         pcs_taste_r,
-        pcs_armrigidity_a,
+        pcs_armrigidity_a, // 5
         pcs_armrigidity_r,
-        pcs_armrimmobile_a,
+        pcs_armrimmobile_a, // 6
         pcs_armrimmobile_r,
-        pcs_music_a,
+        pcs_music_a, // 7
         pcs_music_r,
-        pcs_amnesia_a,
+        pcs_balls_a, // 8
+        pcs_balls_a2,
+        pcs_balls_mc,
+        pcs_amnesia_a, // 9
         pcs_amnesia_w,
         pcs_remember_a,
         pcs_remember_w,
         pcs_remember_r,
-        pcs_magnetichands_a,
-        pcs_magnetichands_r,
-        pcs_mosquito_a,
-        pcs_mosquito_r,
-        pcs_balls_a,
-        pcs_balls_a2,
-        pcs_balls_mc,
-        pcs_pse_a,
+        pcs_pse_a, // 10
         pcs_press,
         pcs_pse_a2,
         pcs_pss_r,
