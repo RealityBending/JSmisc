@@ -608,45 +608,29 @@ const pcs_pse_a = {
     }
 }
 
-var keyPressCount = 0
-// key board pressings       
 const pcs_press = {
-    type: jsPsychSurvey,
-    survey_json: {
-        goNextPageAutomatic: true,
-        showNavigationButtons: "none",
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "html",
-                        name: "prompt",
-                        html: "<h2><br>PLEASE WAIT</br></h2>"
-                    }
-                ]
-            }
-        ]
-    },
-    on_load: function () {
-        keyPressCount = 0 // Counter for key presses
-
-        document.addEventListener("keydown", function (event) {
-            if (event.code === "Space") {
-                keyPressCount++
-                if (keyPressCount >= 6) {
-                    jsPsych.finishTrial() // Ends the trial when 6 presses are reached
-                }
-            }
-        })
-
-        // Fallback timeout to end after 10 seconds if not finished by key presses
-        setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 10000)
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "<h2><br>PLEASE WAIT</br></h2>",
+    response_ends_trial: false, 
+    choices: [" "], // Spacebar as the key to press
+    on_start: function () {
+        keyPressCount = 0
     },
     on_finish: function (data) {
         data.keyPressCount = keyPressCount
     },
+    on_load: function () {
+        // Listen for keydown events and increment counter when space is pressed
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                keyPressCount++;
+                if (keyPressCount === 6) {
+                    jsPsych.finishTrial(); // End trial after 6 spacebar presses
+                }
+            }
+        });
+    },
+    trial_duration: 10000, // Ends automatically after 10 seconds
     data: {
         screen: "pcs_press"
     },
@@ -654,17 +638,14 @@ const pcs_press = {
 
 const pcs_pse_a2 = {
     type: jsPsychAudioKeyboardResponse,
+    choices: [""],
     stimulus: `${pcs_path}/audio/PSS2_remember_everything.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
     response_ends_trial: false,
     trial_ends_after_audio: true,
     data: {
         screen: "pcs_pse_a2",
-    },
-    on_load: function () {
-        keyPressCount = 0
     }
-
 }
 
 const pcs_pss_r = {
