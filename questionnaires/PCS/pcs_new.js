@@ -117,7 +117,7 @@ const pcs_handlowering_r = {
         title: "Hand Lowering",
         description: "You were told to extend your right arm straight out and feel it becoming heavy as though a weight were pulling the hand and arm down",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -162,7 +162,7 @@ const pcs_taste_r = {
         title: "Taste Experience ",
         description: "You were told that you would have a SWEET taste in your mouth, and then you were told that you have a SOUR taste in your mouth.",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -219,7 +219,7 @@ const pcs_armrigidity_r = {
         title: "Arm Rigidity (Right Arm)",
         description: "You were told to extend your right arm straight out, then to notice it becoming stiff, and then told to try to bend it.",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -264,7 +264,7 @@ const pcs_armrimmobile_r = {
         title: "Arm Immobilization (Left Arm)",
         description: "You were told how heavy your left hand and arm felt and then told to try to lift your hand up.",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -308,7 +308,7 @@ const pcs_music_r = {
         title: "Music Hallucination",
         description: "You were asked to hold your right hand up when you could satisfactorily hear the recording of Happy Birthday to You.",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -401,7 +401,7 @@ const pcs_remember_w = {
             {
                 elements: [
                     {
-                        type: "text",
+                        type: "comment",
                         title: "Briefly type anything else that you now remember that you did not remember previously." +
                             " Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
                         isRequired: true,
@@ -428,7 +428,7 @@ const pcs_remember_r = {
         title: "Amnesia",
         description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -473,7 +473,7 @@ const pcs_magnetichands_r = {
         title: "Magnetic Hands",
         description: "You were told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -518,7 +518,7 @@ const pcs_mosquito_r = {
         title: "Experience of Mosquito",
         description: "You were told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
@@ -611,7 +611,7 @@ const pcs_pse_a = {
 const pcs_press = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: "<h2><br>PLEASE WAIT</br></h2>",
-    response_ends_trial: false, 
+    response_ends_trial: false,
     choices: [" "], // Spacebar as the key to press
     on_start: function () {
         keyPressCount = 0
@@ -623,12 +623,12 @@ const pcs_press = {
         // Listen for keydown events and increment counter when space is pressed
         document.addEventListener("keydown", function (event) {
             if (event.code === "Space") {
-                keyPressCount++;
+                keyPressCount++
                 if (keyPressCount === 6) {
-                    jsPsych.finishTrial(); // End trial after 6 spacebar presses
+                    jsPsych.finishTrial() // End trial after 6 spacebar presses
                 }
             }
-        });
+        })
     },
     trial_duration: 10000, // Ends automatically after 10 seconds
     data: {
@@ -654,7 +654,7 @@ const pcs_pss_r = {
         title: "Post-Session Experience",
         description: "You were told that you would press the space bar six times in a row, but that you would forget that you were told to do so. ",
         completeText: "Continue",
-        goNextPageAutomatic: false,
+        goNextPageAutomatic: true,
         showQuestionNumbers: false,
         pages: [
             {
