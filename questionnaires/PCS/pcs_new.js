@@ -40,8 +40,11 @@ const pcs_instructions = {
                             "<div style='width: 60%; margin-right: 20px;'>" +
                             "<h2>Before you start..</h2>" +
                             "Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
-                            "Audio instructions will shortly be played. Make sure you are using <b>headphones</b>.</p>" +
-                            "Please concentrate on the voice and follow the instructions given." +
+                            "Make sure you will not be disturbed for the next 60 minutes. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
+                            "Audio instructions will shortly be played. " +
+                            "<p><b> NOTE. Some of the audio recordings have periods of silence where it may sound like the recording has stopped or ended prematurely - it won't have." +
+                            "These periods of silence are there for you to focus on the imaginative exercises. Please focus on doing that and wait for the instructions to restart. </b>" +
+                            "<p> Please concentrate on the voice and follow the instructions given. </p>" +
                             "</div>" +
                             "<div style='width: 40%;'>" +
                             `<img src='${pcs_path}/images/instructions.jpg' alt='Illustration' style='width: 100%;'>` +
@@ -58,7 +61,7 @@ const pcs_audiotest = {
     type: jsPsychSurvey,
     survey_json: {
         showQuestionNumbers: false,
-        goNextPageAutomatic: true,
+        goNextPageAutomatic: false,
         showNavigationButtons: "none",
         pages: [
             {
@@ -117,7 +120,7 @@ const pcs_handlowering_r = {
         title: "Hand Lowering",
         description: "You were told to extend your right arm straight out and feel it becoming heavy as though a weight were pulling the hand and arm down",
         completeText: "Continue",
-        goNextPageAutomatic: true,
+        goNextPageAutomatic: false,
         showQuestionNumbers: false,
         pages: [
             {
@@ -143,6 +146,98 @@ const pcs_handlowering_r = {
     }
 }
 
+
+// Magnetic Hands (audio + rating)
+const pcs_magnetichands_a = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/magnetic_hands.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
+    data: {
+        screen: "pcs_magnetichands_a",
+    }
+}
+
+const pcs_magnetichands_r = {
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Magnetic Hands",
+        description: "You were told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "rating",
+                        title: "How strongly did you feel a force between your hands, where 0 means you felt no force at all and 5 means you felt a force so strong it was as if your hands were real magnets?",
+                        displayMode: "buttons",
+                        isRequired: true,
+                        minRateDescription: "No force",
+                        maxRateDescription: "Strong Force",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        name: "MovingHandsTogether_r",
+                    }
+                ]
+            }
+        ]
+    },
+    data: {
+        screen: "pcs_magnetichands_r",
+    }
+}
+
+// Mosquito (audio + rating)
+const pcs_mosquito_a = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/mosquito.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
+    data: {
+        screen: "pcs_mosquito_a",
+    }
+}
+
+const pcs_mosquito_r = {
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Experience of Mosquito",
+        description: "You were told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "rating",
+                        title: "How strongly did you feel the sensation of a mosquito being there, in either sound or touch, where 0 means you felt no sensation and 5 means you felt by any means as if there actually was a mosquito there?",
+                        displayMode: "buttons",
+                        isRequired: true,
+                        minRateDescription: "No mosquito",
+                        maxRateDescription: "Like a real mosquito",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        name: "Mosquito_r",
+                    },
+                ]
+            }
+        ]
+    },
+    data: {
+        screen: "pcs_mosquito_r",
+    }
+}
+
+
 // Taste (audio + rating to sweet and sour)
 const pcs_taste_a = {
     type: jsPsychAudioKeyboardResponse,
@@ -162,7 +257,7 @@ const pcs_taste_r = {
         title: "Taste Experience ",
         description: "You were told that you would have a SWEET taste in your mouth, and then you were told that you have a SOUR taste in your mouth.",
         completeText: "Continue",
-        goNextPageAutomatic: true,
+        goNextPageAutomatic: false,
         showQuestionNumbers: false,
         pages: [
             {
@@ -219,7 +314,7 @@ const pcs_armrigidity_r = {
         title: "Arm Rigidity (Right Arm)",
         description: "You were told to extend your right arm straight out, then to notice it becoming stiff, and then told to try to bend it.",
         completeText: "Continue",
-        goNextPageAutomatic: true,
+        goNextPageAutomatic: false,
         showQuestionNumbers: false,
         pages: [
             {
@@ -264,7 +359,7 @@ const pcs_armrimmobile_r = {
         title: "Arm Immobilization (Left Arm)",
         description: "You were told how heavy your left hand and arm felt and then told to try to lift your hand up.",
         completeText: "Continue",
-        goNextPageAutomatic: true,
+        goNextPageAutomatic: false,
         showQuestionNumbers: false,
         pages: [
             {
@@ -308,7 +403,7 @@ const pcs_music_r = {
         title: "Music Hallucination",
         description: "You were asked to hold your right hand up when you could satisfactorily hear the recording of Happy Birthday to You.",
         completeText: "Continue",
-        goNextPageAutomatic: true,
+        goNextPageAutomatic: false,
         showQuestionNumbers: false,
         pages: [
             {
@@ -334,215 +429,6 @@ const pcs_music_r = {
     }
 }
 
-// Amnesia 1 (audio + written response)
-const pcs_amnesia_a = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: `${pcs_path}/audio/amnesia.mp3`,
-    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
-    choices: ["s"],
-    response_ends_trial: true,
-    trial_ends_after_audio: true,
-    data: {
-        screen: "pcs_amnesia_a",
-    }
-}
-
-const pcs_amnesia_w = {
-    type: jsPsychSurvey,
-    survey_json: {
-        completeText: "Continue",
-        goNextPageAutomatic: false,
-        showQuestionNumbers: false,
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "comment",
-                        title: "Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises." +
-                            " Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
-                        isRequired: true,
-                        placeholder: "Write here",
-                        name: "Amnesia_w",
-                    },
-                ]
-            }
-        ]
-    },
-    data: {
-        screen: "pcs_amnesia_w"
-    },
-    on_load: function () {
-        setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 120000) // 1 minute
-    }
-}
-
-// Amnesia 2 (audio + written response)
-const pcs_remember_a = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: `${pcs_path}/audio/remember_everything.mp3`,
-    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
-    choices: ["s"],
-    response_ends_trial: true,
-    trial_ends_after_audio: true,
-    data: {
-        screen: "pcs_remember_a",
-    }
-}
-
-const pcs_remember_w = {
-    type: jsPsychSurvey,
-    survey_json: {
-        completeText: "Continue",
-        goNextPageAutomatic: false,
-        showQuestionNumbers: false,
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "comment",
-                        title: "Briefly type anything else that you now remember that you did not remember previously." +
-                            " Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
-                        isRequired: true,
-                        placeholder: "Write here",
-                        name: "Remember_w",
-                    },
-                ]
-            }
-        ]
-    },
-    data: {
-        screen: "pcs_remember_w"
-    },
-    on_load: function () {
-        setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 120000) // 2 minutes
-    }
-}
-
-const pcs_remember_r = {
-    type: jsPsychSurvey,
-    survey_json: {
-        title: "Amnesia",
-        description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
-        completeText: "Continue",
-        goNextPageAutomatic: true,
-        showQuestionNumbers: false,
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "rating",
-                        title: "How hard was it to remember events before you were told 'now you can remember everything', where 0 means you could remember events as easily as normal and 5 means you found it so difficult to remember it was as if there was an actual blank in your memory?",
-                        displayMode: "buttons",
-                        isRequired: true,
-                        minRateDescription: "Normal memory",
-                        maxRateDescription: "No memory",
-                        rateCount: 6,
-                        rateMin: 0,
-                        rateMax: 5,
-                        name: "Remember_r",
-                    },
-                ]
-            }
-        ]
-    },
-    data: {
-        screen: "pcs_remember_r",
-    }
-}
-
-// Magnetic Hands (audio + rating)
-const pcs_magnetichands_a = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: `${pcs_path}/audio/magnetic_hands.mp3`,
-    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
-    choices: ["s"],
-    response_ends_trial: true,
-    trial_ends_after_audio: true,
-    data: {
-        screen: "pcs_magnetichands_a",
-    }
-}
-
-const pcs_magnetichands_r = {
-    type: jsPsychSurvey,
-    survey_json: {
-        title: "Magnetic Hands",
-        description: "You were told to hold your hands out in front of you about a foot apart and then told to imagine a force pulling your hands together.",
-        completeText: "Continue",
-        goNextPageAutomatic: true,
-        showQuestionNumbers: false,
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "rating",
-                        title: "How strongly did you feel a force between your hands, where 0 means you felt no force at all and 5 means you felt a force so strong it was as if your hands were real magnets?",
-                        displayMode: "buttons",
-                        isRequired: true,
-                        minRateDescription: "No force",
-                        maxRateDescription: "Strong Force",
-                        rateCount: 6,
-                        rateMin: 0,
-                        rateMax: 5,
-                        name: "MovingHandsTogether_r",
-                    }
-                ]
-            }
-        ]
-    },
-    data: {
-        screen: "pcs_magnetichands_r",
-    }
-}
-
-// Mosquito (audio + rating)
-const pcs_mosquito_a = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: `${pcs_path}/audio/mosquito.mp3`,
-    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
-    choices: ["s"],
-    response_ends_trial: true,
-    trial_ends_after_audio: true,
-    data: {
-        screen: "pcs_mosquito_a",
-    }
-}
-
-const pcs_mosquito_r = {
-    type: jsPsychSurvey,
-    survey_json: {
-        title: "Experience of Mosquito",
-        description: "You were told to become aware of the buzzing of a mosquito which was said to become annoying, and then you were told to brush it off.",
-        completeText: "Continue",
-        goNextPageAutomatic: true,
-        showQuestionNumbers: false,
-        pages: [
-            {
-                elements: [
-                    {
-                        type: "rating",
-                        title: "How strongly did you feel the sensation of a mosquito being there, in either sound or touch, where 0 means you felt no sensation and 5 means you felt by any means as if there actually was a mosquito there?",
-                        displayMode: "buttons",
-                        isRequired: true,
-                        minRateDescription: "No mosquito",
-                        maxRateDescription: "Like a real mosquito",
-                        rateCount: 6,
-                        rateMin: 0,
-                        rateMax: 5,
-                        name: "Mosquito_r",
-                    },
-                ]
-            }
-        ]
-    },
-    data: {
-        screen: "pcs_mosquito_r",
-    }
-}
 
 // Negative visual illusion (audio(s) + image + multiple choice response)
 const pcs_balls_a = {
@@ -594,6 +480,83 @@ const pcs_balls_mc = {
         screen: "pcs_balls_mc",
     },
 }
+
+const pcs_balls_r = {
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Negative Hallucination",
+        description: "You were next told to open your eyes and look at a picture of two coloured balls. You then indicated the colour of the balls that you saw.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        title: "How invisible was a third ball, where 0 means you saw three balls clearly, and 5 means you only saw two balls, and any number in between means you had some difficulty in seeing a third ball?",
+                        type: "rating",
+                        displayMode: "buttons",
+                        isRequired: true,
+                        minRateDescription: "Saw three balls",
+                        maxRateDescription: "Saw two balls",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        name: "NegativeVisualHallucination_r"
+                    }
+                ]
+            }
+        ]
+    },
+    data: {
+        screen: "pcs_balls_mc",
+    },
+}
+
+// Amnesia 1 (audio + written response)
+const pcs_amnesia_a = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/amnesia.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
+    data: {
+        screen: "pcs_amnesia_a",
+    }
+}
+
+const pcs_amnesia_w = {
+    type: jsPsychSurvey,
+    survey_json: {
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "comment",
+                        title: "Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises." +
+                            " Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
+                        isRequired: true,
+                        placeholder: "Write here",
+                        name: "Amnesia_w",
+                    },
+                ]
+            }
+        ]
+    },
+    data: {
+        screen: "pcs_amnesia_w"
+    },
+    on_load: function () {
+        setTimeout(function () {
+            jsPsych.finishTrial()
+        }, 120000) // 1 minute
+    }
+}
+
 
 // Post-session experience (audio + keyboard presses + ratings)
 const pcs_pse_a = {
@@ -654,7 +617,7 @@ const pcs_pss_r = {
         title: "Post-Session Experience",
         description: "You were told that you would press the space bar six times in a row, but that you would forget that you were told to do so. ",
         completeText: "Continue",
-        goNextPageAutomatic: true,
+        goNextPageAutomatic: false,
         showQuestionNumbers: false,
         pages: [
             {
@@ -688,6 +651,83 @@ const pcs_pss_r = {
         screen: "pcs_pss_r",
     }
 }
+
+// Amnesia 2 (audio + written response)
+const pcs_remember_a = {
+    type: jsPsychAudioKeyboardResponse,
+    stimulus: `${pcs_path}/audio/remember_everything.mp3`,
+    prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: ["s"],
+    response_ends_trial: true,
+    trial_ends_after_audio: true,
+    data: {
+        screen: "pcs_remember_a",
+    }
+}
+
+const pcs_remember_w = {
+    type: jsPsychSurvey,
+    survey_json: {
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "comment",
+                        title: "Briefly type anything else that you now remember that you did not remember previously." +
+                            " Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
+                        isRequired: true,
+                        placeholder: "Write here",
+                        name: "Remember_w",
+                    },
+                ]
+            }
+        ]
+    },
+    data: {
+        screen: "pcs_remember_w"
+    },
+    on_load: function () {
+        setTimeout(function () {
+            jsPsych.finishTrial()
+        }, 120000) // 2 minutes
+    }
+}
+
+const pcs_remember_r = {
+    type: jsPsychSurvey,
+    survey_json: {
+        title: "Amnesia",
+        description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
+        completeText: "Continue",
+        goNextPageAutomatic: false,
+        showQuestionNumbers: false,
+        pages: [
+            {
+                elements: [
+                    {
+                        type: "rating",
+                        title: "How hard was it to remember events before you were told 'now you can remember everything', where 0 means you could remember events as easily as normal and 5 means you found it so difficult to remember it was as if there was an actual blank in your memory?",
+                        displayMode: "buttons",
+                        isRequired: true,
+                        minRateDescription: "Normal memory",
+                        maxRateDescription: "No memory",
+                        rateCount: 6,
+                        rateMin: 0,
+                        rateMax: 5,
+                        name: "Remember_r",
+                    },
+                ]
+            }
+        ]
+    },
+    data: {
+        screen: "pcs_remember_r",
+    }
+}
+
 
 const pcs_finish = {
     type: jsPsychSurvey,
@@ -741,6 +781,7 @@ const pcs_timeline = {
         pcs_balls_a, // 8
         pcs_balls_a2,
         pcs_balls_mc,
+        pcs_balls_r,
         pcs_amnesia_a, // 9
         pcs_amnesia_w,
         pcs_pse_a, // 10
