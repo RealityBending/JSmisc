@@ -62,7 +62,7 @@ const pcs_audiotest = {
     survey_json: {
         showQuestionNumbers: false,
         goNextPageAutomatic: false,
-        showNavigationButtons: "none",
+        completeText: "Continue",
         pages: [
             {
                 elements: [
