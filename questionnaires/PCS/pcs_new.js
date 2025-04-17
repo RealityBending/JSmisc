@@ -510,7 +510,7 @@ const pcs_balls_r = {
         ]
     },
     data: {
-        screen: "pcs_negativehallucination",
+        screen: "pcs_negativehallucination_r",
     },
 }
 
@@ -632,7 +632,7 @@ const pcs_pss_r = {
                         rateMin: 0,
                         rateMax: 5,
                         isRequired: true,
-                        name: "PostSessionExperiencea_r"
+                        name: "PostSessionExperiencea_ur"
                     },
                     {
                         type: "rating",
