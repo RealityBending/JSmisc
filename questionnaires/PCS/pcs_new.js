@@ -77,6 +77,7 @@ const pcs_audiotest = {
                         title: "What did you hear?",
                         isRequired: true,
                         name: "AudioTest",
+                        screen: "hello_test"
                     }
                 ]
             }
@@ -509,7 +510,7 @@ const pcs_balls_r = {
         ]
     },
     data: {
-        screen: "pcs_balls_mc",
+        screen: "pcs_negativehallucination",
     },
 }
 
@@ -642,7 +643,7 @@ const pcs_pss_r = {
                         rateCount: 6,
                         rateMin: 0,
                         rateMax: 5,
-                        name: "PostSessionExperienceb_r",
+                        name: "PostSessionExperienceb_mr",
                     },
                 ],
             }
