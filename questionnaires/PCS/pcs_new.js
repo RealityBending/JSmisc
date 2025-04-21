@@ -725,7 +725,7 @@ const pcs_remember_r = {
         ]
     },
     data: {
-        screen: "pcs_remember_r",
+        screen: "pcs_amnesia_r",
     }
 }
 
