@@ -367,7 +367,7 @@ const pcs_armrimmobile_r = {
                 elements: [
                     {
                         type: "rating",
-                        title: "How stiff did your arm feel, where 0 means no more stiffness than normal and 5 means you could feel a stiffness so compelling no amount of effort would overcome it?",
+                        title: "How heavy did your arm feel, where 0 means no more heaviness than normal and 5 means you could feel a heaviness so compelling no amount of effort would overcome it?",
                         displayMode: "buttons",
                         isRequired: true,
                         minRateDescription: "Normal/ no heaviness",
