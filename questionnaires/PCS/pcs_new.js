@@ -706,7 +706,7 @@ const pcs_remember_w = {
     },
     on_load: function () {
         setTimeout(function () {
-            jsPsych.finishTrial();
+            jsPsych.finishTrial()
         }, 120000) // 2 minutes
     }
 }
