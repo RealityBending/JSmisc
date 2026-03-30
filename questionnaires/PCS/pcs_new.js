@@ -543,6 +543,7 @@ const pcs_amnesia_w = {
                         isRequired: true,
                         placeholder: "Write here",
                         name: "Amnesia_w",
+                        maxLength: 600
                     },
                 ]
             }
@@ -551,10 +552,16 @@ const pcs_amnesia_w = {
     data: {
         screen: "pcs_amnesia_w"
     },
+    on_finish: function (data) {
+        if (!data.response || !data.response.Amnesia_w) {
+            const textArea = document.querySelector("textarea");
+            data.response = { Amnesia_w: textArea ? textArea.value : "" };
+        }
+    },
     on_load: function () {
         setTimeout(function () {
             jsPsych.finishTrial()
-        }, 120000) // 1 minute
+        }, 120000) // 2 minutes
     }
 }
 
@@ -682,6 +689,7 @@ const pcs_remember_w = {
                         isRequired: true,
                         placeholder: "Write here",
                         name: "Remember_w",
+                        maxLength: 600
                     },
                 ]
             }
@@ -690,9 +698,15 @@ const pcs_remember_w = {
     data: {
         screen: "pcs_remember_w"
     },
+    on_finish: function (data) {
+        if (!data.response || !data.response.Remember_w) {
+            const textArea = document.querySelector("textarea");
+            data.response = { Remember_w: textArea ? textArea.value : "" };
+        }
+    },
     on_load: function () {
         setTimeout(function () {
-            jsPsych.finishTrial()
+            jsPsych.finishTrial();
         }, 120000) // 2 minutes
     }
 }
