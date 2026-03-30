@@ -40,9 +40,9 @@ const pcs_instructions = {
                             "<div style='width: 60%; margin-right: 20px;'>" +
                             "<h2>Before you start..</h2>" +
                             "Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
-                            "Make sure you will not be disturbed for the next 60 minutes. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
+                            "Make sure you will not be disturbed for the entire duration of this task. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
                             "Audio instructions will shortly be played. " +
-                            "<p><b> NOTE. Some of the audio recordings have periods of silence where it may sound like the recording has stopped or ended prematurely - it won't have." +
+                            "<p><b> NOTE. Some of the audio recordings have periods of silence where it may sound like the recording has stopped or ended prematurely - it won't have. " +
                             "These periods of silence are there for you to focus on the imaginative exercises. Please focus on doing that and wait for the instructions to restart. </b>" +
                             "<p> Please concentrate on the voice and follow the instructions given. </p>" +
                             "</div>" +
@@ -543,6 +543,7 @@ const pcs_amnesia_w = {
                         isRequired: true,
                         placeholder: "Write here",
                         name: "Amnesia_w",
+                        maxLength: 600
                     },
                 ]
             }
@@ -551,10 +552,16 @@ const pcs_amnesia_w = {
     data: {
         screen: "pcs_amnesia_w"
     },
+    on_finish: function (data) {
+        if (!data.response || !data.response.Amnesia_w) {
+            const textArea = document.querySelector("textarea");
+            data.response = { Amnesia_w: textArea ? textArea.value : "" };
+        }
+    },
     on_load: function () {
         setTimeout(function () {
             jsPsych.finishTrial()
-        }, 120000) // 1 minute
+        }, 120000) // 2 minutes
     }
 }
 
@@ -682,6 +689,7 @@ const pcs_remember_w = {
                         isRequired: true,
                         placeholder: "Write here",
                         name: "Remember_w",
+                        maxLength: 600
                     },
                 ]
             }
@@ -689,6 +697,12 @@ const pcs_remember_w = {
     },
     data: {
         screen: "pcs_remember_w"
+    },
+    on_finish: function (data) {
+        if (!data.response || !data.response.Remember_w) {
+            const textArea = document.querySelector("textarea");
+            data.response = { Remember_w: textArea ? textArea.value : "" };
+        }
     },
     on_load: function () {
         setTimeout(function () {
