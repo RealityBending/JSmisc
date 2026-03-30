@@ -40,7 +40,7 @@ const pcs_instructions = {
                             "<div style='width: 60%; margin-right: 20px;'>" +
                             "<h2>Before you start..</h2>" +
                             "Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
-                            "Make sure you will not be disturbed for the entire duration of the task. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
+                            "Make sure you will not be disturbed for the entire duration of the task and experiment. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
                             "Audio instructions will shortly be played. " +
                             "<p><b> NOTE. Some of the audio recordings have periods of silence where it may sound like the recording has stopped or ended prematurely - it won't have. " +
                             "These periods of silence are there for you to focus on the imaginative exercises. Please focus on doing that and wait for the instructions to restart. </b>" +
