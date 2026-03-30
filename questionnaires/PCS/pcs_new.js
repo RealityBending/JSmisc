@@ -554,14 +554,18 @@ const pcs_amnesia_w = {
     },
     on_finish: function (data) {
         if (!data.response || !data.response.Amnesia_w) {
-            const textArea = document.querySelector("textarea");
-            data.response = { Amnesia_w: textArea ? textArea.value : "" };
+            data.response = { Amnesia_w: data._timedOutValue || "" };
         }
     },
     on_load: function () {
         setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 120000) // 2 minutes
+            const textArea = document.querySelector("textarea");
+            const currentValue = textArea ? textArea.value : "";
+
+            jsPsych.data.get().last(1).values()[0]._timedOutValue = currentValue;
+
+            jsPsych.finishTrial();
+        }, 120000); // 2 minutes
     }
 }
 
@@ -700,14 +704,18 @@ const pcs_remember_w = {
     },
     on_finish: function (data) {
         if (!data.response || !data.response.Remember_w) {
-            const textArea = document.querySelector("textarea");
-            data.response = { Remember_w: textArea ? textArea.value : "" };
+            data.response = { Remember_w: data._timedOutValue || "" };
         }
     },
     on_load: function () {
         setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 120000) // 2 minutes
+            const textArea = document.querySelector("textarea");
+            const currentValue = textArea ? textArea.value : "";
+
+            jsPsych.data.get().last(1).values()[0]._timedOutValue = currentValue;
+
+            jsPsych.finishTrial();
+        }, 120000); // 2 minutes
     }
 }
 
