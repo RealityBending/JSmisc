@@ -38,8 +38,8 @@ const pcs_instructions = {
                         html:
                             "<div style='display: flex;'>" +
                             "<div style='width: 60%; margin-right: 20px;'>" +
-                            "<h2>Before you start..</h2>" +
-                            "Please find a comfortable position in front of the computer making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
+                            "<h2>Before you start...</h2>" +
+                            "Please find a comfortable position in front of the computer, making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
                             "Make sure you will not be disturbed for the entire duration of this task. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
                             "Audio instructions will shortly be played. " +
                             "<p><b> NOTE. Some of the audio recordings have periods of silence where it may sound like the recording has stopped or ended prematurely - it won't have. " +
@@ -552,20 +552,10 @@ const pcs_amnesia_w = {
     data: {
         screen: "pcs_amnesia_w"
     },
-    on_finish: function (data) {
-        if (!data.response || !data.response.Amnesia_w) {
-            data.response = { Amnesia_w: data._timedOutValue || "" };
-        }
-    },
     on_load: function () {
         setTimeout(function () {
-            const textArea = document.querySelector("textarea");
-            const currentValue = textArea ? textArea.value : "";
-
-            jsPsych.data.get().last(1).values()[0]._timedOutValue = currentValue;
-
-            jsPsych.finishTrial();
-        }, 120000); // 2 minutes
+            jsPsych.finishTrial()
+        }, 120000) // 2 minutes
     }
 }
 
@@ -702,20 +692,10 @@ const pcs_remember_w = {
     data: {
         screen: "pcs_remember_w"
     },
-    on_finish: function (data) {
-        if (!data.response || !data.response.Remember_w) {
-            data.response = { Remember_w: data._timedOutValue || "" };
-        }
-    },
     on_load: function () {
         setTimeout(function () {
-            const textArea = document.querySelector("textarea");
-            const currentValue = textArea ? textArea.value : "";
-
-            jsPsych.data.get().last(1).values()[0]._timedOutValue = currentValue;
-
-            jsPsych.finishTrial();
-        }, 120000); // 2 minutes
+            jsPsych.finishTrial()
+        }, 120000) // 2 minutes
     }
 }
 
