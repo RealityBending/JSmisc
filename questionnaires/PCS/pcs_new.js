@@ -539,7 +539,7 @@ const pcs_amnesia_w = {
                     {
                         type: "comment",
                         title: "Please briefly type, in your own words, a list of the things that happened since the beginning of this set of exercises." +
-                            " Do not go into detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
+                            " Please do not go into too much detail (you have max. 2 minutes).",
                         isRequired: true,
                         placeholder: "Write here",
                         name: "Amnesia_w",
@@ -679,7 +679,7 @@ const pcs_remember_w = {
                     {
                         type: "comment",
                         title: "Briefly type anything else that you now remember that you did not remember previously." +
-                            " Please do not go in to detail. You are limited to 600 characters and the system will automatically accept whatever you have written after 2 minutes.",
+                            " Please do not go into too much detail (you have max. 2 minutes).",
                         isRequired: true,
                         placeholder: "Write here",
                         name: "Remember_w",
