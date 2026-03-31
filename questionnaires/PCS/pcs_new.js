@@ -554,8 +554,13 @@ const pcs_amnesia_w = {
     },
     on_load: function () {
         setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 120000) // 2 minutes
+            const textarea = document.querySelector('textarea[id*="Amnesia_w"]');
+            const currentValue = textarea ? textarea.value : "";
+            jsPsych.data.get().last(1).values()[0].response = {
+                Amnesia_w: currentValue
+            };
+            jsPsych.finishTrial();
+        }, 120000)
     }
 }
 
@@ -694,8 +699,13 @@ const pcs_remember_w = {
     },
     on_load: function () {
         setTimeout(function () {
-            jsPsych.finishTrial()
-        }, 120000) // 2 minutes
+            const textarea = document.querySelector('textarea[id*="Remember_w"]');
+            const currentValue = textarea ? textarea.value : "";
+            jsPsych.data.get().last(1).values()[0].response = {
+                Remember_w: currentValue
+            };
+            jsPsych.finishTrial();
+        }, 120000)
     }
 }
 
