@@ -554,19 +554,8 @@ const pcs_amnesia_w = {
     },
     on_load: function () {
         setTimeout(function () {
-            const textarea = document.querySelector('textarea[id*="Amnesia_w"]');
-            if (textarea) {
-                textarea.dispatchEvent(new Event('change', { bubbles: true }));
-                textarea.dispatchEvent(new Event('input', { bubbles: true }));
-            }
-            jsPsych.finishTrial();
-        }, 120000);
-    },
-    on_finish: function (data) {
-        if (!data.response || !data.response.Amnesia_w) {
-            const textarea = document.querySelector('textarea[id*="Amnesia_w"]');
-            data.response = { Amnesia_w: textarea ? textarea.value : "" };
-        }
+            jsPsych.finishTrial()
+        }, 120000) // 2 minutes
     }
 }
 
@@ -705,19 +694,8 @@ const pcs_remember_w = {
     },
     on_load: function () {
         setTimeout(function () {
-            const textarea = document.querySelector('textarea[id*="Remember_w"]');
-            if (textarea) {
-                textarea.dispatchEvent(new Event('change', { bubbles: true }));
-                textarea.dispatchEvent(new Event('input', { bubbles: true }));
-            }
-            jsPsych.finishTrial();
-        }, 120000);
-    },
-    on_finish: function (data) {
-        if (!data.response || !data.response.Remember_w) {
-            const textarea = document.querySelector('textarea[id*="Remember_w"]');
-            data.response = { Remember_w: textarea ? textarea.value : "" };
-        }
+            jsPsych.finishTrial()
+        }, 120000) // 2 minutes
     }
 }
 
