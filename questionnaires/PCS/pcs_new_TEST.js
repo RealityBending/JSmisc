@@ -581,19 +581,21 @@ const pcs_press = {
     on_start: function () {
         keyPressCount = 0
     },
-    on_finish: function (data) {
-        data.keyPressCount = keyPressCount
-    },
     on_load: function () {
-        // Listen for keydown events and increment counter when space is pressed
-        document.addEventListener("keydown", function (event) {
+        function handleKeydown(event) {
             if (event.code === "Space") {
                 keyPressCount++
                 if (keyPressCount === 6) {
                     jsPsych.finishTrial() // End trial after 6 spacebar presses
                 }
             }
-        })
+        }
+        document.addEventListener("keydown", handleKeydown)
+        window._pcsKeyHandler = handleKeydown  // store reference so on_finish can find it
+    },
+    on_finish: function (data) {
+        data.keyPressCount = keyPressCount
+        document.removeEventListener("keydown", window._pcsKeyHandler)
     },
     trial_duration: 10000, // Ends automatically after 10 seconds
     data: {
