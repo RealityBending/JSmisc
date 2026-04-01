@@ -97,6 +97,7 @@ const pcs_intro = {
     // },
     stimulus: `${pcs_path}/audio/intro.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
 }
@@ -106,6 +107,7 @@ const pcs_handlowering_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/hand_lowering.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -151,6 +153,7 @@ const pcs_magnetichands_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/magnetic_hands.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -195,6 +198,7 @@ const pcs_mosquito_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/mosquito.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -240,6 +244,7 @@ const pcs_taste_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/taste.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -296,6 +301,7 @@ const pcs_armrigidity_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/arm_rigid.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -340,6 +346,7 @@ const pcs_armrimmobile_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/arm_immobile.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -383,6 +390,7 @@ const pcs_music_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/Music.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -428,6 +436,7 @@ const pcs_balls_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/negative_visual.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -440,6 +449,7 @@ const pcs_balls_a2 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/negative_visualb.mp3`,
     prompt: `<img src='${pcs_path}/images/stimulus.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -509,6 +519,7 @@ const pcs_amnesia_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/amnesia.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -554,6 +565,7 @@ const pcs_pse_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/PSS1.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
@@ -649,6 +661,7 @@ const pcs_remember_a = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: `${pcs_path}/audio/remember_everything.mp3`,
     prompt: `<img src='${pcs_path}/images/headphones.png'>`,
+    choices: "NO_KEYS",
     response_ends_trial: true,
     trial_ends_after_audio: true,
     data: {
