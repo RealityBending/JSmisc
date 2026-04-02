@@ -38,7 +38,7 @@ const pcs_instructions = {
                         html:
                             "<div style='display: flex;'>" +
                             "<div style='width: 60%; margin-right: 20px;'>" +
-                            "<h2><b>TEST DO NOT USE</b> Before you start...</h2>" +
+                            "<h2>Before you start...</h2>" +
                             "Please find a comfortable position in front of the computer, making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
                             "Make sure you will not be disturbed for the entire duration of this task. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
                             "Audio instructions will shortly be played. " +
@@ -553,9 +553,12 @@ const pcs_amnesia_w = {
         screen: "pcs_amnesia_w"
     },
     on_load: function () {
-        setTimeout(function () {
+        window._amnesiaTimeout = setTimeout(function () {
             jsPsych.finishTrial()
         }, 120000) // 2 minutes
+    },
+    on_finish: function () {
+        clearTimeout(window._amnesiaTimeout)
     }
 }
 
@@ -639,7 +642,7 @@ const pcs_pss_r = {
                     },
                     {
                         type: "rating",
-                        title: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
+                        title: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar.",
                         isRequired: true,
                         minRateDescription: "Normal memory of instruction",
                         maxRateDescription: "No memory of instruction",
@@ -695,9 +698,12 @@ const pcs_remember_w = {
         screen: "pcs_remember_w"
     },
     on_load: function () {
-        setTimeout(function () {
+        window._rememberTimeout = setTimeout(function () {
             jsPsych.finishTrial()
         }, 120000) // 2 minutes
+    },
+    on_finish: function () {
+        clearTimeout(window._rememberTimeout)
     }
 }
 
@@ -705,7 +711,7 @@ const pcs_remember_r = {
     type: jsPsychSurvey,
     survey_json: {
         title: "Amnesia",
-        description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
+        description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember everything'.",
         completeText: "Continue",
         goNextPageAutomatic: false,
         showQuestionNumbers: false,
