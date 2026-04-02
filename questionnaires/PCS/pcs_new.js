@@ -639,7 +639,7 @@ const pcs_pss_r = {
                     },
                     {
                         type: "rating",
-                        title: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar, where 0 means you had no urge whatsoever and 5 means you had a clear urge to press the space bar repeatedly.",
+                        title: "Report how clearly you remembered being given the instruction to press the space bar six times, where 0 means you were able at that time to remember the instruction normally and 5 means you had no memory of the instruction at that time to press the space bar.",
                         isRequired: true,
                         minRateDescription: "Normal memory of instruction",
                         maxRateDescription: "No memory of instruction",
@@ -705,7 +705,7 @@ const pcs_remember_r = {
     type: jsPsychSurvey,
     survey_json: {
         title: "Amnesia",
-        description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember anything'.",
+        description: "You were then told that you would not be able to remember anything you did during the session until you were told 'now you can remember everything'.",
         completeText: "Continue",
         goNextPageAutomatic: false,
         showQuestionNumbers: false,
