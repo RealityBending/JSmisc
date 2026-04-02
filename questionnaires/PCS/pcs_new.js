@@ -553,9 +553,12 @@ const pcs_amnesia_w = {
         screen: "pcs_amnesia_w"
     },
     on_load: function () {
-        setTimeout(function () {
+        window._amnesiaTimeout = setTimeout(function () {
             jsPsych.finishTrial()
         }, 120000) // 2 minutes
+    },
+    on_finish: function () {
+        clearTimeout(window._amnesiaTimeout)
     }
 }
 
@@ -695,9 +698,12 @@ const pcs_remember_w = {
         screen: "pcs_remember_w"
     },
     on_load: function () {
-        setTimeout(function () {
+        window._rememberTimeout = setTimeout(function () {
             jsPsych.finishTrial()
         }, 120000) // 2 minutes
+    },
+    on_finish: function () {
+        clearTimeout(window._rememberTimeout)
     }
 }
 
