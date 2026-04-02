@@ -38,7 +38,7 @@ const pcs_instructions = {
                         html:
                             "<div style='display: flex;'>" +
                             "<div style='width: 60%; margin-right: 20px;'>" +
-                            "<h2>Before you start...</h2>" +
+                            "<h2>***TEST DO NOT USE***Before you start...</h2>" +
                             "Please find a comfortable position in front of the computer, making sure you are at a sufficient distance to hold your hands in front of you without touching anything.</p>" +
                             "Make sure you will not be disturbed for the entire duration of this task. The experiment should be completed in a quiet environment and using <b>headphones</b> throughout. " +
                             "Audio instructions will shortly be played. " +
